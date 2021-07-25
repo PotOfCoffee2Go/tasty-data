@@ -18,22 +18,18 @@ _Display portfolio data_
 
 <script>
   let detailMarkup = '' +
-    '| Symbol | Ticker | ::tx-green::_Shares_ | Entry | Mark | Cost | Holding | Gain |\n' +
-    '| :----- | :----: | :------------------: | :---: | :--: | :--: | :-----: | :--: |\n' +
+    '| Symbol | ::tx-green::_Shares_ | Entry | Mark | Cost | Holding | Gain |\n' +
+    '| :----- | :------------------: | :---: | :--: | :--: | :-----: | :--: |\n' +
     '{{#data}}' +
-    '| {{Underlying_Symbol}} | {{Ticker}} | {{Quantity}} | {{Entry_Price}} |' +
-    ' {{Price}} | {{Cost}} | {{Holding_Value}} | {{Gain_Formatted}} |\n' +
+    '| {{Underlying_Symbol}} | {{Quantity}} | {{Entry_Price}} |' +
+    ' {{Mark_Price}} | {{Cost}} | {{Holding}} | {{Gain_Formatted}} |\n' +
     '{{/data}}';
 
   // Reference portfolio data in localStorage
-  let ndata = webdocdown.data.store.nasdaqPortfolioDetails.data.filter(obj => obj.Ticker);
-  let tdata = webdocdown.data.store.tastyPortfolioDetails.data;
-
-  // Merge Nasdaq and Tastyworks portfolio data by symbol
-  let data = tdata.map(t1 => ({...t1, ...ndata.find(n2 => n2.Ticker === t1.Underlying_Symbol)}))
+  let data = webdocdown.data.store.tastyPortfolioDetails.data;
 
   // Sort by symbol
-  data.sort((a, b) => (a.Ticker > b.Ticker ? 1 : -1));
+  data.sort((a, b) => (a.Symbol > b.Symbol ? 1 : -1));
 
   // Produce and display table of portfolio data
   webdocdown.produceWBDD(detailMarkup, { data })
