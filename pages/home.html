@@ -8,7 +8,9 @@ _Load portfolio data_
 
 ::plugin-plugins/loadportfolio.html::
 
-::plugin-plugins/showdata.html::
+::plugin-plugins/details.html::
+
+::plugin-plugins/showjson.html::
 
 ---
 
@@ -25,22 +27,23 @@ pages/loaddata.html
 <div>::include-pages/loaddata.html::</div>
 plugins/loadportfolio.html
 <div>::include-plugins/loadportfolio.html::</div>
-plugins/showdata.html
-<div>::include-plugins/showdata.html::</div>
+plugins/details.html
+<div>::include-plugins/details.html::</div>
+plugins/showjson.html
+<div>::include-plugins/showjson.html::</div>
 plugins/common.html
 <div>::include-plugins/common.html::</div></div>
 
 <script>
+  const show = (elem) => elem.classList.remove('hidden'),
+    hide = (elem) => elem.classList.add('hidden');
+
   // Initialize local storage
-  if (!webdocdown.data.store.nasdaqPortfolioDetails) {
-    webdocdown.storeData({ nasdaqPortfolioDetails: { data: [] } })
-  }
   if (!webdocdown.data.store.tastyPortfolioDetails) {
     webdocdown.storeData({ tastyPortfolioDetails: { data: [] } })
   }
 
-  const show = (elem) => elem.classList.remove('hidden'),
-    hide = (elem) => elem.classList.add('hidden');
+  calcDetails();
 
   // Assign DOM element variables
   ['mainCode']
