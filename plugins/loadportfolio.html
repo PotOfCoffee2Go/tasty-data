@@ -12,6 +12,9 @@ Select Tastyworks 'Portfolio' Download file
   const round = (nbr, places) =>
     Math.round(nbr * Math.pow(10, places)) / Math.pow(10, places);
 
+  const format = (nbr, places) =>
+    parseFloat(round(nbr, places)).toFixed(places);
+
   const show = (elem) => elem.classList.remove('hidden'),
     hide = (elem) => elem.classList.add('hidden');
 
@@ -50,18 +53,38 @@ Select Tastyworks 'Portfolio' Download file
 
     // Round to sane decimal places
     tpd.data.forEach((symbol, idx) => {
-      tpd.data[idx].Entry_Price = round(symbol.Cost/symbol.Quantity, 4);
-      tpd.data[idx].Mark_Price = round((symbol.Cost + symbol.Gain)/symbol.Quantity, 4);
-      tpd.data[idx].Holding = round(symbol.Cost + symbol.Gain, 4);
-      tpd.data[idx].Cost = round(symbol.Cost, 2);
-      tpd.data[idx].Gain = round(symbol.Gain, 2);
-      tpd.data[idx].Gain_Formatted = symbol.Gain < 0
-        ? '::tx-red::_(' + (symbol.Gain*-1) + ')_'
-        : '::tx-darkblue::_' + symbol.Gain + '_';
+      tpd.data[idx].Holding = symbol.Cost + symbol.Gain;
+      tpd.data[idx].fmt = {};
+      tpd.data[idx].fmt.Entry_Price = format(symbol.Cost/symbol.Quantity, 4);
+      tpd.data[idx].fmt.Mark_Price = format((symbol.Cost + symbol.Gain)/symbol.Quantity, 4);
+      tpd.data[idx].fmt.Holding = format(symbol.Cost + symbol.Gain, 2);
+      tpd.data[idx].fmt.Cost = format(symbol.Cost, 2);
+      tpd.data[idx].fmt.Gain = symbol.Gain < 0
+        ? '::tx-red::_(' + format(symbol.Gain*-1, 2) + ')_'
+        : '::tx-darkblue::_' + format(symbol.Gain, 2) + '_';
     });
 
+    // Sum up the columns of interest
+    const sums = tpd.data.reduce((previousValue, currentValue) => {
+      return {
+        Quantity: previousValue.Quantity + currentValue.Quantity,
+        Holding: previousValue.Holding + currentValue.Holding,
+        Cost: previousValue.Cost + currentValue.Cost,
+        Gain: previousValue.Gain + currentValue.Gain,
+      }
+    });
+
+    // Format for display
+    sums.fmt = {};
+    sums.fmt.Quantity = sums.Quantity;
+    sums.fmt.Holding = format(sums.Holding, 2);
+    sums.fmt.Cost = format(sums.Cost, 2);
+    sums.fmt.Gain = sums.Gain < 0
+      ? '::tx-red::_(' + format(sums.Gain*-1, 2) + ')_'
+      : '::tx-darkblue::_' + format(sums.Gain, 2) + '_';
+
     // Save in localStorage for use by other documents
-    webdocdown.storeData({ tastyPortfolioDetails: tpd })
+    webdocdown.storeData({tastyPortfolioDetails: tpd, tastyPortfolioSums: sums});
 
     // Display results in textarea and JSON
     show(tastyText);

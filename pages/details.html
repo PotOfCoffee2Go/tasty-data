@@ -21,18 +21,22 @@ _Display portfolio data_
     '| Symbol | ::tx-green::_Shares_ | Entry | Mark | Cost | Holding | Gain |\n' +
     '| :----- | :------------------: | :---: | :--: | :--: | :-----: | :--: |\n' +
     '{{#data}}' +
-    '| {{Underlying_Symbol}} | {{Quantity}} | {{Entry_Price}} |' +
-    ' {{Mark_Price}} | {{Cost}} | {{Holding}} | {{Gain_Formatted}} |\n' +
-    '{{/data}}';
+    '| {{Underlying_Symbol}} | {{Quantity}} | {{fmt.Entry_Price}} |' +
+    ' {{fmt.Mark_Price}} | {{fmt.Cost}} | {{fmt.Holding}} | {{fmt.Gain}} |\n' +
+    '{{/data}}' +
+    '| Totals | {{sums.fmt.Quantity}} |  |  |' +
+    ' {{sums.fmt.Cost}} | {{sums.fmt.Holding}} | {{sums.fmt.Gain}} |\n';
 
   // Reference portfolio data in localStorage
   let data = webdocdown.data.store.tastyPortfolioDetails.data;
+  let sums = webdocdown.data.store.tastyPortfolioSums;
+  console.log(sums);
 
   // Sort by symbol
   data.sort((a, b) => (a.Underlying_Symbol > b.Underlying_Symbol ? 1 : -1));
 
   // Produce and display table of portfolio data
-  webdocdown.produceWBDD(detailMarkup, { data })
+  webdocdown.produceWBDD(detailMarkup, { data, sums })
     .then((html) => document.getElementById('detail-data').innerHTML = html)
 </script>
 
