@@ -1,0 +1,72 @@
+::heading::<div>
+# _Portfolio Playground_
+
+::tx-.8::_by {{name}}_
+
+_Load portfolio data_
+</div>
+
+::plugin-plugins/loadportfolio.html::
+
+::plugin-plugins/showdata.html::
+
+---
+
+Display Code:
+::box::<span>
+  ::#codeOff::<input type="radio" name="codeout" value="off" checked>
+  <label for="codeOff">Off</label>
+  ::#codeOn::<input type="radio" name="codeout" value="on">
+  <label for="codeOn">On</label>
+</span>
+
+::#mainCode hidden::<div>
+pages/loaddata.html
+<div>::include-pages/loaddata.html::</div>
+plugins/loadportfolio.html
+<div>::include-plugins/loadportfolio.html::</div>
+plugins/showdata.html
+<div>::include-plugins/showdata.html::</div>
+plugins/common.html
+<div>::include-plugins/common.html::</div></div>
+
+<script>
+  // Initialize local storage
+  if (!webdocdown.data.store.nasdaqPortfolioDetails) {
+    webdocdown.storeData({ nasdaqPortfolioDetails: { data: [] } })
+  }
+  if (!webdocdown.data.store.tastyPortfolioDetails) {
+    webdocdown.storeData({ tastyPortfolioDetails: { data: [] } })
+  }
+
+  const show = (elem) => elem.classList.remove('hidden'),
+    hide = (elem) => elem.classList.add('hidden');
+
+  // Assign DOM element variables
+  ['mainCode']
+    .forEach(id => this[id] = document.getElementById(id));
+
+  // JSON output radio buttons
+  document.querySelectorAll("input[name='codeout']").forEach((input) => {
+    input.addEventListener('change', (event) => {
+      codeDisplay(event.target.id);
+    });
+  });
+
+  const codeDisplay = (id) => {
+    id = id || document.querySelector('input[name="codeout"]:checked').id;
+    switch (id) {
+      case 'codeOn' :
+        show(mainCode);
+        location.href = '#tastyText';
+        break;
+      default :
+        hide(mainCode);
+        location.href = '#tastyText';
+        break;
+    }
+  }
+</script>
+
+::plugin-plugins/common.html::
+

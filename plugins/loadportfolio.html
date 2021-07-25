@@ -1,0 +1,107 @@
+Select Nasdaq Portfolio 'Detail View' Download file and a Tastyworks 'Portfolio' Download file
+
+::#fileSelect::<button>Select Data File(s)</button>
+::#fileInput hidden::<input type="file" multiple onchange="onFileChange(event)">
+<button onclick="window.location.href = '?doc=pages/details.html';">Show Table</button>
+
+::#nasdaqText::
+<label for="nasdaqArea" style="font-size: 1.1em;">Nasdaq Portfolio Data:</label>
+::98% #nasdaqArea::<textarea name="nasdaqArea" rows="5"></textarea>
+</div>
+
+::#tastyText::
+<label for="tastyArea" style="font-size: 1.1em;">Tasty Portfolio Data:</label>
+::98% #tastyArea::<textarea name="tastyArea" rows="5"></textarea>
+
+<script>
+  const round = (nbr, places) =>
+    Math.round(nbr * Math.pow(10, places)) / Math.pow(10, places);
+
+  const show = (elem) => elem.classList.remove('hidden'),
+    hide = (elem) => elem.classList.add('hidden');
+
+  // Assign DOM element variables
+  ['nasdaqText', 'tastyText', 'nasdaqArea', 'tastyArea', 'jsonOutput',
+   'fileInput', 'fileSelect']
+    .forEach(id => this[id] = document.getElementById(id));
+
+  fileSelect.addEventListener("click", function (e) {
+    fileInput.click();
+    e.preventDefault();
+  }, false);
+
+  onFileChange = (event) => {
+    for (let i = 0; i < event.target.files.length; i++) {
+      const file = event.target.files[i];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (/^Company/.test(e.target.result)) {
+          nasdaqArea.value = e.target.result;
+          nasdaqArea.dispatchEvent(new Event('change'));
+        }
+        else if (/^Asset/.test(e.target.result)) {
+          tastyArea.value = e.target.result;
+          tastyArea.dispatchEvent(new Event('change'));
+        }
+      };
+      reader.readAsText(file);
+    }
+  }
+  // Process Data downloaded from Nasdaq Smart Portfolio
+  nasdaqArea.addEventListener("change", () => {
+    // Clean up data in Nasdaq Portfolio 'Detail View' Download file
+    let input = nasdaqArea.value.split('\n').map(line => /^"/.test(line)
+        ? line.replace(/\$/g,'').replace(/\%/g,'')
+        : line.replace(/ /g,'_').replace(/[($)]|No._of_/g,'')
+            .replace(/\%/g,'Percent').replace(/_,/g,',')
+      ).join('\n');
+
+    // Parse the Nasdaq Portfolio Details
+    let npd = Papa.parse(input, {header: true, dynamicTyping: true, skipEmptyLines: true});
+
+    // Round to sane decimal places
+    npd.data.forEach((ticker, idx) => {
+      if (ticker.Ticker) {
+        npd.data[idx].Price = round(ticker.Holding_Value/ticker.Shares, 6);
+      }
+    })
+
+    // Save in localStorage for use by other documents
+    webdocdown.storeData({ nasdaqPortfolioDetails: npd })
+
+    // Display results in textarea and JSON
+    show(nasdaqText);
+    jsonDisplay();
+  });
+
+  // Process Data downloaded from Tastyworks Portfolio
+  tastyArea.addEventListener("change", () => {
+    // Clean up data in Tasty Portfolio Position Download file
+    let input = tastyArea.value.split('\n')
+      .map(line => line.replace(/ /g,'_').replace(/_,/g,',')
+      ).join('\n');
+
+    // Parse the Tasty Portfolio Details
+    let tpd = Papa.parse(input, {header: true, dynamicTyping: true, skipEmptyLines: true});
+
+    // Round to sane decimal places
+    tpd.data.forEach((symbol, idx) => {
+      tpd.data[idx].Entry_Price = round(symbol.Cost/symbol.Quantity, 4);
+      tpd.data[idx].Cost = round(symbol.Cost, 2);
+      tpd.data[idx].Gain = round(symbol.Gain, 2);
+      tpd.data[idx].Gain_Formatted = symbol.Gain < 0
+        ? '::tx-red::_(' + (symbol.Gain*-1) + ')_'
+        : '::tx-darkblue::_' + symbol.Gain + '_';
+    });
+
+    // Save in localStorage for use by other documents
+    webdocdown.storeData({ tastyPortfolioDetails: tpd })
+
+    // Display results in textarea and JSON
+    show(tastyText);
+    jsonDisplay();
+  });
+
+</script>
+
+<script src="https://unpkg.com/papaparse@5.3.1/papaparse.min.js"></script>

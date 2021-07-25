@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio</title>
+
+    <script>
+      // webdocdown - directory/gist containing WebDocDown source code
+      // document - default document to display
+      // element - id of a <div>, <article>, <iframe> etc to display document
+      // hljsSheet - highlight.js stylesheet for code blocks
+      // data  - passed to Mustache.js when rendering document
+      const sources = {
+        webdocdown: (file) => "https://gist.githubusercontent.com/" +
+          "PotOfCoffee2Go/72e5308a90de277552b2c925f89a4c8d/" +
+          `raw/${file}`,
+        document: "pages/details.html",
+        element: "webdocdown",
+        hljsSheet: "railscasts.min.css",
+        data: {
+          name: "PotOfCoffee2Go",
+          wbdd: {}, // used by WebDocDown
+        },
+      };
+
+      // Append fetched script to <head>
+      function fetchWebDocDown(script) {
+        return fetch(sources.webdocdown(script))
+          .then((response) => response.text())
+          .then((text) => {
+            let elem = document.createElement("script");
+            elem.innerHTML = text;
+            document.head.appendChild(elem);
+          });
+      }
+
+      // Load WebDocDown on startup
+      window.onload = () => {
+        fetchWebDocDown("webdocdown.js")
+          .then(() => new WebDocFetch())
+          .then((webdocfetch) => webdocfetch.loadWebDocDown(sources))
+          .catch((err) => {
+            document.getElementById(sources.element).innerHTML = err;
+          });
+      };
+    </script>
+
+    <style>
+      :root {
+        --wbddbgclr: #e1f9e1;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body style="background: var(--wbddbgclr);">
+    <div id="webdocdown" style="margin: 0 7% 0 7%;">Loading...</div>
+  </body>
+</html>
