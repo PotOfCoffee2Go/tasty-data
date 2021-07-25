@@ -22,10 +22,10 @@ _Display portfolio data_
     '| :----- | :------------------: | :---: | :--: | :--: | :-----: | :--: |\n' +
     '{{#data}}' +
     '| {{Underlying_Symbol}} | {{Quantity}} | {{fmt.Entry_Price}} |' +
-    ' {{fmt.Mark_Price}} | {{fmt.Cost}} | {{fmt.Holding}} | {{fmt.Gain}} |\n' +
+    '  {{fmt.Mark_Price}} | {{fmt.Cost}} | {{fmt.Holding}} | {{fmt.Gain}} |\n' +
     '{{/data}}' +
-    '| Totals | {{sums.fmt.Quantity}} |  |  |' +
-    ' {{sums.fmt.Cost}} | {{sums.fmt.Holding}} | {{sums.fmt.Gain}} |\n';
+    '| Totals | {{sums.fmt.Quantity}} | - | - |' +
+    '  {{sums.fmt.Cost}} | {{sums.fmt.Holding}} | {{sums.fmt.Gain}} |\n';
 
   // Reference portfolio data in localStorage
   let data = webdocdown.data.store.tastyPortfolioDetails.data;
@@ -52,6 +52,9 @@ _Display portfolio data_
   }
   #detail-data th {
     color: darkred;
+  }
+  #detail-data tbody tr:last-child {
+    background: #D0D0D0;
   }
   pre {
     border-radius: 15px;
