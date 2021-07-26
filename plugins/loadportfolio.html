@@ -1,4 +1,7 @@
-Select Tastyworks 'Portfolio' Download file
+Select Tastyworks ::2x::![portfolio](images/portfolio.png) 'Portfolio' then Download
+::2x::![download csv](images/downloadcsv.png) CSV file.
+
+Now can select that file to display table of your positions.
 
 ::#fileSelect::<button>Select Tasty Data File</button>
 ::#fileInput hidden::<input type="file" multiple onchange="onFileChange(event)">
@@ -22,7 +25,7 @@ Select Tastyworks 'Portfolio' Download file
 
     maybeRedParens = (nbr, places) =>
       nbr < 0
-        ? '::tx-red::_(' + format(nbr * -1, places) + ')_'
+        ? '::tx-darkred::_(' + format(nbr * -1, places) + ')_'
         : '::tx-darkblue::_' + format(nbr, places) + '_',
 
     show = (elem) => elem.classList.remove('hidden'),
