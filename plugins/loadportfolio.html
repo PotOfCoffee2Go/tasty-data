@@ -72,8 +72,13 @@ Now can select that file to display table of your positions.
       tpd.data[idx].fmt.Quantity = maybeRedParens(symbol.Quantity, 0);
       tpd.data[idx].fmt.Entry_Price = format(symbol.Cost/symbol.Quantity, 4);
       tpd.data[idx].fmt.Mark_Price = format((symbol.Cost + symbol.Gain)/symbol.Quantity, 4);
-      tpd.data[idx].fmt.Holding = maybeRedParens(symbol.Cost + symbol.Gain, 2);
-      tpd.data[idx].fmt.Cost = maybeRedParens(symbol.Cost, 2);
+
+      tpd.data[idx].fmt.Market = maybeRedParens(
+        -((symbol.Cost/symbol.Quantity) -
+        ((symbol.Cost + symbol.Gain)/symbol.Quantity)), 2);
+
+      tpd.data[idx].fmt.Cost = maybeRedParens(Math.abs(symbol.Cost), 2);
+      tpd.data[idx].fmt.Holding = maybeRedParens(Math.abs(symbol.Cost + symbol.Gain), 2);
       tpd.data[idx].fmt.Gain = maybeRedParens(symbol.Gain, 2);
     });
 
@@ -92,9 +97,7 @@ Now can select that file to display table of your positions.
     sums.fmt.Quantity = sums.Quantity;
     sums.fmt.Holding = format(sums.Holding, 2);
     sums.fmt.Cost = format(sums.Cost, 2);
-    sums.fmt.Gain = sums.Gain < 0
-      ? '::tx-red::_(' + format(sums.Gain*-1, 2) + ')_'
-      : '::tx-darkblue::_' + format(sums.Gain, 2) + '_';
+    sums.fmt.Gain = maybeRedParens(sums.Gain, 2);
 
     // Save in localStorage for use by other documents
     webdocdown.storeData({tastyPortfolioDetails: tpd, tastyPortfolioSums: sums});

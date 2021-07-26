@@ -3,13 +3,13 @@
 <script>
   calcDetails = () => {
     let detailMarkup = '' +
-      '| Asset | Symbol | ::tx-green::_Qty_ | Entry | Mark | Cost | Holding | Gain |\n' +
-      '| :---: | :----- | :---------------: | :---: | :--: | :--: | :-----: | :--: |\n' +
+      '| Asset | Symbol | Qty | Entry | Mark | Market | Cost | Holding | Gain |\n' +
+      '| :---: | :----- | :-: | :---: | :--: | :----: | :--: | :-----: | :--: |\n' +
       '{{#data}}' +
       '| {{fmt.Asset_Type}} | {{Underlying_Symbol}} | {{fmt.Quantity}} | {{fmt.Entry_Price}} |' +
-      '  {{fmt.Mark_Price}} | {{fmt.Cost}} | {{fmt.Holding}} | {{fmt.Gain}} |\n' +
+      '  {{fmt.Mark_Price}} | {{fmt.Market}} | {{fmt.Cost}} | {{fmt.Holding}} | {{fmt.Gain}} |\n' +
       '{{/data}}' +
-      '| Totals |  | {{sums.fmt.Quantity}} | - | - |' +
+      '| Totals |  | {{sums.fmt.Quantity}} | - | - | - |' +
       '  {{sums.fmt.Cost}} | {{sums.fmt.Holding}} | {{sums.fmt.Gain}} |\n';
 
     // Reference portfolio data in localStorage
@@ -36,7 +36,7 @@
     margin-right:auto;
   }
   #detail-data th {
-    color: darkred;
+    color: black;
   }
   #detail-data tbody tr:last-child {
     background: #E8E8E8;
