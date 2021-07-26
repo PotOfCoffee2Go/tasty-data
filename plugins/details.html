@@ -4,9 +4,9 @@
   calcDetails = () => {
     let detailMarkup = '' +
       '| Asset | Symbol | ::tx-green::_Qty_ | Entry | Mark | Cost | Holding | Gain |\n' +
-      '| :---: | :----- | :------------------: | :---: | :--: | :--: | :-----: | :--: |\n' +
+      '| :---: | :----- | :---------------: | :---: | :--: | :--: | :-----: | :--: |\n' +
       '{{#data}}' +
-      '| {{fmt.Asset_Type}} | {{Underlying_Symbol}} | {{Quantity}} | {{fmt.Entry_Price}} |' +
+      '| {{fmt.Asset_Type}} | {{Underlying_Symbol}} | {{fmt.Quantity}} | {{fmt.Entry_Price}} |' +
       '  {{fmt.Mark_Price}} | {{fmt.Cost}} | {{fmt.Holding}} | {{fmt.Gain}} |\n' +
       '{{/data}}' +
       '| Totals |  | {{sums.fmt.Quantity}} | - | - |' +

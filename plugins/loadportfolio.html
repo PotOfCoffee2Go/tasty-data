@@ -8,16 +8,22 @@ Select Tastyworks 'Portfolio' Download file
 ::98% #tastyArea::<textarea name="tastyArea" rows="5"></textarea>
 
 <script>
+  // Helpers
   const
     round = (nbr, places) =>
       Math.round(nbr * Math.pow(10, places)) / Math.pow(10, places),
 
     format = (nbr, places) =>
-      parseFloat(round(nbr, places)).toFixed(places);
+      parseFloat(round(nbr, places)).toFixed(places),
 
-    lowerCaseButFirst = (string) =>
-      string.replace(/^[A-Z].*/, (word) =>
+    lowerCaseButFirst = (text) =>
+      text.replace(/^[A-Z].*/, (word) =>
         word.charAt(0) + word.slice(1).toLowerCase()),
+
+    maybeRedParens = (nbr, places) =>
+      nbr < 0
+        ? '::tx-red::_(' + format(nbr * -1, places) + ')_'
+        : '::tx-darkblue::_' + format(nbr, places) + '_',
 
     show = (elem) => elem.classList.remove('hidden'),
     hide = (elem) => elem.classList.add('hidden');
@@ -26,9 +32,9 @@ Select Tastyworks 'Portfolio' Download file
   ['tastyText', 'tastyArea', 'jsonOutput', 'fileInput', 'fileSelect']
     .forEach(id => this[id] = document.getElementById(id));
 
-  fileSelect.addEventListener("click", function (e) {
+  fileSelect.addEventListener("click", (event) => {
     fileInput.click();
-    e.preventDefault();
+    event.preventDefault();
   }, false);
 
   onFileChange = (event) => {
@@ -47,7 +53,7 @@ Select Tastyworks 'Portfolio' Download file
 
   // Process Data downloaded from Tastyworks Portfolio
   tastyArea.addEventListener("change", () => {
-    // Clean up data in Tasty Portfolio Position Download file
+    // Replace spaces in column names with '_'s unless trailing
     let input = tastyArea.value.split('\n')
       .map(line => line.replace(/ /g,'_').replace(/_,/g,',')
       ).join('\n');
@@ -55,21 +61,20 @@ Select Tastyworks 'Portfolio' Download file
     // Parse the Tasty Portfolio Details
     let tpd = Papa.parse(input, {header: true, dynamicTyping: true, skipEmptyLines: true});
 
-    // Round to sane decimal places
+    // Round to sane decimal places and format for display
     tpd.data.forEach((symbol, idx) => {
       tpd.data[idx].Holding = symbol.Cost + symbol.Gain;
       tpd.data[idx].fmt = {};
       tpd.data[idx].fmt.Asset_Type = lowerCaseButFirst(symbol.Asset_Type);
+      tpd.data[idx].fmt.Quantity = maybeRedParens(symbol.Quantity, 0);
       tpd.data[idx].fmt.Entry_Price = format(symbol.Cost/symbol.Quantity, 4);
       tpd.data[idx].fmt.Mark_Price = format((symbol.Cost + symbol.Gain)/symbol.Quantity, 4);
-      tpd.data[idx].fmt.Holding = format(symbol.Cost + symbol.Gain, 2);
-      tpd.data[idx].fmt.Cost = format(symbol.Cost, 2);
-      tpd.data[idx].fmt.Gain = symbol.Gain < 0
-        ? '::tx-red::_(' + format(symbol.Gain*-1, 2) + ')_'
-        : '::tx-darkblue::_' + format(symbol.Gain, 2) + '_';
+      tpd.data[idx].fmt.Holding = maybeRedParens(symbol.Cost + symbol.Gain, 2);
+      tpd.data[idx].fmt.Cost = maybeRedParens(symbol.Cost, 2);
+      tpd.data[idx].fmt.Gain = maybeRedParens(symbol.Gain, 2);
     });
 
-    // Sum up the columns of interest
+    // Sum up the columns
     const sums = tpd.data.reduce((previousValue, currentValue) => {
       return {
         Quantity: previousValue.Quantity + currentValue.Quantity,
@@ -79,7 +84,7 @@ Select Tastyworks 'Portfolio' Download file
       }
     });
 
-    // Format for display
+    // Format sums for display
     sums.fmt = {};
     sums.fmt.Quantity = sums.Quantity;
     sums.fmt.Holding = format(sums.Holding, 2);
