@@ -3,13 +3,13 @@
 <script>
   calcDetails = () => {
     let detailMarkup = '' +
-      '| Symbol | ::tx-green::_Qty_ | Entry | Mark | Cost | Holding | Gain |\n' +
-      '| :----- | :------------------: | :---: | :--: | :--: | :-----: | :--: |\n' +
+      '| Asset | Symbol | ::tx-green::_Qty_ | Entry | Mark | Cost | Holding | Gain |\n' +
+      '| :---: | :----- | :------------------: | :---: | :--: | :--: | :-----: | :--: |\n' +
       '{{#data}}' +
-      '| {{Underlying_Symbol}} | {{Quantity}} | {{fmt.Entry_Price}} |' +
+      '| {{fmt.Asset_Type}} | {{Underlying_Symbol}} | {{Quantity}} | {{fmt.Entry_Price}} |' +
       '  {{fmt.Mark_Price}} | {{fmt.Cost}} | {{fmt.Holding}} | {{fmt.Gain}} |\n' +
       '{{/data}}' +
-      '| Totals | {{sums.fmt.Quantity}} | - | - |' +
+      '| Totals |  | {{sums.fmt.Quantity}} | - | - |' +
       '  {{sums.fmt.Cost}} | {{sums.fmt.Holding}} | {{sums.fmt.Gain}} |\n';
 
     // Reference portfolio data in localStorage

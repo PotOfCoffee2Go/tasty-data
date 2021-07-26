@@ -2,20 +2,24 @@ Select Tastyworks 'Portfolio' Download file
 
 ::#fileSelect::<button>Select Tasty Data File</button>
 ::#fileInput hidden::<input type="file" multiple onchange="onFileChange(event)">
-<button onclick="window.location.href = '?doc=pages/details.html';">Show Table</button>
 
-::#tastyText::
-<label for="tastyArea" style="font-size: 1.1em;">Tasty Portfolio Data:</label>
+::#tastyText hidden::
+::tx-1.1::<label for="tastyArea">Tasty Portfolio Data</label>
 ::98% #tastyArea::<textarea name="tastyArea" rows="5"></textarea>
 
 <script>
-  const round = (nbr, places) =>
-    Math.round(nbr * Math.pow(10, places)) / Math.pow(10, places);
+  const
+    round = (nbr, places) =>
+      Math.round(nbr * Math.pow(10, places)) / Math.pow(10, places),
 
-  const format = (nbr, places) =>
-    parseFloat(round(nbr, places)).toFixed(places);
+    format = (nbr, places) =>
+      parseFloat(round(nbr, places)).toFixed(places);
 
-  const show = (elem) => elem.classList.remove('hidden'),
+    lowerCaseButFirst = (string) =>
+      string.replace(/^[A-Z].*/, (word) =>
+        word.charAt(0) + word.slice(1).toLowerCase()),
+
+    show = (elem) => elem.classList.remove('hidden'),
     hide = (elem) => elem.classList.add('hidden');
 
   // Assign DOM element variables
@@ -55,6 +59,7 @@ Select Tastyworks 'Portfolio' Download file
     tpd.data.forEach((symbol, idx) => {
       tpd.data[idx].Holding = symbol.Cost + symbol.Gain;
       tpd.data[idx].fmt = {};
+      tpd.data[idx].fmt.Asset_Type = lowerCaseButFirst(symbol.Asset_Type);
       tpd.data[idx].fmt.Entry_Price = format(symbol.Cost/symbol.Quantity, 4);
       tpd.data[idx].fmt.Mark_Price = format((symbol.Cost + symbol.Gain)/symbol.Quantity, 4);
       tpd.data[idx].fmt.Holding = format(symbol.Cost + symbol.Gain, 2);
