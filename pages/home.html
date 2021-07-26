@@ -4,9 +4,35 @@
 ::tx-.8::_by {{name}}_
 </div>
 
+Select Tastyworks ::2x::![portfolio](images/portfolio.png) 'Portfolio' then Download
+::2x::![download csv](images/downloadcsv.png) CSV file.
+
+Now can select that file to display table of your positions.
+
+::#fileSelect::<button>Select Tasty Data File</button>
+::#fileInput hidden::<input type="file" multiple onchange="onFileChange(event)">
 ::plugin-plugins/loadportfolio.html::
 
+::div #detail-data tx-darkblue::
+
 ::plugin-plugins/details.html::
+
+::#tastyText hidden::
+::tx-1.1::<label for="tastyArea">Tasty Portfolio Data</label>
+::98% #tastyArea::<textarea name="tastyArea" rows="5"></textarea>
+
+---
+
+::#jsonButtons::
+JSON output:
+::box::<span>
+  ::#radioOff::<input type="radio" name="jsonout" checked>
+  <label for="radioOff">Off</label>
+  ::#radioTasty::<input type="radio" name="jsonout">
+  <label for="radioTasty">Tastyworks</label>
+</span>
+
+<pre>::code #jsonOutput hljs language-json hidden::</pre>
 
 ::plugin-plugins/showjson.html::
 
@@ -20,49 +46,39 @@ Display Code:
   <label for="codeOn">On</label>
 </span>
 
+::plugin-plugins/showcode.html::
+
 ::#mainCode hidden::<div>
-pages/loadportfolio.html
+
+pages/home.html
+<div>::include-pages/home.html::</div>
+
+---
+
+Plugins
+
+plugins/loadportfolio.html
 <div>::include-plugins/loadportfolio.html::</div>
+
 plugins/details.html
 <div>::include-plugins/details.html::</div>
+
 plugins/showjson.html
 <div>::include-plugins/showjson.html::</div>
+
+plugins/showcode.html
+<div>::include-plugins/showcode.html::</div>
+
 plugins/common.html
 <div>::include-plugins/common.html::</div></div>
 
 <script>
-  const show = (elem) => elem.classList.remove('hidden'),
-    hide = (elem) => elem.classList.add('hidden');
-
   // Initialize local storage
   if (!webdocdown.data.store.tastyPortfolioDetails) {
     webdocdown.storeData({ tastyPortfolioDetails: { data: [] } })
   }
 
   calcDetails();
-
-  // Assign DOM element variables
-  ['mainCode']
-    .forEach(id => this[id] = document.getElementById(id));
-
-  // JSON output radio buttons
-  document.querySelectorAll("input[name='codeout']").forEach((input) => {
-    input.addEventListener('change', (event) => {
-      codeDisplay(event.target.id);
-    });
-  });
-
-  const codeDisplay = (id) => {
-    id = id || document.querySelector('input[name="codeout"]:checked').id;
-    switch (id) {
-      case 'codeOn' :
-        show(mainCode);
-        break;
-      default :
-        hide(mainCode);
-        break;
-    }
-  }
 </script>
 
 ::plugin-plugins/common.html::
