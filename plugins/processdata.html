@@ -20,8 +20,6 @@
     // Reference portfolio data from localStorage
     let tpd = webdocdown.data.store.tastyPortfolioData;
 
-    if (tpd.data.length === 0) return;
-
     // Round to sane decimal places and format for display
     tpd.data.forEach((symbol, idx) => {
       tpd.data[idx].Holding = symbol.Cost + symbol.Gain;
@@ -41,23 +39,39 @@
     });
 
     // Sum up the columns
-    const sums = tpd.data.reduce((previousValue, currentValue) => {
-      return {
-        Quantity: previousValue.Quantity + currentValue.Quantity,
-        Holding: previousValue.Holding + currentValue.Holding,
-        Cost: previousValue.Cost + currentValue.Cost,
-        Gain: previousValue.Gain + currentValue.Gain,
-      }
+    if (tpd.data.length !== 0) {
+      const sums = tpd.data.reduce((previousValue, currentValue) => {
+        return {
+          Quantity: previousValue.Quantity + currentValue.Quantity,
+          Holding: previousValue.Holding + currentValue.Holding,
+          Cost: previousValue.Cost + currentValue.Cost,
+          Gain: previousValue.Gain + currentValue.Gain,
+        }
+      });
+
+      // Format sums for display
+      sums.fmt = {};
+      sums.fmt.Quantity = sums.Quantity;
+      sums.fmt.Holding = format(sums.Holding, 2);
+      sums.fmt.Cost = format(sums.Cost, 2);
+      sums.fmt.Gain = maybeRedParens(sums.Gain, 2);
+
+      webdocdown.storeData({tastyPortfolioDetails: tpd, tastyPortfolioSums: sums});
+    }
+
+    // Reference transaction data from localStorage
+    let ttd = webdocdown.data.store.tastyTransactionData;
+
+    // Round to sane decimal places and format for display
+    ttd.data.forEach((tran, idx) => {
+      ttd.data[idx].fmt = {};
+      ttd.data[idx].fmt.Price = maybeRedParens(tran.Price, 4);
+      ttd.data[idx].fmt.Amount = maybeRedParens(tran.Amount, 4);
+      ttd.data[idx].fmt.Fees = maybeRedParens(tran.Fees, 3);
+
     });
 
-    // Format sums for display
-    sums.fmt = {};
-    sums.fmt.Quantity = sums.Quantity;
-    sums.fmt.Holding = format(sums.Holding, 2);
-    sums.fmt.Cost = format(sums.Cost, 2);
-    sums.fmt.Gain = maybeRedParens(sums.Gain, 2);
-
-    webdocdown.storeData({tastyPortfolioDetails: tpd, tastyPortfolioSums: sums});
+    webdocdown.storeData({tastyTransactionDetails: ttd});
 
   }
 </script>

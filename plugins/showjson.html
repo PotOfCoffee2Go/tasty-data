@@ -12,9 +12,15 @@
   jsonDisplay = (id) => {
     id = id || document.querySelector('input[name="jsonout"]:checked').id;
     switch (id) {
-      case 'radioTasty' :
+      case 'radioJsonPortfolio' :
         jsonOutput.innerHTML =
           JSON.stringify(webdocdown.data.store.tastyPortfolioDetails, null, 2);
+        hljs.highlightElement(jsonOutput);
+        show(jsonOutput);
+        break;
+      case 'radioJsonTransaction' :
+        jsonOutput.innerHTML =
+          JSON.stringify(webdocdown.data.store.tastyTransactionDetails, null, 2);
         hljs.highlightElement(jsonOutput);
         show(jsonOutput);
         break;

@@ -11,14 +11,23 @@ Now can select that file to display table of your positions.
 
 ::#fileSelect::<button>Select Tasty Data File</button>
 ::#fileInput hidden::<input type="file" multiple onchange="onFileChange(event)">
-::plugin-plugins/loadportfolio.html::
+::plugin-plugins/inputdata.html::
 
 ::div #detail-data tx-darkblue::
-::plugin-plugins/detailstable.html::
+::plugin-plugins/portfoliotable.html::
 
-::#tastyText hidden::
-::tx-1.1::<label for="tastyArea">Tasty Portfolio Data</label>
-::#tastyArea 98%::<textarea name="tastyArea" rows="5"></textarea>
+::#tastyPortfolioText hidden::
+::tx-1.1::<label for="tastyPortfolioArea">Tasty Portfolio Data</label>
+::#tastyPortfolioArea 98%::<textarea name="tastyPortfolioArea" rows="5"></textarea>
+
+---
+
+::div #trans-data tx-darkblue::
+::plugin-plugins/transactiontable.html::
+
+::#tastyTransactionText hidden::
+::tx-1.1::<label for="tastyTransactionArea">Tasty Transaction Data</label>
+::#tastyTransactionArea 98%::<textarea name="tastyTransactionArea" rows="5"></textarea>
 
 ---
 
@@ -27,8 +36,10 @@ JSON:
 ::box::<span>
   ::#radioOff::<input type="radio" name="jsonout" checked>
   <label for="radioOff">Off</label>
-  ::#radioTasty::<input type="radio" name="jsonout">
-  <label for="radioTasty">Tastyworks</label>
+  ::#radioJsonPortfolio::<input type="radio" name="jsonout">
+  <label for="radioJsonPortfolio">Portfolio</label>
+  ::#radioJsonTransaction::<input type="radio" name="jsonout">
+  <label for="radioJsonTransaction">Transactions</label>
 </span>
 <pre>::code #jsonOutput hljs language-json hidden::</pre>
 ::plugin-plugins/showjson.html::
@@ -55,11 +66,14 @@ Display Code:
 
   **Plugins**
 
-  plugins/loadportfolio.html
-  <div>::include-plugins/loadportfolio.html::</div>
+  plugins/inputdata.html
+  <div>::include-plugins/inputdata.html::</div>
 
-  plugins/detailstable.html
-  <div>::include-plugins/detailstable.html::</div>
+  plugins/portfoliotable.html
+  <div>::include-plugins/portfoliotable.html::</div>
+
+  plugins/transactiontable.html
+  <div>::include-plugins/transactiontable.html::</div>
 
   plugins/processdata.html
   <div>::include-plugins/processdata.html::</div>
@@ -82,11 +96,14 @@ Display Code:
   if (!webdocdown.data.store.tastyPortfolioData) {
     webdocdown.storeData({ tastyPortfolioData: { data: [] } })
   }
+  if (!webdocdown.data.store.tastyTransactionData) {
+    webdocdown.storeData({ tastyTransactionData: { data: [] } })
+  }
   if (!webdocdown.data.store.tastyPortfolioDetails) {
     webdocdown.storeData({ tastyPortfolioDetails: { data: [] } })
   }
 
   // Process and display what is in localStorage
   processData();
-  calcDetails();
+  calcPortfolio();
 </script>
