@@ -1,21 +1,5 @@
 <script>
-  // Helpers
   const
-    round = (nbr, places) =>
-      Math.round(nbr * Math.pow(10, places)) / Math.pow(10, places),
-
-    format = (nbr, places) =>
-      parseFloat(round(nbr, places)).toFixed(places),
-
-    lowerCaseButFirst = (text) =>
-      text.replace(/^[A-Z].*/, (word) =>
-        word.charAt(0) + word.slice(1).toLowerCase()),
-
-    maybeRedParens = (nbr, places) =>
-      nbr < 0
-        ? '::tx-darkred::_(' + format(nbr * -1, places) + ')_'
-        : '::tx-darkblue::_' + format(nbr, places) + '_',
-
     show = (elem) => elem.classList.remove('hidden'),
     hide = (elem) => elem.classList.add('hidden');
 
@@ -49,46 +33,14 @@
       .map(line => line.replace(/ /g,'_').replace(/_,/g,',')
       ).join('\n');
 
-    // Parse the Tasty Portfolio Details
+    // Parse the Tasty Portfolio Data
     let tpd = Papa.parse(input, {header: true, dynamicTyping: true, skipEmptyLines: true});
 
-    // Round to sane decimal places and format for display
-    tpd.data.forEach((symbol, idx) => {
-      tpd.data[idx].Holding = symbol.Cost + symbol.Gain;
-      tpd.data[idx].fmt = {};
-      tpd.data[idx].fmt.Asset_Type = lowerCaseButFirst(symbol.Asset_Type);
-      tpd.data[idx].fmt.Quantity = maybeRedParens(symbol.Quantity, 0);
-      tpd.data[idx].fmt.Entry_Price = format(symbol.Cost/symbol.Quantity, 4);
-      tpd.data[idx].fmt.Mark_Price = format((symbol.Cost + symbol.Gain)/symbol.Quantity, 4);
-
-      tpd.data[idx].fmt.Market = maybeRedParens(
-        -((symbol.Cost/symbol.Quantity) -
-        ((symbol.Cost + symbol.Gain)/symbol.Quantity)), 2);
-
-      tpd.data[idx].fmt.Cost = maybeRedParens(Math.abs(symbol.Cost), 2);
-      tpd.data[idx].fmt.Holding = maybeRedParens(Math.abs(symbol.Cost + symbol.Gain), 2);
-      tpd.data[idx].fmt.Gain = maybeRedParens(symbol.Gain, 2);
-    });
-
-    // Sum up the columns
-    const sums = tpd.data.reduce((previousValue, currentValue) => {
-      return {
-        Quantity: previousValue.Quantity + currentValue.Quantity,
-        Holding: previousValue.Holding + currentValue.Holding,
-        Cost: previousValue.Cost + currentValue.Cost,
-        Gain: previousValue.Gain + currentValue.Gain,
-      }
-    });
-
-    // Format sums for display
-    sums.fmt = {};
-    sums.fmt.Quantity = sums.Quantity;
-    sums.fmt.Holding = format(sums.Holding, 2);
-    sums.fmt.Cost = format(sums.Cost, 2);
-    sums.fmt.Gain = maybeRedParens(sums.Gain, 2);
-
     // Save in localStorage for use by other documents
-    webdocdown.storeData({tastyPortfolioDetails: tpd, tastyPortfolioSums: sums});
+    webdocdown.storeData({tastyPortfolioData: tpd});
+
+    // Process the JSON representation of the data
+    processData();
 
     // Display results in textarea and JSON
     show(tastyText);

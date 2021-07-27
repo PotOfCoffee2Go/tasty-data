@@ -14,26 +14,23 @@ Now can select that file to display table of your positions.
 ::plugin-plugins/loadportfolio.html::
 
 ::div #detail-data tx-darkblue::
-
-::plugin-plugins/details.html::
+::plugin-plugins/detailstable.html::
 
 ::#tastyText hidden::
 ::tx-1.1::<label for="tastyArea">Tasty Portfolio Data</label>
-::98% #tastyArea::<textarea name="tastyArea" rows="5"></textarea>
+::#tastyArea 98%::<textarea name="tastyArea" rows="5"></textarea>
 
 ---
 
 ::#jsonButtons::
-JSON output:
+JSON:
 ::box::<span>
   ::#radioOff::<input type="radio" name="jsonout" checked>
   <label for="radioOff">Off</label>
   ::#radioTasty::<input type="radio" name="jsonout">
   <label for="radioTasty">Tastyworks</label>
 </span>
-
 <pre>::code #jsonOutput hljs language-json hidden::</pre>
-
 ::plugin-plugins/showjson.html::
 
 ---
@@ -45,41 +42,51 @@ Display Code:
   ::#codeOn::<input type="radio" name="codeout" value="on">
   <label for="codeOn">On</label>
 </span>
-
 ::plugin-plugins/showcode.html::
 
 ::#mainCode hidden::<div>
 
-pages/home.html
-<div>::include-pages/home.html::</div>
+  **Home Page**
 
----
+  pages/home.html
+  <div>::include-pages/home.html::</div>
 
-Plugins
+  ---
 
-plugins/loadportfolio.html
-<div>::include-plugins/loadportfolio.html::</div>
+  **Plugins**
 
-plugins/details.html
-<div>::include-plugins/details.html::</div>
+  plugins/loadportfolio.html
+  <div>::include-plugins/loadportfolio.html::</div>
 
-plugins/showjson.html
-<div>::include-plugins/showjson.html::</div>
+  plugins/detailstable.html
+  <div>::include-plugins/detailstable.html::</div>
 
-plugins/showcode.html
-<div>::include-plugins/showcode.html::</div>
+  plugins/processdata.html
+  <div>::include-plugins/processdata.html::</div>
 
-plugins/common.html
-<div>::include-plugins/common.html::</div></div>
+  plugins/showjson.html
+  <div>::include-plugins/showjson.html::</div>
+
+  plugins/showcode.html
+  <div>::include-plugins/showcode.html::</div>
+
+  plugins/common.html
+  <div>::include-plugins/common.html::</div>
+</div>
+
+::plugin-plugins/processdata.html::
+::plugin-plugins/common.html::
 
 <script>
   // Initialize local storage
+  if (!webdocdown.data.store.tastyPortfolioData) {
+    webdocdown.storeData({ tastyPortfolioData: { data: [] } })
+  }
   if (!webdocdown.data.store.tastyPortfolioDetails) {
     webdocdown.storeData({ tastyPortfolioDetails: { data: [] } })
   }
 
+  // Process and display what is in localStorage
+  processData();
   calcDetails();
 </script>
-
-::plugin-plugins/common.html::
-
