@@ -16,6 +16,12 @@ Now can select that file to display table of your positions.
 ::div #detail-data tx-darkblue::
 ::plugin-plugins/portfoliotable.html::
 
+<label for="symbol-select">Choose a symbol:</label>
+::#symbol-select::<select></select>
+
+::div #transaction-detail tx-darkblue::
+::plugin-plugins/transactiontable.html::
+
 ::#tastyPortfolioText hidden::
 ::tx-1.1::<label for="tastyPortfolioArea">Tasty Portfolio Data</label>
 ::#tastyPortfolioArea 98%::<textarea name="tastyPortfolioArea" rows="5"></textarea>
@@ -105,5 +111,6 @@ Display Code:
 
   // Process and display what is in localStorage
   processData();
-  calcPortfolio();
+  markupPortfolio();
+  markupTransactions();
 </script>

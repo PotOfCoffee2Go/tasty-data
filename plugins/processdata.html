@@ -68,7 +68,7 @@
       ttd.data[idx].fmt.Price = maybeRedParens(tran.Price, 4);
       ttd.data[idx].fmt.Amount = maybeRedParens(tran.Amount, 4);
       ttd.data[idx].fmt.Fees = maybeRedParens(tran.Fees, 3);
-
+      ttd.data[idx].fmt.Strike = maybeRedParens(tran.Strike, 2);
     });
 
     webdocdown.storeData({tastyTransactionDetails: ttd});

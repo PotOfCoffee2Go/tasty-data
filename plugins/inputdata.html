@@ -48,7 +48,7 @@
 
     // Display results in textarea and JSON
     show(tastyPortfolioText);
-    calcPortfolio();
+    markupPortfolio();
     jsonDisplay();
   });
 
@@ -66,10 +66,15 @@
       // Fix date - replace last two '_' with ' ', all other '_' with '/'
       ttd.data[idx].Date_Time = tran.Date_Time
         .replace(/_([^_]*)$/, ' ' + '$1').replace(/_([^_]*)$/, ' ' + '$1')
-        .replace(/_/g, '/');
+        .replace(/_/g, '/')
+        .replace(/ ([1-9]:)/, ' 0' + '$1');
       ttd.data[idx].Time = new Date(ttd.data[idx].Date_Time);
       ttd.data[idx].Description = tran.Description.replace(/_/g, ' ');
+      ttd.data[idx].Transaction_Code = tran.Transaction_Code.replace(/_/g, ' ');
       ttd.data[idx].Transaction_Subcode = tran.Transaction_Subcode.replace(/_/g, ' ');
+      if (tran.Expiration_Date) {
+        ttd.data[idx].Expiration_Date = tran.Expiration_Date.replace(/_/g, '/');
+      }
     });
 
     // Save in localStorage for use by other documents
@@ -80,7 +85,7 @@
 
     // Display results in textarea and JSON
     show(tastyTransactionText);
-    calcPortfolio();
+    markupTransactions();
     jsonDisplay();
   });
 </script>

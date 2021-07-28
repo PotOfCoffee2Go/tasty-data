@@ -1,13 +1,13 @@
 <script>
-  calcPortfolio = () => {
+  markupPortfolio = () => {
     let detailMarkup = '' +
-      '| Asset | Symbol | Qty | Entry | Mark | _Market_ | Cost | Holding | Gain |\n' +
-      '| :---: | :----- | :-: | :---: | :--: | :------: | :--: | :-----: | :--: |\n' +
+      '| Asset | Symbol | Entry | Mark | _Market_ | Qty | Cost | Holding | Gain |\n' +
+      '| :---: | :----- | :---: | :--: | :------: | :-: | :--: | :-----: | :--: |\n' +
       '{{#data}}' +
-      '| {{fmt.Asset_Type}} | {{Underlying_Symbol}} | {{fmt.Quantity}} | {{fmt.Entry_Price}} |' +
-      '  {{fmt.Mark_Price}} | {{fmt.Market}} | {{fmt.Cost}} | {{fmt.Holding}} | {{fmt.Gain}} |\n' +
+      '| {{fmt.Asset_Type}} | {{Underlying_Symbol}} | {{fmt.Entry_Price}} |' +
+      '  {{fmt.Mark_Price}} | {{fmt.Market}} | {{fmt.Quantity}} | {{fmt.Cost}} | {{fmt.Holding}} | {{fmt.Gain}} |\n' +
       '{{/data}}' +
-      '| Totals |  | {{sums.fmt.Quantity}} | - | - | - |' +
+      '| Totals |  | - | - | - | {{sums.fmt.Quantity}} |' +
       '  {{sums.fmt.Cost}} | {{sums.fmt.Holding}} | {{sums.fmt.Gain}} |\n';
 
     // Reference portfolio details and sums from localStorage
