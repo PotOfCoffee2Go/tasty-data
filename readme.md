@@ -22,3 +22,4 @@ Go to [https://potofcoffee2go.github.io/tasty-data/][] and press the _'Tasty Por
 You can select to display the transactions for a single symbol by clicking a symbol in the symbol column.
 
 [https://potofcoffee2go.github.io/tasty-data/]: https://potofcoffee2go.github.io/tasty-data/
+[localStorage]: https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
