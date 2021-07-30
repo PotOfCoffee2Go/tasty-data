@@ -5,7 +5,7 @@ Web based application that displays the portfolio and transaction data from the 
 > Note: This project is not associated with TastyWorks but independently developed/MIT licence by PotOfCoffee2Go.
 
 ## Usage
-To run  the application go to [potofcoffee2Go.github.io/portfolio][]. Once downloaded will be available on your machine until you decide to download again with fresh data.
+To run  the application go to [https://potofcoffee2go.github.io/tasty-data/][]. Downloaded data will be available on your machine until you decide to download again with fresh data.
 Must use the web interface as the desktop version CSV's differ so will not work.
 
 >  All of the downloaded data is stored in [localStorage][] on your machine, so is secure as your machine is.
@@ -17,9 +17,8 @@ Log onto your TastyWorks account - Select _'Portfolio'_ on the left-hand side - 
 Select _'Activity'_ on the left, then select the download CSV icon located in the upper right.
 
 ### Importing
-Go to [potofcoffee2Go.github.io/portfolio][] and press the _'Tasty Portfolio and/or Activity CSV File(s)'_ button. Select both the files downloaded from TastyWorks, The data will be displayed.
+Go to [https://potofcoffee2go.github.io/tasty-data/][] and press the _'Tasty Portfolio and/or Activity CSV File(s)'_ button. Select both the files downloaded from TastyWorks, The data will be displayed.
 
 You can select to display the transactions for a single symbol by clicking a symbol in the symbol column.
 
-
-
+[https://potofcoffee2go.github.io/tasty-data/]: https://potofcoffee2go.github.io/tasty-data/
