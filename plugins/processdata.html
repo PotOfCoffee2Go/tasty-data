@@ -15,7 +15,12 @@
     maybeRedParens = (nbr, places) =>
       nbr < 0
         ? '::tx-darkred::_(' + format(nbr * -1, places) + ')_'
-        : '::tx-darkblue::_' + format(nbr, places) + '_';
+        : '::tx-darkblue::_' + format(nbr, places) + '_',
+
+    linkToTrans = (symbol) =>
+      symbol
+        ? `<a onclick="markupTransactions('${symbol}'); location.href='#trans-data'">${symbol}</a>`
+        : '';
 
     // Reference portfolio data from localStorage
     let tpd = webdocdown.data.store.tastyPortfolioData;
@@ -33,6 +38,7 @@
         -((symbol.Cost/symbol.Quantity) -
         ((symbol.Cost + symbol.Gain)/symbol.Quantity)), 2);
 
+      tpd.data[idx].fmt.Symbol = linkToTrans(symbol.Underlying_Symbol);
       tpd.data[idx].fmt.Cost = maybeRedParens(Math.abs(symbol.Cost), 2);
       tpd.data[idx].fmt.Holding = maybeRedParens(Math.abs(symbol.Cost + symbol.Gain), 2);
       tpd.data[idx].fmt.Gain = maybeRedParens(symbol.Gain, 2);
@@ -65,6 +71,7 @@
     // Round to sane decimal places and format for display
     ttd.data.forEach((tran, idx) => {
       ttd.data[idx].fmt = {};
+      ttd.data[idx].fmt.Symbol = linkToTrans(tran.Symbol);
       ttd.data[idx].fmt.Price = maybeRedParens(tran.Price, 4);
       ttd.data[idx].fmt.Amount = maybeRedParens(tran.Amount, 4);
       ttd.data[idx].fmt.Fees = maybeRedParens(tran.Fees, 3);

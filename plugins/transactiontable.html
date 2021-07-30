@@ -1,4 +1,5 @@
 <script>
+  // Get transactions for symbol, or all if not found
   getSymbolTransactions = (symbol) => {
     let selected = {data: webdocdown.data.store.tastyTransactionDetails.data
       .filter(d => d.Symbol === symbol)};
@@ -6,13 +7,16 @@
     return webdocdown.data.store.tastyTransactionDetails;
   };
 
+  // Select a symbol so displau only those transactions
   document.querySelector('#symbol-select').addEventListener('change', (event) => {
     markupTransactions(event.target.value);
   }, false);
 
+  // Display transactions for the symbol requested
   markupTransactions = (symbol = '') => {
     let data = webdocdown.data.store.tastyTransactionDetails.data;
 
+    // No symbol requested so rebuild select symbol list
     if (!symbol) {
       // Symbol selection element
       const unique = [];
@@ -26,21 +30,19 @@
         unique.filter(u => u.Symbol).map(u =>
           '<option value="' + u.Symbol + '">' + u.Symbol + '</option>').join('\n');
     }
+
     // Build transaction table
     let detailMarkup = '' +
       '| Date | Code | Symbol | Qty | Price | Amount | Strike | Expires | Call/Put |\n' +
       '| :--: | :--: | :----- | :-: | :---: | :----: | :----: | :-----: | :------: |\n' +
       '{{#data}}' +
       '| {{Date_Time}} | {{Transaction_Code}} - {{Transaction_Subcode}} |' +
-      '  {{Symbol}} | {{Quantity}} |' +
+      '  {{{fmt.Symbol}}} | {{Quantity}} |' +
       '  {{fmt.Price}} | {{fmt.Amount}} | {{fmt.Strike}} | {{Expiration_Date}} |' +
       '  {{Call_Put}} |\n' +
       '{{/data}}';
 
-    // Sort by symbol
-    // data.sort((a, b) => (a.Underlying_Symbol > b.Underlying_Symbol ? 1 : -1));
-
-    // Produce and display table of portfolio data
+    // Produce and display table of transaction data
     webdocdown.produceWBDD(detailMarkup, getSymbolTransactions(symbol))
       .then((html) => document.getElementById('transaction-detail').innerHTML = html)
   }
@@ -58,5 +60,8 @@
   }
   #transaction-detail th {
     color: black;
+  }
+  #transaction-detail tr td a {
+    cursor: pointer;
   }
 </style>

@@ -4,7 +4,7 @@
       '| Asset | Symbol | Entry | Mark | _Market_ | Qty | Cost | Holding | Gain |\n' +
       '| :---: | :----- | :---: | :--: | :------: | :-: | :--: | :-----: | :--: |\n' +
       '{{#data}}' +
-      '| {{fmt.Asset_Type}} | {{Underlying_Symbol}} | {{fmt.Entry_Price}} |' +
+      '| {{fmt.Asset_Type}} | {{{fmt.Symbol}}} | {{fmt.Entry_Price}} |' +
       '  {{fmt.Mark_Price}} | {{fmt.Market}} | {{fmt.Quantity}} | {{fmt.Cost}} | {{fmt.Holding}} | {{fmt.Gain}} |\n' +
       '{{/data}}' +
       '| Totals |  | - | - | - | {{sums.fmt.Quantity}} |' +
@@ -38,5 +38,8 @@
   }
   #detail-data tbody tr:last-child {
     background: #E8E8E8;
+  }
+  #detail-data tr td a {
+    cursor: pointer;
   }
 </style>
