@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Tasty Data</title>
 
+    <!-- Load WebDocDown and default document-->
     <script>
       // webdocdown - directory/gist containing WebDocDown source code
       // document - default document to display
@@ -46,6 +47,7 @@
       };
     </script>
 
+    <!-- Style the navbar and WebDocDown document content-->
     <style>
       :root {
         --wbddbgclr: #e1f9e1;
@@ -54,15 +56,61 @@
         box-sizing: border-box;
       }
       body {
+        margin: 0;
         background: var(--wbddbgclr);
       }
+
       #webdocdown {
-        margin: 0 7% 0 7%;
+        overflow: scroll;
+        position: absolute;
+        top: 48px;
+        bottom: 0px;
+        width: 100%;
+      }
+
+      #page ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        top: 0;
+        width: 100%;
+      }
+
+      #page ul li {
+        float: left;
+      }
+
+      #page ul li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      #page ul li a:hover:not(.active) {
+        background-color: #111;
+      }
+
+      .active {
+        background-color: #04AA6D;
       }
     </style>
   </head>
 
   <body>
-    <div id="webdocdown"><em>Loading...</em></div>
+      <!-- Page layout - navbar and WebDocDown document -->
+      <div id="page">
+        <ul>
+          <li><a href="?doc=pages/home.html">Home</a></li>
+          <li><a href="#fileSelect">Positions</a></li>
+          <li><a href="#symbol-select">Transactions</a></li>
+          <li><a href="#footing">About</a></li>
+        </ul>
+        <div id="webdocdown"><em>Loading...</em></div>
+    </div>
   </body>
 </html>
