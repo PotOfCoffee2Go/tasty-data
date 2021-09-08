@@ -4,7 +4,8 @@
     hide = (elem) => elem.classList.add('hidden');
 
   // Assign DOM element variables
-  ['tastyPortfolioText', 'tastyPortfolioArea', 'jsonOutput', 'fileInput', 'fileSelect']
+  ['tastyPortfolioText', 'tastyPortfolioArea',
+   'jsonOutput', 'fileInput', 'fileSelect']
     .forEach(id => this[id] = document.getElementById(id));
 
   fileSelect.addEventListener("click", (event) => {

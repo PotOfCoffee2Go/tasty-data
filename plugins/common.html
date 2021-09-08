@@ -1,21 +1,37 @@
 <style>
-  p, h1{
+  p, h1, h3 {
     text-align: center;
   }
-  .heading {
+  .section, .heading, .footing {
     background: url(images/night-forest.jpg);
     color: white;
     padding: 12px 12px;
     border-radius: 15px;
   }
-  .heading em {
+  .section {
+    background: url(images/cracked_wall.jpg);
+  }
+  .section em, .heading em, .footing em {
     background: black;
     color: white;
     border-radius: 15px;
     padding: 2px 16px;
   }
-  .heading p, .heading h1  {
+  .section p, .section h3,
+  .heading p, .heading h1,
+  .footing p, .footing h3  {
     margin: 1px;
+  }
+  .cssbutton {
+    background-color: #4CAF50; /* Green */
+    border-radius: 8px;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
   }
   pre {
     border-radius: 15px;

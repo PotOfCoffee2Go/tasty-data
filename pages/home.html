@@ -4,24 +4,38 @@
 ::tx-.8::_by {{name}}_
 </div>
 
+Log onto <a target="_blank" href="https://trade.tastyworks.com/login/index.html">TastyWorks</a>.
+
 Select Tastyworks 'Portfolio' then Download ::2x::![download csv](images/downloadcsv.png) CSV file.
 
 Then, select Tastyworks 'Actitity'. May wish to _'filter'_ to see more/less transactions. Download ::2x::![download csv](images/downloadcsv.png) CSV file.
 
-Now can import those files to display your positions.
+Now can import those files to display your positions and transactions.
 
-Select ::#fileSelect::<button>Tasty Portfolio and/or Activity CSV File(s)</button>
+::#fileSelect cssbutton::<button>Import Tasty Portfolio and/or Activity CSV File(s)</button>
 ::#fileInput hidden::<input type="file" multiple onchange="onFileChange(event)">
 ::plugin-plugins/inputdata.html::
 
+::section #displaypositions::<div>
+### _Positions_
+</div>
+
 ::div #detail-data tx-darkblue::
 ::plugin-plugins/portfoliotable.html::
+
+::section #displaytransactions::<div>
+### _Transactions_
+</div>
 
 <label for="symbol-select">Choose a symbol:</label>
 ::#symbol-select::<select></select>
 
 ::div #transaction-detail tx-darkblue::
 ::plugin-plugins/transactiontable.html::
+
+::section #importeddata::<div>
+### _Imported Data_
+</div>
 
 ::#tastyPortfolioText hidden::
 ::tx-1.1::<label for="tastyPortfolioArea">Tasty Portfolio Data</label>
@@ -48,7 +62,9 @@ JSON:
 <pre>::code #jsonOutput hljs language-json hidden::</pre>
 ::plugin-plugins/showjson.html::
 
----
+::section #displaycode::<div>
+### _Code_
+</div>
 
 Display Code:
 ::box::<span>
@@ -91,6 +107,14 @@ Display Code:
   plugins/common.html
   <div>::include-plugins/common.html::</div>
 </div>
+
+::#footing footing::<div>
+### _End of Tastyworks Portfolio Playground_
+</div>
+
+Thank you for trying it out!
+
+Images from <a target="_blank" href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1850417">Pixabay</a>
 
 ::plugin-plugins/processdata.html::
 ::plugin-plugins/common.html::
