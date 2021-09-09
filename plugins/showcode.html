@@ -2,10 +2,6 @@
   const show = (elem) => elem.classList.remove('hidden'),
     hide = (elem) => elem.classList.add('hidden');
 
-  // Assign DOM element variables
-  ['mainCode']
-    .forEach(id => this[id] = document.getElementById(id));
-
   // JSON output radio buttons
   document.querySelectorAll("input[name='codeout']").forEach((input) => {
     input.addEventListener('change', (event) => {

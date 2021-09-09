@@ -1,9 +1,10 @@
-::heading::<div>
+::heading #pagetop::<div>
 # _Tastyworks Portfolio Playground_
 
 ::tx-.8::_by {{name}}_
 </div>
 
+::#importbutton::
 Log onto <a target="_blank" href="https://trade.tastyworks.com/login/index.html">TastyWorks</a> account.
 
  Select 'Portfolio' on the left-hand side - then select the download ::2x::![download csv](images/downloadcsv.png) CSV icon located in the upper right.
@@ -104,6 +105,14 @@ Display Code:
   <div>::include-plugins/common.html::</div>
 </div>
 
+::section #displayhelp::<div>
+### _Usage_
+</div>
+
+::div #usagehelp::
+
+::plugin-plugins/showhelp.html::
+
 ::#footing footing::<div>
 ### _End of Tastyworks Portfolio Playground_
 </div>
@@ -116,6 +125,12 @@ Images from <a target="_blank" href="https://pixabay.com/?utm_source=link-attrib
 ::plugin-plugins/common.html::
 
 <script>
+  // Assign DOM element variables
+  ['tastyPortfolioText', 'tastyPortfolioArea',
+   'jsonOutput', 'fileInput', 'fileSelect',
+   'mainCode', 'usagehelp']
+    .forEach(id => this[id] = document.getElementById(id));
+
   // Initialize local storage
   if (!webdocdown.data.store.tastyPortfolioData) {
     webdocdown.storeData({ tastyPortfolioData: { data: [] } })

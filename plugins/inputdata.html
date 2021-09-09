@@ -3,11 +3,6 @@
     show = (elem) => elem.classList.remove('hidden'),
     hide = (elem) => elem.classList.add('hidden');
 
-  // Assign DOM element variables
-  ['tastyPortfolioText', 'tastyPortfolioArea',
-   'jsonOutput', 'fileInput', 'fileSelect']
-    .forEach(id => this[id] = document.getElementById(id));
-
   fileSelect.addEventListener("click", (event) => {
     fileInput.click();
     event.preventDefault();
