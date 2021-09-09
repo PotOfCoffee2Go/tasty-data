@@ -5,7 +5,7 @@
 </div>
 
 ::#importbutton::
-Log onto <a target="_blank" href="https://trade.tastyworks.com/login/index.html">TastyWorks</a> account.
+Log onto your <a target="_blank" href="https://trade.tastyworks.com/login/index.html">TastyWorks</a> account.
 
  Select 'Portfolio' on the left-hand side - then select the download ::2x::![download csv](images/downloadcsv.png) CSV icon located in the upper right.
 
@@ -56,6 +56,11 @@ JSON:
   ::#radioJsonTransaction::<input type="radio" name="jsonout">
   <label for="radioJsonTransaction">Transactions</label>
 </span>
+
+::#transSpinner hidden::<div>
+::lds-ellipsis ::<div><div></div><div></div><div></div><div></div></div>
+</div>
+
 <pre>::code #jsonOutput hljs language-json hidden::</pre>
 ::plugin-plugins/showjson.html::
 
@@ -73,6 +78,13 @@ Display Code:
 ::plugin-plugins/showcode.html::
 
 ::#mainCode hidden::<div>
+
+  **Page Source**
+
+  index.html
+  <div>::include-index.html::</div>
+
+  ---
 
   **Home Page**
 
@@ -128,6 +140,7 @@ Images from <a target="_blank" href="https://pixabay.com/?utm_source=link-attrib
   // Assign DOM element variables
   ['tastyPortfolioText', 'tastyPortfolioArea',
    'jsonOutput', 'fileInput', 'fileSelect',
+   'transSpinner',
    'mainCode', 'usagehelp']
     .forEach(id => this[id] = document.getElementById(id));
 

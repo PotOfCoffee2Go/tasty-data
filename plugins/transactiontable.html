@@ -15,6 +15,7 @@
   // Display transactions for the symbol requested
   markupTransactions = (symbol = '') => {
     let data = webdocdown.data.store.tastyTransactionDetails.data;
+    let symbols = document.getElementById('symbol-select');
 
     // No symbol requested so rebuild select symbol list
     if (!symbol) {
@@ -26,10 +27,17 @@
       unique.push({Symbol: '--all--'});
       unique.sort((a, b) => (a.Symbol > b.Symbol ? 1 : -1));
 
-      document.getElementById('symbol-select').innerHTML =
+      symbols.innerHTML =
         unique.filter(u => u.Symbol).map(u =>
           '<option value="' + u.Symbol + '">' + u.Symbol + '</option>').join('\n');
     }
+
+    // Highlight selected symbol in option list
+    const selectedOption = symbols.querySelector('option[value="' + symbol + '"]');
+    if (selectedOption) {
+      selectedOption.selected = true;
+    }
+
 
     // Build transaction table
     let detailMarkup = '' +
