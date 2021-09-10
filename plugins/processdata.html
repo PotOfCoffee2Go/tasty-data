@@ -1,5 +1,23 @@
 <script>
+  // Initialize local storage
+  if (!webdocdown.data.store.tastyPortfolioData) {
+    webdocdown.storeData({ tastyPortfolioData: { data: [] } })
+  }
+  if (!webdocdown.data.store.tastyTransactionData) {
+    webdocdown.storeData({ tastyTransactionData: { data: [] } })
+  }
+  if (!webdocdown.data.store.tastyPortfolioDetails) {
+    webdocdown.storeData({ tastyPortfolioDetails: { data: [] } })
+  }
+  if (!webdocdown.data.store.tastyTransactionDetails) {
+    webdocdown.storeData({ tastyPortfolioDetails: { data: [] } })
+  }
+  if (!webdocdown.data.store.tastyClosedData) {
+    webdocdown.storeData({ tastyClosedData: { data: [] } })
+  }
+
   processData = () => {
+
   // Helpers
   const
     round = (nbr, places) =>
@@ -22,63 +40,125 @@
         ? `<a onclick="markupTransactions('${symbol}'); location.href='#displaytransactions';">${symbol}</a>`
         : '';
 
-    // Reference portfolio data from localStorage
-    let tpd = webdocdown.data.store.tastyPortfolioData;
+  /* Tastyworks portfolio data into detail records */
+  // Reference localStorage
+  const tpd = webdocdown.data.store.tastyPortfolioData;
 
-    // Round to sane decimal places and format for display
-    tpd.data.forEach((symbol, idx) => {
-      tpd.data[idx].Holding = symbol.Cost + symbol.Gain;
-      tpd.data[idx].fmt = {};
-      tpd.data[idx].fmt.Asset_Type = lowerCaseButFirst(symbol.Asset_Type);
-      tpd.data[idx].fmt.Quantity = maybeRedParens(symbol.Quantity, 0);
-      tpd.data[idx].fmt.Entry_Price = format(symbol.Cost/symbol.Quantity, 4);
-      tpd.data[idx].fmt.Mark_Price = format((symbol.Cost + symbol.Gain)/symbol.Quantity, 4);
+  // Round to sane decimal places and format for display
+  tpd.data.forEach((symbol, idx) => {
+    tpd.data[idx].Holding = symbol.Cost + symbol.Gain;
+    tpd.data[idx].fmt = {};
+    tpd.data[idx].fmt.Asset_Type = lowerCaseButFirst(symbol.Asset_Type);
+    tpd.data[idx].fmt.Quantity = maybeRedParens(symbol.Quantity, 0);
+    tpd.data[idx].fmt.Entry_Price = format(symbol.Cost/symbol.Quantity, 4);
+    tpd.data[idx].fmt.Mark_Price = format((symbol.Cost + symbol.Gain)/symbol.Quantity, 4);
 
-      tpd.data[idx].fmt.Market = maybeRedParens(
-        -((symbol.Cost/symbol.Quantity) -
-        ((symbol.Cost + symbol.Gain)/symbol.Quantity)), 2);
+    tpd.data[idx].fmt.Market = maybeRedParens(
+      -((symbol.Cost/symbol.Quantity) -
+      ((symbol.Cost + symbol.Gain)/symbol.Quantity)), 2);
 
-      tpd.data[idx].fmt.Symbol = linkToTrans(symbol.Underlying_Symbol);
-      tpd.data[idx].fmt.Cost = maybeRedParens(Math.abs(symbol.Cost), 2);
-      tpd.data[idx].fmt.Holding = maybeRedParens(Math.abs(symbol.Cost + symbol.Gain), 2);
-      tpd.data[idx].fmt.Gain = maybeRedParens(symbol.Gain, 2);
+    tpd.data[idx].fmt.Symbol = linkToTrans(symbol.Underlying_Symbol);
+    tpd.data[idx].fmt.Cost = maybeRedParens(Math.abs(symbol.Cost), 2);
+    tpd.data[idx].fmt.Holding = maybeRedParens(Math.abs(symbol.Cost + symbol.Gain), 2);
+    tpd.data[idx].fmt.Gain = maybeRedParens(symbol.Gain, 2);
+  });
+
+  // Sum up the columns
+  if (tpd.data.length !== 0) {
+    const sums = tpd.data.reduce((previousValue, currentValue) => {
+      return {
+        Quantity: previousValue.Quantity + currentValue.Quantity,
+        Holding: previousValue.Holding + currentValue.Holding,
+        Cost: previousValue.Cost + currentValue.Cost,
+        Gain: previousValue.Gain + currentValue.Gain,
+      }
     });
 
-    // Sum up the columns
-    if (tpd.data.length !== 0) {
-      const sums = tpd.data.reduce((previousValue, currentValue) => {
-        return {
-          Quantity: previousValue.Quantity + currentValue.Quantity,
-          Holding: previousValue.Holding + currentValue.Holding,
-          Cost: previousValue.Cost + currentValue.Cost,
-          Gain: previousValue.Gain + currentValue.Gain,
-        }
-      });
+    // Format sums for display
+    sums.fmt = {};
+    sums.fmt.Quantity = sums.Quantity;
+    sums.fmt.Holding = format(sums.Holding, 2);
+    sums.fmt.Cost = format(sums.Cost, 2);
+    sums.fmt.Gain = maybeRedParens(sums.Gain, 2);
 
-      // Format sums for display
-      sums.fmt = {};
-      sums.fmt.Quantity = sums.Quantity;
-      sums.fmt.Holding = format(sums.Holding, 2);
-      sums.fmt.Cost = format(sums.Cost, 2);
-      sums.fmt.Gain = maybeRedParens(sums.Gain, 2);
-
-      webdocdown.storeData({tastyPortfolioDetails: tpd, tastyPortfolioSums: sums});
-    }
-
-    // Reference transaction data from localStorage
-    let ttd = webdocdown.data.store.tastyTransactionData;
-
-    // Round to sane decimal places and format for display
-    ttd.data.forEach((tran, idx) => {
-      ttd.data[idx].fmt = {};
-      ttd.data[idx].fmt.Symbol = linkToTrans(tran.Symbol);
-      ttd.data[idx].fmt.Price = maybeRedParens(tran.Price, 4);
-      ttd.data[idx].fmt.Amount = maybeRedParens(tran.Amount, 4);
-      ttd.data[idx].fmt.Fees = maybeRedParens(tran.Fees, 3);
-      ttd.data[idx].fmt.Strike = maybeRedParens(tran.Strike, 2);
-    });
-
-    webdocdown.storeData({tastyTransactionDetails: ttd});
-
+    webdocdown.storeData({tastyPortfolioDetails: tpd, tastyPortfolioSums: sums});
   }
+
+  /* Tastyworks transaction data into detail records */
+  // Reference localStorage
+  const ttd = webdocdown.data.store.tastyTransactionData;
+
+  // Round to sane decimal places and format for display
+  ttd.data.forEach((tran, idx) => {
+    ttd.data[idx].fmt = {};
+    ttd.data[idx].fmt.Symbol = linkToTrans(tran.Symbol);
+    ttd.data[idx].fmt.Price = maybeRedParens(tran.Price, 4);
+    ttd.data[idx].fmt.Amount = maybeRedParens(tran.Amount, 4);
+    ttd.data[idx].fmt.Fees = maybeRedParens(tran.Fees, 3);
+    ttd.data[idx].fmt.Strike = maybeRedParens(tran.Strike, 2);
+  });
+
+  webdocdown.storeData({tastyTransactionDetails: ttd});
+
+  /* Create closed positions data */
+  const tcd = { data: [] };
+
+  ttd.data.map(x => tcd.data.filter(a => a.Symbol === x.Symbol).length > 0
+    ? null : tcd.data.push({Symbol: x.Symbol}));
+
+  tcd.data.sort((a, b) => (a.Symbol > b.Symbol ? 1 : -1));
+
+  // Sum up the columns
+  tcd.data.forEach((rec, idx) => {
+    const sumup = ttd.data.filter(trans => trans.Symbol === rec.Symbol)
+      .sort((a, b) => (a.Time > b.Time ? 1 : -1));
+
+    if (!sumup.length > 0) return;
+
+
+    const total = sumup.reduce((previousValue, currentValue, idx, trns) => {
+      return {
+        BuyQty: trns[idx].Buy_Sell === 'Buy'
+          ? previousValue.BuyQty + trns[idx].Quantity
+          : previousValue.BuyQty,
+        SellQty: trns[idx].Buy_Sell === 'Sell'
+          ? previousValue.SellQty + trns[idx].Quantity
+          : previousValue.SellQty,
+        BuyAmt: trns[idx].Buy_Sell === 'Buy'
+          ? previousValue.BuyAmt + trns[idx].Amount
+          : previousValue.BuyAmt,
+        SellAmt: trns[idx].Buy_Sell === 'Sell'
+          ? previousValue.SellAmt + trns[idx].Amount
+          : previousValue.SellAmt,
+        OpenQty: trns[idx].Buy_Sell === 'Sell'
+          ? previousValue.OpenQty - trns[idx].Quantity
+          : previousValue.OpenQty + trns[idx].Quantity,
+        OpenAmt: previousValue.OpenAmt - trns[idx].Amount,
+      };
+    } , {
+      BuyQty: 0,
+      BuyAmt: 0,
+      SellQty: 0,
+      SellAmt: 0,
+      OpenQty: 0,
+      OpenAmt: 0,
+      }
+    );
+    Object.assign(tcd.data[idx], {
+      BuyQty: total.BuyQty,
+      SellQty: total.SellQty,
+      BuyAmt: total.BuyAmt,
+      SellAmt: total.SellAmt,
+      OpenQty: total.OpenQty,
+      OpenAmt: total.OpenAmt,
+      EntryPrice: Math.abs(total.BuyQty ? total.BuyAmt/total.BuyQty : 0),
+      ExitPrice: total.SellQty ? total.SellAmt/total.SellQty : 0,
+      Gain: total.OpenQty ?  undefined : -total.OpenAmt,
+      ClosedQty: total.BuyQty - total.OpenQty,
+    });
+  });
+
+  webdocdown.storeData({tastyClosedData: tcd});
+  }
+
 </script>

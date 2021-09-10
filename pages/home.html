@@ -84,14 +84,10 @@ Display Code:
   index.html
   <div>::include-index.html::</div>
 
-  ---
-
   **Home Page**
 
   pages/home.html
   ::prewrap::<div>::include-pages/home.html::</div>
-
-  ---
 
   **Plugins**
 
@@ -144,16 +140,6 @@ Images from <a target="_blank" href="https://pixabay.com/?utm_source=link-attrib
    'mainCode', 'usagehelp']
     .forEach(id => this[id] = document.getElementById(id));
 
-  // Initialize local storage
-  if (!webdocdown.data.store.tastyPortfolioData) {
-    webdocdown.storeData({ tastyPortfolioData: { data: [] } })
-  }
-  if (!webdocdown.data.store.tastyTransactionData) {
-    webdocdown.storeData({ tastyTransactionData: { data: [] } })
-  }
-  if (!webdocdown.data.store.tastyPortfolioDetails) {
-    webdocdown.storeData({ tastyPortfolioDetails: { data: [] } })
-  }
 
   // Process and display what is in localStorage
   processData();
