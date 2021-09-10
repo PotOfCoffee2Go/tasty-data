@@ -58,7 +58,7 @@
       ((symbol.Cost + symbol.Gain)/symbol.Quantity)), 2);
 
     tpd.data[idx].fmt.Symbol = linkToTrans(symbol.Underlying_Symbol);
-    tpd.data[idx].fmt.Cost = maybeRedParens(Math.abs(symbol.Cost), 2);
+    tpd.data[idx].fmt.Cost = maybeRedParens(-Math.abs(symbol.Cost), 2);
     tpd.data[idx].fmt.Holding = maybeRedParens(Math.abs(symbol.Cost + symbol.Gain), 2);
     tpd.data[idx].fmt.Gain = maybeRedParens(symbol.Gain, 2);
   });
@@ -78,7 +78,7 @@
     sums.fmt = {};
     sums.fmt.Quantity = sums.Quantity;
     sums.fmt.Holding = format(sums.Holding, 2);
-    sums.fmt.Cost = format(sums.Cost, 2);
+    sums.fmt.Cost = maybeRedParens(-sums.Cost, 2);
     sums.fmt.Gain = maybeRedParens(sums.Gain, 2);
 
     webdocdown.storeData({tastyPortfolioDetails: tpd, tastyPortfolioSums: sums});
@@ -190,26 +190,49 @@
       };
     } , initClosedDataRec);
 
-    Object.assign(tcd.data[idx], total);
-    tcd.data[idx].fmt = {};
-    tcd.data[idx].fmt.Symbol = linkToTrans(tcd.data[idx].Symbol);
-    tcd.data[idx].fmt.CloseQty = maybeRedParens(tcd.data[idx].CloseQty, 0);
-    tcd.data[idx].fmt.EntryPrice = maybeRedParens(tcd.data[idx].EntryPrice, 4);
-    tcd.data[idx].fmt.ExitPrice = maybeRedParens(tcd.data[idx].ExitPrice, 4);
-    tcd.data[idx].fmt.InvestAmt = maybeRedParens(tcd.data[idx].InvestAmt, 2);
-    tcd.data[idx].fmt.RealizedAmt = maybeRedParens(tcd.data[idx].RealizedAmt, 2);
-    tcd.data[idx].fmt.Gain = maybeRedParens(tcd.data[idx].Gain, 2);
-    tcd.data[idx].fmt.Fees = maybeRedParens(tcd.data[idx].Fees, 4);
-    tcd.data[idx].fmt.PosQty = maybeRedParens(tcd.data[idx].PosQty, 0);
-    tcd.data[idx].fmt.PosCost = maybeRedParens(tcd.data[idx].PosCost, 2);
-
+    Object.assign(tcd.data[idx], total, { fmt: {} });
+    tcd.data[idx].fmt = {
+      Symbol: linkToTrans(tcd.data[idx].Symbol),
+      CloseQty: maybeRedParens(tcd.data[idx].CloseQty, 0),
+      EntryPrice: maybeRedParens(tcd.data[idx].EntryPrice, 4),
+      ExitPrice: maybeRedParens(tcd.data[idx].ExitPrice, 4),
+      InvestAmt: maybeRedParens(tcd.data[idx].InvestAmt, 2),
+      RealizedAmt: maybeRedParens(tcd.data[idx].RealizedAmt, 2),
+      Gain: maybeRedParens(tcd.data[idx].Gain, 2),
+      Fees: maybeRedParens(-tcd.data[idx].Fees, 4),
+      PosQty: maybeRedParens(tcd.data[idx].PosQty, 0),
+      PosCost: maybeRedParens(tcd.data[idx].PosCost, 2),
+    };
   });
 
-  webdocdown.storeData({tastyClosedData: tcd});
+  // Sum up the positions columns
+  if (tcd.data.length !== 0) {
+    const sums = tcd.data.reduce((previousValue, currentValue) => {
+      return {
+        CloseQty: previousValue.CloseQty + currentValue.CloseQty,
+        InvestAmt: previousValue.InvestAmt + currentValue.InvestAmt,
+        RealizedAmt: previousValue.RealizedAmt + currentValue.RealizedAmt,
+        Gain: previousValue.Gain + currentValue.Gain,
+        Fees: previousValue.Fees + currentValue.Fees,
+        PosQty: previousValue.PosQty + currentValue.PosQty,
+        PosCost: previousValue.PosCost + currentValue.PosCost,
+      }
+    });
 
-  // Stocks with gain are closed
-  const closed = tcd.data.filter(c => !c.Gain);
-  closed.forEach(c => console.log(c.Symbol));
+    // Format sums for display
+    sums.fmt = {
+      CloseQty: maybeRedParens(sums.CloseQty, 0),
+      InvestAmt: maybeRedParens(sums.InvestAmt, 2),
+      RealizedAmt: maybeRedParens(sums.RealizedAmt, 2),
+      Gain: maybeRedParens(sums.Gain, 2),
+      Fees: maybeRedParens(sums.Fees, 4),
+      PosQty: maybeRedParens(sums.PosQty, 0),
+      PosCost: maybeRedParens(sums.PosCost, 2),
+    };
+
+    webdocdown.storeData({tastyClosedData: tcd, tastyClosedSums: sums});
+  }
+
 
   }
 

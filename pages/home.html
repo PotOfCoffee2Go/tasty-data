@@ -18,11 +18,18 @@ Now can import those files to display your positions and transactions.
 ::plugin-plugins/inputdata.html::
 
 ::section #displaypositions::<div>
-### _Positions_
+### _Portfolio_
 </div>
 
 ::div #detail-data tx-darkblue::
 ::plugin-plugins/portfoliotable.html::
+
+::section #displayclosed::<div>
+### _Positions_
+</div>
+
+::div #closed-data tx-darkblue::
+::plugin-plugins/closedtable.html::
 
 ::section #displaytransactions::<div>
 ### _Transactions_
@@ -144,5 +151,6 @@ Images from <a target="_blank" href="https://pixabay.com/?utm_source=link-attrib
   // Process and display what is in localStorage
   processData();
   markupPortfolio();
+  markupClosed();
   markupTransactions();
 </script>
