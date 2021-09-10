@@ -101,64 +101,116 @@
   webdocdown.storeData({tastyTransactionDetails: ttd});
 
   /* Create closed positions data */
-  const tcd = { data: [] };
-
-  ttd.data.map(x => tcd.data.filter(a => a.Symbol === x.Symbol).length > 0
-    ? null : tcd.data.push({Symbol: x.Symbol}));
-
-  tcd.data.sort((a, b) => (a.Symbol > b.Symbol ? 1 : -1));
-
-  // Sum up the columns
-  tcd.data.forEach((rec, idx) => {
-    const sumup = ttd.data.filter(trans => trans.Symbol === rec.Symbol)
-      .sort((a, b) => (a.Time > b.Time ? 1 : -1));
-
-    if (!sumup.length > 0) return;
-
-
-    const total = sumup.reduce((previousValue, currentValue, idx, trns) => {
-      return {
-        BuyQty: trns[idx].Buy_Sell === 'Buy'
-          ? previousValue.BuyQty + trns[idx].Quantity
-          : previousValue.BuyQty,
-        SellQty: trns[idx].Buy_Sell === 'Sell'
-          ? previousValue.SellQty + trns[idx].Quantity
-          : previousValue.SellQty,
-        BuyAmt: trns[idx].Buy_Sell === 'Buy'
-          ? previousValue.BuyAmt + trns[idx].Amount
-          : previousValue.BuyAmt,
-        SellAmt: trns[idx].Buy_Sell === 'Sell'
-          ? previousValue.SellAmt + trns[idx].Amount
-          : previousValue.SellAmt,
-        OpenQty: trns[idx].Buy_Sell === 'Sell'
-          ? previousValue.OpenQty - trns[idx].Quantity
-          : previousValue.OpenQty + trns[idx].Quantity,
-        OpenAmt: previousValue.OpenAmt - trns[idx].Amount,
-      };
-    } , {
+  const tcd = { data: [] },
+    initClosedDataRec = {
+      NbrTrades: 0,
       BuyQty: 0,
       BuyAmt: 0,
       SellQty: 0,
       SellAmt: 0,
       OpenQty: 0,
       OpenAmt: 0,
-      }
-    );
-    Object.assign(tcd.data[idx], {
-      BuyQty: total.BuyQty,
-      SellQty: total.SellQty,
-      BuyAmt: total.BuyAmt,
-      SellAmt: total.SellAmt,
-      OpenQty: total.OpenQty,
-      OpenAmt: total.OpenAmt,
-      EntryPrice: Math.abs(total.BuyQty ? total.BuyAmt/total.BuyQty : 0),
-      ExitPrice: total.SellQty ? total.SellAmt/total.SellQty : 0,
-      Gain: total.OpenQty ?  undefined : -total.OpenAmt,
-      ClosedQty: total.BuyQty - total.OpenQty,
-    });
+      CloseQty: 0,
+      CloseAmt: 0,
+      EntryPrice: 0,
+      ExitPrice: 0,
+      InvestAmt: 0,
+      RealizedAmt: 0,
+      PosQty: 0,
+      PosCost: 0,
+      Gain: 0,
+      Fees: 0,
+    };
+
+  ttd.data.map(x => tcd.data.filter(a => a.Symbol === x.Symbol).length > 0
+    ? null : tcd.data.push({Symbol: x.Symbol}));
+
+  tcd.data.sort((a, b) => (a.Symbol > b.Symbol ? 1 : -1));
+
+  // Sum up the closed positions
+  tcd.data.forEach((rec, idx) => {
+    const sumup = ttd.data.filter(trans => trans.Symbol === rec.Symbol)
+      .sort((a, b) => (a.Time > b.Time ? 1 : -1));
+
+    if (!sumup.length > 0) return;
+
+    const total = sumup.reduce((p, c, idx, trns) => {
+      const
+        curOpenQty = trns[idx].Open_Close === 'Open'
+          ? p.OpenQty + trns[idx].Quantity
+          : p.OpenQty,
+        curOpenAmt = trns[idx].Open_Close === 'Open'
+          ? p.OpenAmt + trns[idx].Amount
+          : p.OpenAmt,
+        curCloseQty = trns[idx].Open_Close === 'Close'
+          ? p.CloseQty + trns[idx].Quantity
+          : p.CloseQty,
+        curCloseAmt = trns[idx].Open_Close === 'Close'
+          ? p.CloseAmt + trns[idx].Amount
+          : p.CloseAmt;
+
+      return {
+        NbrTrades: p.NbrTrades + 1,
+        BuyQty: trns[idx].Buy_Sell === 'Buy'
+          ? p.BuyQty + trns[idx].Quantity
+          : p.BuyQty,
+        SellQty: trns[idx].Buy_Sell === 'Sell'
+          ? p.SellQty + trns[idx].Quantity
+          : p.SellQty,
+        BuyAmt: trns[idx].Buy_Sell === 'Buy'
+          ? p.BuyAmt + trns[idx].Amount
+          : p.BuyAmt,
+        SellAmt: trns[idx].Buy_Sell === 'Sell'
+          ? p.SellAmt + trns[idx].Amount
+          : p.SellAmt,
+        OpenQty: curOpenQty,
+        OpenAmt: curOpenAmt,
+        CloseQty: curCloseQty,
+        CloseAmt: curCloseAmt,
+        EntryPrice: curOpenQty === curCloseQty
+          ? -(curOpenAmt / curOpenQty)
+          : p.EntryPrice,
+        ExitPrice: curOpenQty === curCloseQty
+          ? curCloseAmt / curCloseQty
+          : p.ExitPrice,
+        InvestAmt:  curOpenQty === curCloseQty
+          ? curOpenAmt
+          : p.InvestAmt,
+        RealizedAmt: curCloseAmt,
+        Gain: curOpenQty === curCloseQty
+          ? curCloseAmt + curOpenAmt
+          : p.Gain,
+        PosQty: curOpenQty !== curCloseQty
+          ? curOpenQty - curCloseQty
+          : 0,
+        PosCost: curOpenQty !== curCloseQty
+          ? curOpenAmt + curCloseAmt - p.Gain
+          : 0,
+        Fees: p.Fees + trns[idx].Fees,
+      };
+    } , initClosedDataRec);
+
+    Object.assign(tcd.data[idx], total);
+    tcd.data[idx].fmt = {};
+    tcd.data[idx].fmt.Symbol = linkToTrans(tcd.data[idx].Symbol);
+    tcd.data[idx].fmt.CloseQty = maybeRedParens(tcd.data[idx].CloseQty, 0);
+    tcd.data[idx].fmt.EntryPrice = maybeRedParens(tcd.data[idx].EntryPrice, 4);
+    tcd.data[idx].fmt.ExitPrice = maybeRedParens(tcd.data[idx].ExitPrice, 4);
+    tcd.data[idx].fmt.InvestAmt = maybeRedParens(tcd.data[idx].InvestAmt, 2);
+    tcd.data[idx].fmt.RealizedAmt = maybeRedParens(tcd.data[idx].RealizedAmt, 2);
+    tcd.data[idx].fmt.Gain = maybeRedParens(tcd.data[idx].Gain, 2);
+    tcd.data[idx].fmt.Fees = maybeRedParens(tcd.data[idx].Fees, 4);
+    tcd.data[idx].fmt.PosQty = maybeRedParens(tcd.data[idx].PosQty, 0);
+    tcd.data[idx].fmt.PosCost = maybeRedParens(tcd.data[idx].PosCost, 2);
+
   });
 
   webdocdown.storeData({tastyClosedData: tcd});
+
+  // Stocks with gain are closed
+  const closed = tcd.data.filter(c => !c.Gain);
+  closed.forEach(c => console.log(c.Symbol));
+
   }
 
 </script>
