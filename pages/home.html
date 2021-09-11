@@ -9,7 +9,7 @@ Log onto your <a target="_blank" href="https://trade.tastyworks.com/login/index.
 
  Select 'Portfolio' on the left-hand side - then select the download ::2x::![download csv](images/downloadcsv.png) CSV icon located in the upper right.
 
-Then, select Tastyworks 'Actitity' on the left-hand side. May wish to _'filter'_ to see alls transactions. Download ::2x::![download csv](images/downloadcsv.png) CSV file.
+Then, select Tastyworks 'Actitity' on the left-hand side. May wish to _'filter'_ to see all transactions. Download ::2x::![download csv](images/downloadcsv.png) CSV file.
 
 Now can import those files to display your positions and transactions.
 
@@ -45,13 +45,20 @@ Now can import those files to display your positions and transactions.
 ### _Data_
 </div>
 
-::#tastyPortfolioText hidden::
-::tx-1.1::<label for="tastyPortfolioArea">Tasty Portfolio Data</label>
+::#tastyPortfolioText::
+::tx-1.1::<label for="tastyPortfolioArea">Tasty Portfolio Input</label>
+::copyPortfolioButton::<button>Copy</button>
 ::#tastyPortfolioArea 98%::<textarea name="tastyPortfolioArea" rows="5"></textarea>
 
-::#tastyTransactionText hidden::
-::tx-1.1::<label for="tastyTransactionArea">Tasty Transaction Data</label>
+::#tastyTransactionText::
+::tx-1.1::<label for="tastyTransactionArea">Tasty Transaction Input</label>
+::copyTransactionButton::<button>Copy</button>
 ::#tastyTransactionArea 98%::<textarea name="tastyTransactionArea" rows="5"></textarea>
+
+::#positionText::
+::tx-1.1::<label for="portfolioArea">Position Data</label>
+::copyPositionButton::<button>Copy</button>
+::#positionArea 98%::<textarea name="positionArea" rows="5"></textarea>
 
 ::#jsonButtons::
 JSON:
@@ -142,15 +149,36 @@ Images from <a target="_blank" href="https://pixabay.com/?utm_source=link-attrib
 <script>
   // Assign DOM element variables
   ['tastyPortfolioText', 'tastyPortfolioArea',
+  'tastyTransactionText', 'tastyTransactionArea',
+  'positionText', 'positionArea',
    'jsonOutput', 'fileInput', 'fileSelect',
    'transSpinner',
    'mainCode', 'usagehelp']
-    .forEach(id => this[id] = document.getElementById(id));
+      .forEach(id => this[id] = document.getElementById(id));
 
+  document.querySelectorAll('.copyPortfolioButton').forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+      document.querySelector('#tastyPortfolioArea').select();
+      document.execCommand('copy');
+    });
+  });
+  document.querySelectorAll('.copyTransactionButton').forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+      document.querySelector('#tastyTransactionArea').select();
+      document.execCommand('copy');
+    });
+  });
+  document.querySelectorAll('.copyPositionButton').forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+      document.querySelector('#postionArea').select();
+      document.execCommand('copy');
+    });
+  });
 
   // Process and display what is in localStorage
   processData();
   markupPortfolio();
   markupTransactions();
   markupPositions();
+
 </script>

@@ -1,5 +1,12 @@
 <script>
   // Initialize local storage
+  if (!webdocdown.data.store.tastyPortfolioInput) {
+    webdocdown.storeData({ tastyPortfolioInput: 'none' });
+  }
+  if (!webdocdown.data.store.tastyTransactionInput) {
+    webdocdown.storeData({ tastyTransactionInput: 'none' });
+  }
+
   if (!webdocdown.data.store.tastyPortfolioData) {
     webdocdown.storeData({ tastyPortfolioData: { data: [] } });
   }
@@ -72,11 +79,12 @@
       });
 
       // Format sums for display
-      sums.fmt = {};
-      sums.fmt.Quantity = sums.Quantity;
-      sums.fmt.Holding = format(sums.Holding, 2);
-      sums.fmt.Cost = maybeRedParens(-sums.Cost, 2);
-      sums.fmt.Gain = maybeRedParens(sums.Gain, 2);
+      sums.fmt = {
+        Quantity: sums.Quantity,
+        Holding: format(sums.Holding, 2),
+        Cost: maybeRedParens(-sums.Cost, 2),
+        Gain: maybeRedParens(sums.Gain, 2),
+      };
 
       webdocdown.storeData({
         tastyPortfolioDetails: tpd,
@@ -221,5 +229,14 @@
 
       webdocdown.storeData({ tastyPositionData: tcd, tastyPositionSums: sums });
     }
+
+    tastyPortfolioArea.value = webdocdown.data.store.tastyPortfolioInput;
+    tastyTransactionArea.value = webdocdown.data.store.tastyTransactionInput;
+    positionArea.value = Papa.unparse(
+      tcd.data,
+      {
+        columns: ['Symbol'].concat(Object.keys(initPositionsDataRec))
+      }
+    );
   };
 </script>
