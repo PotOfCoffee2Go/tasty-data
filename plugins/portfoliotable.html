@@ -1,14 +1,15 @@
 <script>
   markupPortfolio = () => {
-    let detailMarkup = '' +
-      '| Asset | Symbol | Entry | Mark | _Market_ | Qty | Cost | Holding | Gain |\n' +
-      '| :---: | :----- | :---: | :--: | :------: | :-: | :--: | :-----: | :--: |\n' +
-      '{{#data}}' +
-      '| {{fmt.Asset_Type}} | {{{fmt.Symbol}}} | {{fmt.Entry_Price}} |' +
-      '  {{fmt.Mark_Price}} | {{fmt.Market}} | {{fmt.Quantity}} | {{fmt.Cost}} | {{fmt.Holding}} | {{fmt.Gain}} |\n' +
-      '{{/data}}' +
-      '| Totals |  | - | - | - | {{sums.fmt.Quantity}} |' +
-      '  {{sums.fmt.Cost}} | {{sums.fmt.Holding}} | {{sums.fmt.Gain}} |\n';
+    let detailMarkup =
+      "" +
+      "| Asset | Symbol | Entry | Mark | _Market_ | Qty | Cost | Holding | Gain |\n" +
+      "| :---: | :----- | :---: | :--: | :------: | :-: | :--: | :-----: | :--: |\n" +
+      "{{#data}}" +
+      "| {{fmt.Asset_Type}} | {{{fmt.Symbol}}} | {{fmt.Entry_Price}} |" +
+      "  {{fmt.Mark_Price}} | {{fmt.Market}} | {{fmt.Quantity}} | {{fmt.Cost}} | {{fmt.Holding}} | {{fmt.Gain}} |\n" +
+      "{{/data}}" +
+      "| Totals | - | - | - | - | {{sums.fmt.Quantity}} |" +
+      "  {{sums.fmt.Cost}} | {{sums.fmt.Holding}} | {{sums.fmt.Gain}} |\n";
 
     // Reference portfolio details and sums from localStorage
     let data = webdocdown.data.store.tastyPortfolioDetails.data;
@@ -18,26 +19,31 @@
     data.sort((a, b) => (a.Underlying_Symbol > b.Underlying_Symbol ? 1 : -1));
 
     // Produce and display table of portfolio data
-    webdocdown.produceWBDD(detailMarkup, { data, sums })
-      .then((html) => document.getElementById('detail-data').innerHTML = html)
-  }
+    webdocdown
+      .produceWBDD(detailMarkup, { data, sums })
+      .then(
+        (html) => (document.getElementById("detail-data").innerHTML = html)
+      );
+  };
 </script>
 
 <style>
-  #detail-data table, #detail-data th, #detail-data td {
+  #detail-data table,
+  #detail-data th,
+  #detail-data td {
     padding: 4px;
     border: 1px solid black;
     border-collapse: collapse;
   }
   #detail-data table {
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
   }
   #detail-data th {
     color: black;
   }
   #detail-data tbody tr:last-child {
-    background: #E8E8E8;
+    background: #e8e8e8;
   }
   #detail-data tr td a {
     cursor: pointer;

@@ -1,10 +1,10 @@
 <script>
-  const show = (elem) => elem.classList.remove('hidden'),
-    hide = (elem) => elem.classList.add('hidden');
+  const show = (elem) => elem.classList.remove("hidden"),
+    hide = (elem) => elem.classList.add("hidden");
 
   // JSON output radio buttons
   document.querySelectorAll("input[name='codeout']").forEach((input) => {
-    input.addEventListener('change', (event) => {
+    input.addEventListener("change", (event) => {
       codeDisplay(event.target.id);
     });
   });
@@ -12,13 +12,13 @@
   const codeDisplay = (id) => {
     id = id || document.querySelector('input[name="codeout"]:checked').id;
     switch (id) {
-      case 'codeOn' :
+      case "codeOn":
         show(mainCode);
         break;
-      default :
+      default:
         hide(mainCode);
         break;
     }
-    location.href='#displaycode';
-  }
+    location.href = "#displaycode";
+  };
 </script>

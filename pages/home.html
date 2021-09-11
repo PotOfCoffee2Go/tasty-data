@@ -9,7 +9,7 @@ Log onto your <a target="_blank" href="https://trade.tastyworks.com/login/index.
 
  Select 'Portfolio' on the left-hand side - then select the download ::2x::![download csv](images/downloadcsv.png) CSV icon located in the upper right.
 
-Then, select Tastyworks 'Actitity' on the left-hand side. May wish to _'filter'_ to see more/less transactions. Download ::2x::![download csv](images/downloadcsv.png) CSV file.
+Then, select Tastyworks 'Actitity' on the left-hand side. May wish to _'filter'_ to see alls transactions. Download ::2x::![download csv](images/downloadcsv.png) CSV file.
 
 Now can import those files to display your positions and transactions.
 
@@ -29,7 +29,7 @@ Now can import those files to display your positions and transactions.
 </div>
 
 ::div #closed-data tx-darkblue::
-::plugin-plugins/closedtable.html::
+::plugin-plugins/positiontable.html::
 
 ::section #displaytransactions::<div>
 ### _Transactions_
@@ -42,7 +42,7 @@ Now can import those files to display your positions and transactions.
 ::plugin-plugins/transactiontable.html::
 
 ::section #importeddata::<div>
-### _Imported Data_
+### _Data_
 </div>
 
 ::#tastyPortfolioText hidden::
@@ -151,6 +151,6 @@ Images from <a target="_blank" href="https://pixabay.com/?utm_source=link-attrib
   // Process and display what is in localStorage
   processData();
   markupPortfolio();
-  markupClosed();
   markupTransactions();
+  markupPositions();
 </script>

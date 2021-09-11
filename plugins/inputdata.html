@@ -2,14 +2,17 @@
 <script src="https://unpkg.com/papaparse@5.3.1/papaparse.min.js"></script>
 
 <script>
-  const
-    show = (elem) => elem.classList.remove('hidden'),
-    hide = (elem) => elem.classList.add('hidden');
+  const show = (elem) => elem.classList.remove("hidden"),
+    hide = (elem) => elem.classList.add("hidden");
 
-  fileSelect.addEventListener("click", (event) => {
-    fileInput.click();
-    event.preventDefault();
-  }, false);
+  fileSelect.addEventListener(
+    "click",
+    (event) => {
+      fileInput.click();
+      event.preventDefault();
+    },
+    false
+  );
 
   onFileChange = (event) => {
     for (let i = 0; i < event.target.files.length; i++) {
@@ -18,29 +21,34 @@
       reader.onload = (e) => {
         if (/^Asset/.test(e.target.result)) {
           tastyPortfolioArea.value = e.target.result;
-          tastyPortfolioArea.dispatchEvent(new Event('change'));
+          tastyPortfolioArea.dispatchEvent(new Event("change"));
         }
         if (/^Date\/Time/.test(e.target.result)) {
           tastyTransactionArea.value = e.target.result;
-          tastyTransactionArea.dispatchEvent(new Event('change'));
+          tastyTransactionArea.dispatchEvent(new Event("change"));
         }
       };
       reader.readAsText(file);
     }
-  }
+  };
 
   // Process Data downloaded from Tastyworks Portfolio
   tastyPortfolioArea.addEventListener("change", () => {
     // Replace spaces in column names with '_'s unless trailing
-    let input = tastyPortfolioArea.value.split('\n')
-      .map(line => line.replace(/ /g,'_').replace(/_,/g,',')
-      ).join('\n');
+    let input = tastyPortfolioArea.value
+      .split("\n")
+      .map((line) => line.replace(/ /g, "_").replace(/_,/g, ","))
+      .join("\n");
 
     // Parse the Tasty Portfolio Data
-    let tpd = Papa.parse(input, {header: true, dynamicTyping: true, skipEmptyLines: true});
+    let tpd = Papa.parse(input, {
+      header: true,
+      dynamicTyping: true,
+      skipEmptyLines: true,
+    });
 
     // Save in localStorage for use by other documents
-    webdocdown.storeData({tastyPortfolioData: tpd});
+    webdocdown.storeData({ tastyPortfolioData: tpd });
 
     // Process the JSON representation of the data
     processData();
@@ -54,30 +62,41 @@
   // Process Data downloaded from Tastyworks Transactions
   tastyTransactionArea.addEventListener("change", () => {
     // Replace spaces in column names with '_'s and '/'s unless trailing
-    let input = tastyTransactionArea.value.split('\n')
-      .map(line => line.replace(/ /g,'_').replace(/\//g,'_').replace(/_,/g,',')
-      ).join('\n');
+    let input = tastyTransactionArea.value
+      .split("\n")
+      .map((line) =>
+        line.replace(/ /g, "_").replace(/\//g, "_").replace(/_,/g, ",")
+      )
+      .join("\n");
 
     // Parse the Tasty Transaction Data
-    let ttd = Papa.parse(input, {header: true, dynamicTyping: true, skipEmptyLines: true});
+    let ttd = Papa.parse(input, {
+      header: true,
+      dynamicTyping: true,
+      skipEmptyLines: true,
+    });
 
-    ttd.data.forEach((tran, idx) => {
+    ttd.data.forEach((trn, idx) => {
       // Fix date - replace last two '_' with ' ', all other '_' with '/'
-      ttd.data[idx].Date_Time = tran.Date_Time
-        .replace(/_([^_]*)$/, ' ' + '$1').replace(/_([^_]*)$/, ' ' + '$1')
-        .replace(/_/g, '/')
-        .replace(/ ([1-9]:)/, ' 0' + '$1');
-      ttd.data[idx].Time = new Date(ttd.data[idx].Date_Time);
-      ttd.data[idx].Description = tran.Description.replace(/_/g, ' ');
-      ttd.data[idx].Transaction_Code = tran.Transaction_Code.replace(/_/g, ' ');
-      ttd.data[idx].Transaction_Subcode = tran.Transaction_Subcode.replace(/_/g, ' ');
-      if (tran.Expiration_Date) {
-        ttd.data[idx].Expiration_Date = tran.Expiration_Date.replace(/_/g, '/');
+      ttd.data[idx].Date_Time = trn.Date_Time
+        .replace(/_([^_]*)$/, " " + "$1")
+        .replace(/_([^_]*)$/, " " + "$1")
+        .replace(/_/g, "/")
+        .replace(/ ([1-9]:)/, " 0" + "$1");
+      ttd.data[idx].Time = new Date(trn.Date_Time);
+      ttd.data[idx].Description = trn.Description.replace(/_/g, " ");
+      ttd.data[idx].Transaction_Code = trn.Transaction_Code.replace(/_/g, " ");
+      ttd.data[idx].Transaction_Subcode = trn.Transaction_Subcode.replace(
+        /_/g,
+        " "
+      );
+      if (trn.Expiration_Date) {
+        ttd.data[idx].Expiration_Date = trn.Expiration_Date.replace(/_/g, "/");
       }
     });
 
     // Save in localStorage for use by other documents
-    webdocdown.storeData({tastyTransactionData: ttd});
+    webdocdown.storeData({ tastyTransactionData: ttd });
 
     // Process the JSON representation of the data
     processData();
@@ -85,6 +104,7 @@
     // Display results in textarea and JSON
     show(tastyTransactionText);
     markupTransactions();
+    markupPositions();
     jsonDisplay();
   });
 </script>

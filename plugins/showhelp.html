@@ -1,5 +1,5 @@
 <script>
-  fetch('readme.md')
+  fetch("readme.md")
     .then((response) => response.text())
     .then((text) => {
       usagehelp.innerHTML = webdocdown.produceHTML(text);

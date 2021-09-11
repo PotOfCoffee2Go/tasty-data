@@ -1,46 +1,52 @@
 <script>
-  const show = (elem) => elem.classList.remove('hidden'),
-    hide = (elem) => elem.classList.add('hidden');
+  const show = (elem) => elem.classList.remove("hidden"),
+    hide = (elem) => elem.classList.add("hidden");
 
   // Detail Table and JSON output radio buttons
   document.querySelectorAll("input[name='jsonout']").forEach((input) => {
-    input.addEventListener('change', (event) => {
+    input.addEventListener("change", (event) => {
       jsonDisplay(event.target.id);
     });
   });
 
   jsonDisplay = (id) => {
     setTimeout(() => _jsonDisplay(id), 100);
-  }
+  };
 
   jsonDisplay = (id) => {
     id = id || document.querySelector('input[name="jsonout"]:checked').id;
-    jsonOutput.innerHTML = '';
-    if (id !== 'radioOff') show(transSpinner);
+    jsonOutput.innerHTML = "";
+    if (id !== "radioOff") show(transSpinner);
 
     // Hack to help browser when lotta data
     setTimeout(() => {
       switch (id) {
-        case 'radioJsonPortfolio' :
-          jsonOutput.innerHTML =
-            JSON.stringify(webdocdown.data.store.tastyPortfolioDetails, null, 2);
+        case "radioJsonPortfolio":
+          jsonOutput.innerHTML = JSON.stringify(
+            webdocdown.data.store.tastyPortfolioDetails,
+            null,
+            2
+          );
           hljs.highlightElement(jsonOutput);
           hide(transSpinner);
           show(jsonOutput);
           break;
-        case 'radioJsonTransaction' :
-          jsonOutput.innerHTML =
-            JSON.stringify(webdocdown.data.store.tastyTransactionDetails, null, 2);
+        case "radioJsonTransaction":
+          jsonOutput.innerHTML = JSON.stringify(
+            webdocdown.data.store.tastyTransactionDetails,
+            null,
+            2
+          );
           hljs.highlightElement(jsonOutput);
           hide(transSpinner);
           show(jsonOutput);
           break;
-        default :
+        default:
           hide(transSpinner);
           hide(jsonOutput);
           break;
       }
     }, 1200);
     //location.href='#importeddata';
-  }
+  };
 </script>

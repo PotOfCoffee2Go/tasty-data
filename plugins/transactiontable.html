@@ -1,70 +1,91 @@
 <script>
   // Get transactions for symbol, or all if not found
   getSymbolTransactions = (symbol) => {
-    let selected = {data: webdocdown.data.store.tastyTransactionDetails.data
-      .filter(d => d.Symbol === symbol)};
+    let selected = {
+      data: webdocdown.data.store.tastyTransactionDetails.data.filter(
+        (d) => d.Symbol === symbol
+      ),
+    };
     if (selected.data.length) return selected;
     return webdocdown.data.store.tastyTransactionDetails;
   };
 
   // Select a symbol so displau only those transactions
-  document.querySelector('#symbol-select').addEventListener('change', (event) => {
-    markupTransactions(event.target.value);
-  }, false);
+  document.querySelector("#symbol-select").addEventListener(
+    "change",
+    (event) => {
+      markupTransactions(event.target.value);
+    },
+    false
+  );
 
   // Display transactions for the symbol requested
-  markupTransactions = (symbol = '') => {
+  markupTransactions = (symbol = "") => {
     let data = webdocdown.data.store.tastyTransactionDetails.data;
-    let symbols = document.getElementById('symbol-select');
+    let symbols = document.getElementById("symbol-select");
 
     // No symbol requested so rebuild select symbol list
     if (!symbol) {
       // Symbol selection element
       const unique = [];
-      data.map(x => unique.filter(a => a.Symbol === x.Symbol).length > 0
-        ? null : unique.push({Symbol: x.Symbol}));
+      data.map((x) =>
+        unique.filter((a) => a.Symbol === x.Symbol).length > 0
+          ? null
+          : unique.push({ Symbol: x.Symbol })
+      );
 
-      unique.push({Symbol: '--all--'});
+      unique.push({ Symbol: "--all--" });
       unique.sort((a, b) => (a.Symbol > b.Symbol ? 1 : -1));
 
-      symbols.innerHTML =
-        unique.filter(u => u.Symbol).map(u =>
-          '<option value="' + u.Symbol + '">' + u.Symbol + '</option>').join('\n');
+      symbols.innerHTML = unique
+        .filter((u) => u.Symbol)
+        .map(
+          (u) => '<option value="' + u.Symbol + '">' + u.Symbol + "</option>"
+        )
+        .join("\n");
     }
 
     // Highlight selected symbol in option list
-    const selectedOption = symbols.querySelector('option[value="' + symbol + '"]');
+    const selectedOption = symbols.querySelector(
+      'option[value="' + symbol + '"]'
+    );
     if (selectedOption) {
       selectedOption.selected = true;
     }
 
-
     // Build transaction table
-    let detailMarkup = '' +
-      '| Date | Code | Symbol | Qty | Price | Amount | Strike | Expires | Call/Put |\n' +
-      '| :--: | :--: | :----- | :-: | :---: | :----: | :----: | :-----: | :------: |\n' +
-      '{{#data}}' +
-      '| {{Date_Time}} | {{Transaction_Code}} - {{Transaction_Subcode}} |' +
-      '  {{{fmt.Symbol}}} | {{Quantity}} |' +
-      '  {{fmt.Price}} | {{fmt.Amount}} | {{fmt.Strike}} | {{Expiration_Date}} |' +
-      '  {{Call_Put}} |\n' +
-      '{{/data}}';
+    let detailMarkup =
+      "" +
+      "| Date | Code | Symbol | Qty | Price | Amount | Strike | Expires | Call/Put |\n" +
+      "| :--: | :--: | :----- | :-: | :---: | :----: | :----: | :-----: | :------: |\n" +
+      "{{#data}}" +
+      "| {{Date_Time}} | {{Transaction_Code}} - {{Transaction_Subcode}} |" +
+      "  {{{fmt.Symbol}}} | {{Quantity}} |" +
+      "  {{fmt.Price}} | {{fmt.Amount}} | {{fmt.Strike}} | {{Expiration_Date}} |" +
+      "  {{Call_Put}} |\n" +
+      "{{/data}}";
 
     // Produce and display table of transaction data
-    webdocdown.produceWBDD(detailMarkup, getSymbolTransactions(symbol))
-      .then((html) => document.getElementById('transaction-detail').innerHTML = html)
-  }
+    webdocdown
+      .produceWBDD(detailMarkup, getSymbolTransactions(symbol))
+      .then(
+        (html) =>
+          (document.getElementById("transaction-detail").innerHTML = html)
+      );
+  };
 </script>
 
 <style>
-  #transaction-detail table, #transaction-detail th, #transaction-detail td {
+  #transaction-detail table,
+  #transaction-detail th,
+  #transaction-detail td {
     padding: 4px;
     border: 1px solid black;
     border-collapse: collapse;
   }
   #transaction-detail table {
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
   }
   #transaction-detail th {
     color: black;

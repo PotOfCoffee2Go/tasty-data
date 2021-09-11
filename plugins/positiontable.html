@@ -1,0 +1,52 @@
+<script>
+  markupPositions = () => {
+    let detailMarkup =
+      "" +
+      "| Symbol | Qty | Entry | Exit | Invested | Realized | Gain | PosQty | PosCost | Fees |\n" +
+      "| :----- | :-: | :---: | :--: | :------: | :------: | :--: | :----: | :-----: | :--: |\n" +
+      "{{#data}}" +
+      "| {{{fmt.Symbol}}} | {{fmt.CloseQty}} | {{fmt.EntryPrice}} |" +
+      "  {{fmt.ExitPrice}} | {{fmt.InvestAmt}} | {{fmt.RealizedAmt}} |" +
+      "  {{fmt.Gain}} | {{fmt.PosQty}} | {{fmt.PosCost}} | {{fmt.Fees}} |\n" +
+      "{{/data}}" +
+      "| Totals | {{sums.fmt.CloseQty}} | - | - | {{sums.fmt.InvestAmt}} |" +
+      "  {{sums.fmt.RealizedAmt}} | {{sums.fmt.Gain}} | {{sums.fmt.PosQty}} | {{sums.fmt.PosCost}} | {{sums.fmt.Fees}} |\n";
+
+    // Reference closed data and sums from localStorage
+    let data = webdocdown.data.store.tastyPositionData.data;
+    let sums = webdocdown.data.store.tastyPositionSums;
+
+    // Sort by symbol
+    data.sort((a, b) => (a.Symbol > b.Symbol ? 1 : -1));
+
+    // Produce and display table of closed data
+    webdocdown
+      .produceWBDD(detailMarkup, { data, sums })
+      .then(
+        (html) => (document.getElementById("closed-data").innerHTML = html)
+      );
+  };
+</script>
+
+<style>
+  #closed-data table,
+  #closed-data th,
+  #closed-data td {
+    padding: 4px;
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  #closed-data table {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #closed-data th {
+    color: black;
+  }
+  #closed-data tbody tr:last-child {
+    background: #e8e8e8;
+  }
+  #closed-data tr td a {
+    cursor: pointer;
+  }
+</style>
