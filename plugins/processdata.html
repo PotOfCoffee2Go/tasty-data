@@ -210,6 +210,36 @@
       webdocdown.storeData({ tastyPositionData: tcd, tastyPositionSums: sums });
     }
 
+    /* Tastyworks financial data into detail records */
+
+    // Transactions without a symbol are financial
+    const tfd = {
+      data: ttd.data.filter((trn) => !trn.Symbol),
+      };
+
+    // Sum up the columns
+    if (tfd.data.length !== 0) {
+      sums = tfd.data.reduce((p, c) => {
+        return {
+          Amount: p.Amount + c.Amount,
+        };
+      });
+    }
+
+    // Format for display
+    tfd.data.forEach((rec, idx) => {
+      tfd.data[idx].fmt = {
+        Date_Time: rec.Date_Time,
+        Code: rec.Transaction_Code,
+        Subcode: rec.Transaction_Subcode,
+        Amount: maybeItalicRedParens(rec.Amount, 2),
+      }
+    });
+    console.log('tfd.data', tfd.data);
+
+    webdocdown.storeData({ tastyFinancialData: tfd, tastyFinancialSums: sums });
+
+    // Show input csv data
     tastyPortfolioArea.value = webdocdown.data.store.tastyPortfolioInput;
     tastyTransactionArea.value = webdocdown.data.store.tastyTransactionInput;
     positionArea.value = Papa.unparse(tcd.data, {

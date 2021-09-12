@@ -1,0 +1,52 @@
+::div #financial-data tx-darkblue::
+
+<script>
+  markupFinancialData = () => {
+    let detailMarkup =
+      "" +
+      "| Date | Code | Subcode | Amount |\n" +
+      "| :--- | :--: | :-----: | :----: |\n" +
+      "{{#data}}" +
+      "| {{{fmt.Date_Time}}} | {{fmt.Code}} | {{fmt.Subcode}} | {{fmt.Amount}} |" +
+      "  \n" +
+      "{{/data}}" +
+      "| Totals | - | - | {{sums.Amount}} |\n";
+
+    // Reference closed data and sums from localStorage
+    let data = webdocdown.data.store.tastyFinancialData.data;
+    let sums = webdocdown.data.store.tastyFinancialSums;
+
+    // Sort by Date/Time
+    data.sort((a, b) => (a.Time < b.Time ? 1 : -1));
+
+    // Produce and display table of financial data
+    webdocdown
+      .produceWBDD(detailMarkup, { data, sums })
+      .then(
+        (html) => (document.getElementById("financial-data").innerHTML = html)
+      );
+  };
+</script>
+
+<style>
+  #financial-data table,
+  #financial-data th,
+  #financial-data td {
+    padding: 4px;
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  #financial-data table {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #financial-data th {
+    color: black;
+  }
+  #financial-data tbody tr:last-child {
+    background: #e8e8e8;
+  }
+  #financial-data tr td a {
+    cursor: pointer;
+  }
+</style>
