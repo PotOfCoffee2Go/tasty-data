@@ -28,10 +28,6 @@ JSON:
   });
 
   jsonDisplay = (id) => {
-    setTimeout(() => _jsonDisplay(id), 100);
-  };
-
-  jsonDisplay = (id) => {
     id = id || document.querySelector('input[name="jsonout"]:checked').id;
     jsonOutput.innerHTML = "";
     if (id !== "radioOff") show(transSpinner);
