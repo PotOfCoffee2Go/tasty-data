@@ -63,8 +63,9 @@
 </div>
 ::plugin-pages/sections/footing.html::
 
-::plugin-plugins/processdata.html::
+::plugin-plugins/initstorage.html::
 ::plugin-plugins/common.html::
+::plugin-plugins/processdata.html::
 
 <script>
   // Assign DOM element variables
@@ -77,6 +78,7 @@
       .forEach(id => this[id] = document.getElementById(id));
 
   // Process and display what is in localStorage
+  initStorage();
   processData();
   markupPortfolio();
   markupTransactions();

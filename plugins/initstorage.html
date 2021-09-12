@@ -1,0 +1,27 @@
+<script>
+  // Initialize local storage
+  initStorage = () => {
+    if (!webdocdown.data.store.tastyPortfolioInput) {
+      webdocdown.storeData({ tastyPortfolioInput: "none" });
+    }
+    if (!webdocdown.data.store.tastyTransactionInput) {
+      webdocdown.storeData({ tastyTransactionInput: "none" });
+    }
+
+    if (!webdocdown.data.store.tastyPortfolioData) {
+      webdocdown.storeData({ tastyPortfolioData: { data: [] } });
+    }
+    if (!webdocdown.data.store.tastyTransactionData) {
+      webdocdown.storeData({ tastyTransactionData: { data: [] } });
+    }
+    if (!webdocdown.data.store.tastyPortfolioDetails) {
+      webdocdown.storeData({ tastyPortfolioDetails: { data: [] } });
+    }
+    if (!webdocdown.data.store.tastyTransactionDetails) {
+      webdocdown.storeData({ tastyPortfolioDetails: { data: [] } });
+    }
+    if (!webdocdown.data.store.tastyPositionData) {
+      webdocdown.storeData({ tastyPositionData: { data: [] } });
+    }
+  };
+</script>
