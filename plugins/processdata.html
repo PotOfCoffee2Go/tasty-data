@@ -13,6 +13,10 @@
         nbr < 0
           ? "::tx-darkred::_(" + format(nbr * -1, places) + ")_"
           : "::tx-darkblue::_" + format(nbr, places) + "_",
+      maybeItalicRedParens = (nbr, places) =>
+        nbr < 0
+          ? "::tx-italic-darkred::_(" + format(nbr * -1, places) + ")_"
+          : "::tx-italic-darkblue::_" + format(nbr, places) + "_",
       linkToTrans = (symbol) =>
         symbol
           ? `<a onclick="markupTransactions('${symbol}'); location.href='#displaytransactions';">${symbol}</a>`
@@ -32,7 +36,7 @@
         Symbol: linkToTrans(symbol.Underlying_Symbol),
         Cost: maybeRedParens(-Math.abs(symbol.Cost), 2),
         Holding: maybeRedParens(Math.abs(symbol.Cost + symbol.Gain), 2),
-        Gain: maybeRedParens(symbol.Gain, 2),
+        Gain: maybeItalicRedParens(symbol.Gain, 2),
         Market: maybeRedParens(
           -(
             symbol.Cost / symbol.Quantity -
@@ -59,7 +63,7 @@
         Quantity: sums.Quantity,
         Holding: format(sums.Holding, 2),
         Cost: maybeRedParens(-sums.Cost, 2),
-        Gain: maybeRedParens(sums.Gain, 2),
+        Gain: maybeItalicRedParens(sums.Gain, 2),
       };
 
       webdocdown.storeData({
@@ -171,7 +175,7 @@
         ExitPrice: maybeRedParens(tcd.data[idx].ExitPrice, 4),
         InvestAmt: maybeRedParens(tcd.data[idx].InvestAmt, 2),
         RealizedAmt: maybeRedParens(tcd.data[idx].RealizedAmt, 2),
-        Gain: maybeRedParens(tcd.data[idx].Gain, 2),
+        Gain: maybeItalicRedParens(tcd.data[idx].Gain, 2),
         Fees: maybeRedParens(-tcd.data[idx].Fees, 4),
         PosQty: maybeRedParens(tcd.data[idx].PosQty, 0),
         PosCost: maybeRedParens(tcd.data[idx].PosCost, 2),
@@ -197,7 +201,7 @@
         CloseQty: maybeRedParens(sums.CloseQty, 0),
         InvestAmt: maybeRedParens(sums.InvestAmt, 2),
         RealizedAmt: maybeRedParens(sums.RealizedAmt, 2),
-        Gain: maybeRedParens(sums.Gain, 2),
+        Gain: maybeItalicRedParens(sums.Gain, 2),
         Fees: maybeRedParens(sums.Fees, 2),
         PosQty: maybeRedParens(sums.PosQty, 0),
         PosCost: maybeRedParens(sums.PosCost, 2),
