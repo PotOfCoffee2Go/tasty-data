@@ -1,3 +1,14 @@
+Log onto your <a target="_blank" href="https://trade.tastyworks.com/login/index.html">TastyWorks</a> account.
+
+ Select 'Portfolio' on the left-hand side - then select the download ::2x::![download csv](images/downloadcsv.png) CSV icon located in the upper right.
+
+Then, select Tastyworks 'Actitity' on the left-hand side. May wish to _'filter'_ to see all transactions. Download ::2x::![download csv](images/downloadcsv.png) CSV file.
+
+Now can import those files to display your positions and transactions.
+
+::#fileSelect cssbutton::<button>Import Tasty Portfolio and/or Activity CSV File(s)</button>
+::#fileInput hidden::<input type="file" multiple onchange="onFileChange(event)">
+
 <!-- Papa CSV to JS object parser -->
 <script src="https://unpkg.com/papaparse@5.3.1/papaparse.min.js"></script>
 
@@ -77,8 +88,7 @@
 
     ttd.data.forEach((trn, idx) => {
       // Fix date - replace last two '_' with ' ', all other '_' with '/'
-      ttd.data[idx].Date_Time = trn.Date_Time
-        .replace(/_([^_]*)$/, " " + "$1")
+      ttd.data[idx].Date_Time = trn.Date_Time.replace(/_([^_]*)$/, " " + "$1")
         .replace(/_([^_]*)$/, " " + "$1")
         .replace(/_/g, "/")
         .replace(/ ([1-9]:)/, " 0" + "$1");

@@ -4,144 +4,46 @@
 ::tx-.8::_by {{name}}_
 </div>
 
-::#importbutton::
-Log onto your <a target="_blank" href="https://trade.tastyworks.com/login/index.html">TastyWorks</a> account.
-
- Select 'Portfolio' on the left-hand side - then select the download ::2x::![download csv](images/downloadcsv.png) CSV icon located in the upper right.
-
-Then, select Tastyworks 'Actitity' on the left-hand side. May wish to _'filter'_ to see all transactions. Download ::2x::![download csv](images/downloadcsv.png) CSV file.
-
-Now can import those files to display your positions and transactions.
-
-::#fileSelect cssbutton::<button>Import Tasty Portfolio and/or Activity CSV File(s)</button>
-::#fileInput hidden::<input type="file" multiple onchange="onFileChange(event)">
-::plugin-plugins/inputdata.html::
+::section #importbutton::<div>
+### _Import_
+</div>
+::plugin-pages/sections/inputdata.html::
 
 ::section #displaypositions::<div>
 ### _Portfolio_
 </div>
-
-::div #detail-data tx-darkblue::
-::plugin-plugins/portfoliotable.html::
+::plugin-pages/sections/portfoliotable.html::
 
 ::section #displayclosed::<div>
 ### _Positions_
 </div>
-
-::div #closed-data tx-darkblue::
-::plugin-plugins/positiontable.html::
+::plugin-pages/sections/positiontable.html::
 
 ::section #displaytransactions::<div>
 ### _Transactions_
 </div>
-
-<label for="symbol-select">Choose a symbol:</label>
-::#symbol-select::<select></select>
-
-::div #transaction-detail tx-darkblue::
-::plugin-plugins/transactiontable.html::
+::plugin-pages/sections/transactiontable.html::
 
 ::section #importeddata::<div>
 ### _Data_
 </div>
-
-::#tastyPortfolioText::
-::tx-1.1::<label for="tastyPortfolioArea">Tasty Portfolio Input</label>
-::copyPortfolioButton::<button>Copy</button>
-::#tastyPortfolioArea 98%::<textarea name="tastyPortfolioArea" rows="5"></textarea>
-
-::#tastyTransactionText::
-::tx-1.1::<label for="tastyTransactionArea">Tasty Transaction Input</label>
-::copyTransactionButton::<button>Copy</button>
-::#tastyTransactionArea 98%::<textarea name="tastyTransactionArea" rows="5"></textarea>
-
-::#positionText::
-::tx-1.1::<label for="portfolioArea">Position Data</label>
-::copyPositionButton::<button>Copy</button>
-::#positionArea 98%::<textarea name="positionArea" rows="5"></textarea>
-
-::#jsonButtons::
-JSON:
-::box::<span>
-  ::#radioOff::<input type="radio" name="jsonout" checked>
-  <label for="radioOff">Off</label>
-  ::#radioJsonPortfolio::<input type="radio" name="jsonout">
-  <label for="radioJsonPortfolio">Portfolio</label>
-  ::#radioJsonTransaction::<input type="radio" name="jsonout">
-  <label for="radioJsonTransaction">Transactions</label>
-</span>
-
-::#transSpinner hidden::<div>
-::lds-ellipsis ::<div><div></div><div></div><div></div><div></div></div>
-</div>
-
-<pre>::code #jsonOutput hljs language-json hidden::</pre>
-::plugin-plugins/showjson.html::
+::plugin-pages/sections/csvdata.html::
+::plugin-pages/sections/showjson.html::
 
 ::section #displaycode::<div>
 ### _Code_
 </div>
-
-Display Code:
-::box::<span>
-  ::#codeOff::<input type="radio" name="codeout" value="off" checked>
-  <label for="codeOff">Off</label>
-  ::#codeOn::<input type="radio" name="codeout" value="on">
-  <label for="codeOn">On</label>
-</span>
-::plugin-plugins/showcode.html::
-
-::#mainCode hidden::<div>
-
-  **Page Source**
-
-  index.html
-  <div>::include-index.html::</div>
-
-  **Home Page**
-
-  pages/home.html
-  ::prewrap::<div>::include-pages/home.html::</div>
-
-  **Plugins**
-
-  plugins/inputdata.html
-  <div>::include-plugins/inputdata.html::</div>
-
-  plugins/portfoliotable.html
-  <div>::include-plugins/portfoliotable.html::</div>
-
-  plugins/transactiontable.html
-  <div>::include-plugins/transactiontable.html::</div>
-
-  plugins/processdata.html
-  <div>::include-plugins/processdata.html::</div>
-
-  plugins/showjson.html
-  <div>::include-plugins/showjson.html::</div>
-
-  plugins/showcode.html
-  <div>::include-plugins/showcode.html::</div>
-
-  plugins/common.html
-  <div>::include-plugins/common.html::</div>
-</div>
+::plugin-pages/sections/showcode.html::
 
 ::section #displayhelp::<div>
 ### _Usage_
 </div>
+::plugin-pages/sections/showhelp.html::
 
-::div #usagehelp::
-
-::plugin-plugins/showhelp.html::
-
-::#footing footing::<div>
+::footing #footing::<div>
 ### _End of Tastyworks Portfolio Playground_
 </div>
-
-Thank you for trying it out!
-
-Images from <a target="_blank" href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1850417">Pixabay</a>
+::plugin-pages/sections/footing.html::
 
 ::plugin-plugins/processdata.html::
 ::plugin-plugins/common.html::
@@ -155,25 +57,6 @@ Images from <a target="_blank" href="https://pixabay.com/?utm_source=link-attrib
    'transSpinner',
    'mainCode', 'usagehelp']
       .forEach(id => this[id] = document.getElementById(id));
-
-  document.querySelectorAll('.copyPortfolioButton').forEach((btn) => {
-    btn.addEventListener('click', (event) => {
-      document.querySelector('#tastyPortfolioArea').select();
-      document.execCommand('copy');
-    });
-  });
-  document.querySelectorAll('.copyTransactionButton').forEach((btn) => {
-    btn.addEventListener('click', (event) => {
-      document.querySelector('#tastyTransactionArea').select();
-      document.execCommand('copy');
-    });
-  });
-  document.querySelectorAll('.copyPositionButton').forEach((btn) => {
-    btn.addEventListener('click', (event) => {
-      document.querySelector('#postionArea').select();
-      document.execCommand('copy');
-    });
-  });
 
   // Process and display what is in localStorage
   processData();

@@ -1,0 +1,35 @@
+::#tastyPortfolioText::
+::tx-1.1::<label for="tastyPortfolioArea">Tasty Portfolio Input</label>
+::copyPortfolioButton::<button>Copy</button>
+::#tastyPortfolioArea 98%::<textarea name="tastyPortfolioArea" rows="5"></textarea>
+
+::#tastyTransactionText::
+::tx-1.1::<label for="tastyTransactionArea">Tasty Transaction Input</label>
+::copyTransactionButton::<button>Copy</button>
+::#tastyTransactionArea 98%::<textarea name="tastyTransactionArea" rows="5"></textarea>
+
+::#positionText::
+::tx-1.1::<label for="portfolioArea">Position Data</label>
+::copyPositionButton::<button>Copy</button>
+::#positionArea 98%::<textarea name="positionArea" rows="5"></textarea>
+
+<script>
+  document.querySelectorAll('.copyPortfolioButton').forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+      document.querySelector('#tastyPortfolioArea').select();
+      document.execCommand('copy');
+    });
+  });
+  document.querySelectorAll('.copyTransactionButton').forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+      document.querySelector('#tastyTransactionArea').select();
+      document.execCommand('copy');
+    });
+  });
+  document.querySelectorAll('.copyPositionButton').forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+      document.querySelector('#positionArea').select();
+      document.execCommand('copy');
+    });
+  });
+</script>

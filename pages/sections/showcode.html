@@ -1,0 +1,68 @@
+Display Code:
+::box::<span>
+  ::#codeOff::<input type="radio" name="codeout" value="off" checked>
+  <label for="codeOff">Off</label>
+  ::#codeOn::<input type="radio" name="codeout" value="on">
+  <label for="codeOn">On</label>
+</span>
+
+::#mainCode hidden::<div>
+
+  **Page Source**
+
+  index.html
+  <div>::include-index.html::</div>
+
+  **Home Page**
+
+  pages/home.html
+  ::prewrap::<div>::include-pages/home.html::</div>
+
+  **Plugins**
+
+  pages/sections/inputdata.html
+  <div>::include-pages/sections/inputdata.html::</div>
+
+  pages/sections/portfoliotable.html
+  <div>::include-pages/sections/portfoliotable.html::</div>
+
+  pages/sections/transactiontable.html
+  <div>::include-pages/sections/transactiontable.html::</div>
+
+  plugins/processdata.html
+  <div>::include-plugins/processdata.html::</div>
+
+  pages/sections/showjson.html
+  <div>::include-pages/sections/showjson.html::</div>
+
+  pages/sections/showcode.html
+  <div>::include-pages/sections/showcode.html::</div>
+
+  plugins/common.html
+  <div>::include-plugins/common.html::</div>
+</div>
+
+<script>
+  const show = (elem) => elem.classList.remove("hidden"),
+    hide = (elem) => elem.classList.add("hidden");
+
+  // JSON output radio buttons
+  document.querySelectorAll("input[name='codeout']").forEach((input) => {
+    input.addEventListener("change", (event) => {
+      codeDisplay(event.target.id);
+    });
+  });
+
+  const codeDisplay = (id) => {
+    id = id || document.querySelector('input[name="codeout"]:checked').id;
+    switch (id) {
+      case "codeOn":
+        show(mainCode);
+        break;
+      default:
+        hide(mainCode);
+        break;
+    }
+    location.href = "#displaycode";
+  };
+</script>
