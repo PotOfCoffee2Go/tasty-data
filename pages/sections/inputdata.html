@@ -1,3 +1,4 @@
+::#sampleData cssbutton right mgn-0-4-0-0::<button>Load Sample Data</button>
 Log onto your <a target="_blank" href="https://trade.tastyworks.com/login/index.html">TastyWorks</a> account.
 
 Select 'Portfolio' on the left-hand side - then select the download ::2x::![download csv](images/downloadcsv.png) CSV icon located in the upper right.
@@ -9,12 +10,33 @@ Now can import those files to display your positions and transactions.
 ::#fileSelect cssbutton::<button>Import Tasty Portfolio and/or Activity CSV File(s)</button>
 ::#fileInput hidden::<input type="file" multiple onchange="onFileChange(event)">
 
+
 <!-- Papa CSV to JS object parser -->
 <script src="https://unpkg.com/papaparse@5.3.1/papaparse.min.js"></script>
 
 <script>
+  document.getElementById('sampleData').addEventListener(
+    'click',
+    (event) => {
+      fetch('samples/portfolio.csv')
+        .then((response) => response.text())
+        .then((text) => {
+          tastyPortfolioArea.value = text;
+          tastyPortfolioArea.dispatchEvent(new Event("change"));
+        })
+      .then(fetch('samples/transactions.csv')
+        .then((response) => response.text())
+        .then((text) => {
+          tastyTransactionArea.value = text;
+          tastyTransactionArea.dispatchEvent(new Event("change"));
+        })
+      )
+    },
+    false
+  );
+
   fileSelect.addEventListener(
-    "click",
+    'click',
     (event) => {
       fileInput.click();
       event.preventDefault();
@@ -108,10 +130,5 @@ Now can import those files to display your positions and transactions.
 
     // Process the JSON representation of the data
     processData();
-
-    // Display results in textarea and JSON
-    markupTransactions();
-    markupPositions();
-    jsonDisplay();
   });
 </script>

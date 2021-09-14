@@ -1,0 +1,131 @@
+Date/Time,Transaction Code,Transaction Subcode,Symbol,Buy/Sell,Open/Close,Quantity,Expiration Date,Strike,Call/Put,Price,Fees,Amount,Description,Account Reference
+09/02/2021 11:41 AM,Trade,Sell to Close,SONM,Sell,Close,100,,,,0.4925,0.102,49.25,Sold 100 SONM @ 0.49,Sample...04
+09/02/2021 10:40 AM,Trade,Sell to Close,TNXP,Sell,Close,100,,,,0.7251,0.102,72.51,Sold 100 TNXP @ 0.73,Sample...04
+09/01/2021 11:08 AM,Trade,Sell to Close,RGLS,Sell,Close,200,,,,0.8101,0.194,162.02,Sold 200 RGLS @ 0.81,Sample...04
+09/01/2021 9:52 AM,Trade,Sell to Close,BXRX,Sell,Close,800,,,,0.715,0.745,572,Sold 800 BXRX @ 0.72,Sample...04
+08/31/2021 7:03 AM,Receive Deliver,Reverse Split,ACST,Buy,Open,12,,,,,0.00,-48.02,Reverse split: Open 12.0 ACST,Sample...04
+08/31/2021 7:03 AM,Receive Deliver,Reverse Split,ACST,Sell,Close,100,,,,,0.00,48.02,Reverse split: Close 100.0 ACST,Sample...04
+08/26/2021 10:13 AM,Trade,Sell to Close,ADXS,Sell,Close,300,,,,0.5143,0.286,154.29,Sold 300 ADXS @ 0.51,Sample...04
+08/25/2021 12:52 PM,Trade,Buy to Open,TLGT,Buy,Open,200,,,,0.3934,0.16,-78.68,Bought 200 TLGT @ 0.39,Sample...04
+08/24/2021 12:40 PM,Trade,Sell to Close,NAKD,Sell,Close,100,,,,0.6384,0.102,63.84,Sold 100 NAKD @ 0.64,Sample...04
+08/07/2021 9:51 AM,Money Movement,Balance Adjustment,,,,0,,,,,0.00,0.02,Regulatory fee adjustment,Sample...04
+08/05/2021 11:30 AM,Trade,Buy to Open,BXRX,Buy,Open,200,,,,0.58,0.16,-116,Bought 200 BXRX @ 0.58,Sample...04
+08/05/2021 11:30 AM,Trade,Buy to Open,BXRX,Buy,Open,100,,,,0.58,0.08,-58,Bought 100 BXRX @ 0.58,Sample...04
+08/05/2021 11:29 AM,Trade,Buy to Open,TLGT,Buy,Open,100,,,,0.48,0.08,-48,Bought 100 TLGT @ 0.48,Sample...04
+08/04/2021 12:44 PM,Trade,Sell to Close,AZRX,Sell,Close,100,,,,0.6103,0.102,61.03,Sold 100 AZRX @ 0.61,Sample...04
+08/04/2021 12:38 PM,Trade,Buy to Open,ADVM,Buy,Open,10,,,,2.3291,0.008,-23.291,Bought 10 ADVM @ 2.33,Sample...04
+08/04/2021 11:32 AM,Trade,Buy to Open,TNXP,Buy,Open,100,,,,0.6688,0.08,-66.88,Bought 100 TNXP @ 0.67,Sample...04
+08/04/2021 11:05 AM,Trade,Sell to Close,TLGT,Sell,Close,400,,,,0.535,0.378,214,Sold 400 TLGT @ 0.54,Sample...04
+08/04/2021 10:28 AM,Trade,Sell to Close,METX,Sell,Close,200,,,,0.64,0.194,128,Sold 200 METX @ 0.64,Sample...04
+08/04/2021 10:28 AM,Trade,Buy to Open,METX,Buy,Open,100,,,,0.6499,0.08,-64.99,Bought 100 METX @ 0.65,Sample...04
+08/04/2021 9:47 AM,Trade,Buy to Open,ADXS,Buy,Open,100,,,,0.42,0.08,-42,Bought 100 ADXS @ 0.42,Sample...04
+08/04/2021 9:47 AM,Trade,Buy to Open,ADXS,Buy,Open,100,,,,0.42,0.08,-42,Bought 100 ADXS @ 0.42,Sample...04
+07/26/2021 5:00 PM,Money Movement,Deposit,,,,0,,,,,0.00,500,ACH DEPOSIT,Sample...04
+07/26/2021 9:30 AM,Trade,Buy to Open,NAKD,Buy,Open,100,,,,0.53,0.08,-53,Bought 100 NAKD @ 0.53,Sample...04
+07/23/2021 12:40 PM,Trade,Buy to Open,ADVM,Buy,Open,10,,,,2.2686,0.008,-22.686,Bought 10 ADVM @ 2.27,Sample...04
+07/23/2021 12:17 PM,Trade,Buy to Open,ACST,Buy,Open,100,,,,0.4802,0.08,-48.02,Bought 100 ACST @ 0.48,Sample...04
+07/23/2021 10:37 AM,Trade,Buy to Open,METX,Buy,Open,100,,,,0.5678,0.08,-56.78,Bought 100 METX @ 0.57,Sample...04
+07/23/2021 10:16 AM,Trade,Buy to Open,AZRX,Buy,Open,100,,,,0.5465,0.08,-54.65,Bought 100 AZRX @ 0.55,Sample...04
+07/23/2021 9:57 AM,Trade,Buy to Open,CTRM,Buy,Open,10,,,,1.9897,0.008,-19.897,Bought 10 CTRM @ 1.99,Sample...04
+07/22/2021 12:28 PM,Trade,Buy to Open,SONM,Buy,Open,100,,,,0.4332,0.08,-43.32,Bought 100 SONM @ 0.43,Sample...04
+07/21/2021 1:21 PM,Trade,Sell to Close,SONM,Sell,Close,800,,,,0.4631,0.745,370.48,Sold 800 SONM @ 0.46,Sample...04
+07/19/2021 10:10 AM,Trade,Buy to Open,BXRX,Buy,Open,200,,,,0.5857,0.16,-117.14,Bought 200 BXRX @ 0.59,Sample...04
+07/19/2021 9:42 AM,Trade,Buy to Open,DFFN,Buy,Open,100,,,,0.5449,0.08,-54.49,Bought 100 DFFN @ 0.54,Sample...04
+07/19/2021 9:41 AM,Trade,Buy to Open,TLGT,Buy,Open,200,,,,0.4637,0.16,-92.74,Bought 200 TLGT @ 0.46,Sample...04
+07/19/2021 9:39 AM,Trade,Buy to Open,SONM,Buy,Open,300,,,,0.372,0.24,-111.6,Bought 300 SONM @ 0.37,Sample...04
+07/16/2021 10:15 AM,Trade,Buy to Open,ADXS,Buy,Open,100,,,,0.45,0.08,-45,Bought 100 ADXS @ 0.45,Sample...04
+07/15/2021 10:31 AM,Trade,Buy to Open,DFFN,Buy,Open,100,,,,0.5799,0.08,-57.99,Bought 100 DFFN @ 0.58,Sample...04
+07/10/2021 9:21 AM,Money Movement,Balance Adjustment,,,,0,,,,,0.00,0.01,Regulatory fee adjustment,Sample...04
+07/09/2021 11:42 AM,Trade,Buy to Open,FAMI,Buy,Open,110,,,,0.4,0.088,-44,Bought 110 FAMI @ 0.40,Sample...04
+07/09/2021 11:42 AM,Trade,Buy to Open,FAMI,Buy,Open,90,,,,0.4,0.072,-36,Bought 90 FAMI @ 0.40,Sample...04
+07/07/2021 1:27 PM,Trade,Buy to Open,FAMI,Buy,Open,300,,,,0.4099,0.24,-122.97,Bought 300 FAMI @ 0.41,Sample...04
+07/07/2021 11:52 AM,Trade,Buy to Open,RGLS,Buy,Open,100,,,,0.7312,0.08,-73.12,Bought 100 RGLS @ 0.73,Sample...04
+07/07/2021 11:27 AM,Trade,Buy to Open,SONM,Buy,Open,100,,,,0.4661,0.08,-46.61,Bought 100 SONM @ 0.47,Sample...04
+07/07/2021 11:26 AM,Trade,Buy to Open,BXRX,Buy,Open,100,,,,0.6743,0.08,-67.43,Bought 100 BXRX @ 0.67,Sample...04
+07/06/2021 12:55 PM,Trade,Buy to Open,BXRX,Buy,Open,100,,,,0.7118,0.08,-71.18,Bought 100 BXRX @ 0.71,Sample...04
+07/06/2021 11:43 AM,Trade,Buy to Open,SONM,Buy,Open,200,,,,0.4874,0.16,-97.48,Bought 200 SONM @ 0.49,Sample...04
+07/06/2021 10:46 AM,Trade,Buy to Open,BXRX,Buy,Open,100,,,,0.7441,0.08,-74.41,Bought 100 BXRX @ 0.74,Sample...04
+07/06/2021 10:20 AM,Trade,Buy to Open,RGLS,Buy,Open,100,,,,0.79,0.08,-79,Bought 100 RGLS @ 0.79,Sample...04
+07/06/2021 9:36 AM,Trade,Sell to Close,ADXS,Sell,Close,400,,,,0.6303,0.378,252.12,Sold 400 ADXS @ 0.63,Sample...04
+07/02/2021 3:10 PM,Trade,Buy to Open,DFFN,Buy,Open,100,,,,0.6869,0.08,-68.69,Bought 100 DFFN @ 0.69,Sample...04
+07/02/2021 1:30 PM,Trade,Buy to Open,SONM,Buy,Open,100,,,,0.51,0.08,-51,Bought 100 SONM @ 0.51,Sample...04
+07/02/2021 10:55 AM,Trade,Sell to Close,BHAT,Sell,Close,200,,,,0.97,0.194,194,Sold 200 BHAT @ 0.97,Sample...04
+06/30/2021 3:55 PM,Trade,Buy to Open,TLGT,Buy,Open,100,,,,0.5348,0.08,-53.48,Bought 100 TLGT @ 0.53,Sample...04
+06/30/2021 2:18 PM,Trade,Buy to Open,SONM,Buy,Open,100,,,,0.56,0.08,-56,Bought 100 SONM @ 0.56,Sample...04
+06/26/2021 11:01 AM,Money Movement,Balance Adjustment,,,,0,,,,,0.00,0.03,Regulatory fee adjustment,Sample...04
+06/25/2021 2:15 PM,Trade,Sell to Close,BXRX,Sell,Close,87,,,,0.83,0.09,72.21,Sold 87 BXRX @ 0.83,Sample...04
+06/25/2021 2:15 PM,Trade,Sell to Close,BXRX,Sell,Close,113,,,,0.83,0.114,93.79,Sold 113 BXRX @ 0.83,Sample...04
+06/23/2021 10:52 AM,Trade,Sell to Close,ACST,Sell,Close,100,,,,0.603,0.102,60.3,Sold 100 ACST @ 0.60,Sample...04
+06/22/2021 12:01 PM,Trade,Buy to Open,BXRX,Buy,Open,100,,,,0.7679,0.08,-76.79,Bought 100 BXRX @ 0.77,Sample...04
+06/22/2021 11:23 AM,Trade,Sell to Close,HSTO,Sell,Close,100,,,,1.0714,0.102,107.14,Sold 100 HSTO @ 1.07,Sample...04
+06/21/2021 11:24 AM,Trade,Buy to Open,BHAT,Buy,Open,100,,,,0.8297,0.08,-82.97,Bought 100 BHAT @ 0.83,Sample...04
+06/21/2021 10:04 AM,Trade,Buy to Open,ADXS,Buy,Open,100,,,,0.44,0.08,-44,Bought 100 ADXS @ 0.44,Sample...04
+06/21/2021 9:54 AM,Trade,Buy to Open,ADXS,Buy,Open,29,,,,0.44,0.024,-12.76,Bought 29 ADXS @ 0.44,Sample...04
+06/21/2021 9:54 AM,Trade,Buy to Open,ADXS,Buy,Open,21,,,,0.44,0.017,-9.24,Bought 21 ADXS @ 0.44,Sample...04
+06/21/2021 9:54 AM,Trade,Buy to Open,ADXS,Buy,Open,50,,,,0.44,0.04,-22,Bought 50 ADXS @ 0.44,Sample...04
+06/16/2021 9:53 AM,Trade,Buy to Open,ADXS,Buy,Open,100,,,,0.48,0.08,-48,Bought 100 ADXS @ 0.48,Sample...04
+06/12/2021 10:02 AM,Money Movement,Balance Adjustment,,,,0,,,,,0.00,0.02,Regulatory fee adjustment,Sample...04
+06/10/2021 1:50 PM,Trade,Buy to Open,FAMI,Buy,Open,300,,,,0.5381,0.24,-161.43,Bought 300 FAMI @ 0.54,Sample...04
+06/09/2021 2:39 PM,Trade,Buy to Open,BHAT,Buy,Open,100,,,,0.9259,0.08,-92.59,Bought 100 BHAT @ 0.93,Sample...04
+06/09/2021 9:40 AM,Trade,Buy to Open,HSTO,Buy,Open,100,,,,0.9999,0.08,-99.99,Bought 100 HSTO @ 1.00,Sample...04
+06/08/2021 9:59 AM,Trade,Sell to Close,SONM,Sell,Close,100,,,,0.7375,0.102,73.75,Sold 100 SONM @ 0.74,Sample...04
+06/07/2021 12:49 PM,Trade,Sell to Close,DFFN,Sell,Close,200,,,,0.78,0.194,156,Sold 200 DFFN @ 0.78,Sample...04
+06/07/2021 12:49 PM,Trade,Sell to Close,DFFN,Sell,Close,100,,,,0.78,0.102,78,Sold 100 DFFN @ 0.78,Sample...04
+06/07/2021 10:25 AM,Trade,Buy to Open,BXRX,Buy,Open,100,,,,0.77,0.08,-77,Bought 100 BXRX @ 0.77,Sample...04
+06/05/2021 8:11 AM,Money Movement,Balance Adjustment,,,,0,,,,,0.00,0.04,Regulatory fee adjustment,Sample...04
+06/03/2021 2:19 PM,Trade,Sell to Close,ADMP,Sell,Close,73,,,,0.9812,0.078,71.628,Sold 73 ADMP @ 0.98,Sample...04
+06/03/2021 2:19 PM,Trade,Sell to Close,ADMP,Sell,Close,27,,,,0.981,0.035,26.487,Sold 27 ADMP @ 0.98,Sample...04
+06/03/2021 1:33 PM,Trade,Buy to Open,ADXS,Buy,Open,100,,,,0.5383,0.08,-53.83,Bought 100 ADXS @ 0.54,Sample...04
+06/03/2021 11:37 AM,Trade,Buy to Open,TLGT,Buy,Open,100,,,,0.58,0.08,-58,Bought 100 TLGT @ 0.58,Sample...04
+06/03/2021 10:30 AM,Trade,Buy to Open,ADMP,Buy,Open,100,,,,0.67,0.08,-67,Bought 100 ADMP @ 0.67,Sample...04
+06/02/2021 3:32 PM,Trade,Sell to Close,TBLT,Sell,Close,500,,,,0.74,0.47,370,Sold 500 TBLT @ 0.74,Sample...04
+06/02/2021 12:22 PM,Trade,Sell to Close,AZRX,Sell,Close,100,,,,0.87,0.102,87,Sold 100 AZRX @ 0.87,Sample...04
+06/02/2021 12:22 PM,Trade,Sell to Close,AZRX,Sell,Close,100,,,,0.87,0.102,87,Sold 100 AZRX @ 0.87,Sample...04
+06/02/2021 12:22 PM,Trade,Sell to Close,AZRX,Sell,Close,100,,,,0.87,0.102,87,Sold 100 AZRX @ 0.87,Sample...04
+05/28/2021 2:35 PM,Trade,Sell to Close,CTRM,Sell,Close,40,,,,3.0807,0.047,123.228,Sold 40 CTRM @ 3.08,Sample...04
+05/28/2021 6:52 AM,Receive Deliver,Reverse Split,CTRM,Buy,Open,40,,,,,0.00,-169.71,Reverse split: Open 40.0 CTRM,Sample...04
+05/28/2021 6:52 AM,Receive Deliver,Reverse Split,CTRM,Sell,Close,400,,,,,0.00,169.71,Reverse split: Close 400.0 CTRM,Sample...04
+05/24/2021 11:39 AM,Trade,Buy to Open,CTRM,Buy,Open,200,,,,0.365,0.16,-73,Bought 200 CTRM @ 0.36,Sample...04
+05/22/2021 10:10 AM,Money Movement,Balance Adjustment,,,,0,,,,,0.00,0.04,Regulatory fee adjustment,Sample...04
+05/21/2021 3:54 PM,Trade,Buy to Open,DFFN,Buy,Open,200,,,,0.6962,0.16,-139.24,Bought 200 DFFN @ 0.70,Sample...04
+05/21/2021 3:06 PM,Trade,Buy to Open,TBLT,Buy,Open,300,,,,0.7355,0.24,-220.65,Bought 300 TBLT @ 0.74,Sample...04
+05/20/2021 12:04 PM,Trade,Buy to Open,ACST,Buy,Open,100,,,,0.5,0.08,-50,Bought 100 ACST @ 0.50,Sample...04
+05/19/2021 3:05 PM,Trade,Buy to Open,AZRX,Buy,Open,200,,,,0.79,0.16,-158,Bought 200 AZRX @ 0.79,Sample...04
+05/19/2021 12:53 PM,Trade,Buy to Open,SONM,Buy,Open,100,,,,0.4677,0.08,-46.77,Bought 100 SONM @ 0.47,Sample...04
+05/19/2021 12:27 PM,Trade,Sell to Close,ADXS,Sell,Close,100,,,,0.59,0.102,59,Sold 100 ADXS @ 0.59,Sample...04
+05/19/2021 12:26 PM,Trade,Sell to Close,ADXS,Sell,Close,100,,,,0.59,0.102,59,Sold 100 ADXS @ 0.59,Sample...04
+05/19/2021 12:26 PM,Trade,Sell to Close,ADXS,Sell,Close,100,,,,0.59,0.102,59,Sold 100 ADXS @ 0.59,Sample...04
+05/19/2021 12:26 PM,Trade,Sell to Close,ADXS,Sell,Close,100,,,,0.59,0.102,59,Sold 100 ADXS @ 0.59,Sample...04
+05/14/2021 11:35 AM,Trade,Buy to Open,ADXS,Buy,Open,100,,,,0.39,0.08,-39,Bought 100 ADXS @ 0.39,Sample...04
+05/14/2021 11:35 AM,Trade,Buy to Open,ADXS,Buy,Open,100,,,,0.39,0.08,-39,Bought 100 ADXS @ 0.39,Sample...04
+05/14/2021 11:14 AM,Trade,Buy to Open,CTRM,Buy,Open,100,,,,0.3971,0.08,-39.71,Bought 100 CTRM @ 0.40,Sample...04
+05/14/2021 11:11 AM,Trade,Buy to Open,TBLT,Buy,Open,100,,,,0.6365,0.08,-63.65,Bought 100 TBLT @ 0.64,Sample...04
+05/10/2021 3:08 PM,Trade,Buy to Open,FAMI,Buy,Open,100,,,,0.37,0.08,-37,Bought 100 FAMI @ 0.37,Sample...04
+05/10/2021 3:07 PM,Trade,Buy to Open,FAMI,Buy,Open,100,,,,0.37,0.08,-37,Bought 100 FAMI @ 0.37,Sample...04
+05/07/2021 5:00 PM,Money Movement,Deposit,,,,0,,,,,0.00,500,ACH DEPOSIT,Sample...04
+05/03/2021 9:52 AM,Trade,Buy to Open,TBLT,Buy,Open,100,,,,0.74,0.08,-74,Bought 100 TBLT @ 0.74,Sample...04
+05/01/2021 9:54 AM,Money Movement,Balance Adjustment,,,,0,,,,,0.00,0.01,Regulatory fee adjustment,Sample...04
+04/30/2021 3:12 PM,Trade,Buy to Open,ADXS,Buy,Open,100,,,,0.48,0.08,-48,Bought 100 ADXS @ 0.48,Sample...04
+04/30/2021 12:39 PM,Trade,Buy to Open,FAMI,Buy,Open,100,,,,0.43,0.08,-43,Bought 100 FAMI @ 0.43,Sample...04
+04/30/2021 11:19 AM,Trade,Buy to Open,FAMI,Buy,Open,100,,,,0.42,0.08,-42,Bought 100 FAMI @ 0.42,Sample...04
+04/29/2021 11:05 AM,Trade,Buy to Open,FAMI,Buy,Open,100,,,,0.34,0.08,-34,Bought 100 FAMI @ 0.34,Sample...04
+04/29/2021 10:54 AM,Trade,Buy to Open,FAMI,Buy,Open,100,,,,0.3284,0.08,-32.84,Bought 100 FAMI @ 0.33,Sample...04
+04/28/2021 11:06 AM,Trade,Sell to Close,NEPT,Sell,Close,100,,,,1.45,0.102,145,Sold 100 NEPT @ 1.45,Sample...04
+04/27/2021 2:25 PM,Trade,Buy to Open,FAMI,Buy,Open,100,,,,0.89,0.08,-89,Bought 100 FAMI @ 0.89,Sample...04
+04/27/2021 2:25 PM,Trade,Buy to Open,DFFN,Buy,Open,100,,,,0.77,0.08,-77,Bought 100 DFFN @ 0.77,Sample...04
+04/27/2021 1:41 PM,Trade,Sell to Close,AVCO,Sell,Close,100,,,,1.0613,0.102,106.13,Sold 100 AVCO @ 1.06,Sample...04
+04/27/2021 9:50 AM,Trade,Buy to Open,ADXS,Buy,Open,100,,,,0.5297,0.08,-52.97,Bought 100 ADXS @ 0.53,Sample...04
+04/26/2021 11:49 AM,Trade,Sell to Close,NAKD,Sell,Close,100,,,,0.637,0.102,63.7,Sold 100 NAKD @ 0.64,Sample...04
+04/20/2021 1:27 PM,Trade,Buy to Open,NEPT,Buy,Open,80,,,,1.19,0.064,-95.2,Bought 80 NEPT @ 1.19,Sample...04
+04/16/2021 5:00 PM,Money Movement,Credit Interest,,,,0,,,,,0.00,0.01,INTEREST ON CREDIT BALANCE,Sample...04
+04/16/2021 9:45 AM,Trade,Buy to Open,AVCO,Buy,Open,100,,,,0.97,0.08,-97,Bought 100 AVCO @ 0.97,Sample...04
+04/16/2021 9:30 AM,Trade,Buy to Open,NAKD,Buy,Open,62,,,,0.5,0.05,-31,Bought 62 NAKD @ 0.50,Sample...04
+04/16/2021 9:30 AM,Trade,Buy to Open,NAKD,Buy,Open,38,,,,0.5,0.031,-19,Bought 38 NAKD @ 0.50,Sample...04
+04/12/2021 9:32 AM,Trade,Buy to Open,AZRX,Buy,Open,100,,,,0.88,0.08,-88,Bought 100 AZRX @ 0.88,Sample...04
+04/05/2021 9:30 AM,Trade,Buy to Open,CTRM,Buy,Open,100,,,,0.57,0.08,-57,Bought 100 CTRM @ 0.57,Sample...04
+03/25/2021 9:32 AM,Trade,Sell to Close,AVCO,Sell,Close,100,,,,1.07,0.102,107,Sold 100 AVCO @ 1.07,Sample...04
+03/15/2021 9:40 AM,Trade,Sell to Close,NEPT,Sell,Close,30,,,,1.71,0.038,51.3,Sold 30 NEPT @ 1.71,Sample...04
+03/05/2021 5:00 PM,Money Movement,Deposit,,,,0,,,,,0.00,500,ACH DEPOSIT,Sample...04
+03/03/2021 9:30 AM,Trade,Buy to Open,AVCO,Buy,Open,100,,,,1.19,0.08,-119,Bought 100 AVCO @ 1.19,Sample...04
+02/23/2021 9:45 AM,Trade,Buy to Open,NEPT,Buy,Open,50,,,,1.5,0.04,-75,Bought 50 NEPT @ 1.50,Sample...04
+01/14/2021 5:00 PM,Money Movement,Deposit,,,,0,,,,,0.00,1000,ACH DEPOSIT,Sample...04
