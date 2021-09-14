@@ -2,50 +2,54 @@
 
 <script>
     // Helpers
-    const  round = (nbr, places) =>
+    const  round = (nbr, places = 0) =>
         Math.round(nbr * Math.pow(10, places)) / Math.pow(10, places),
-      format = (nbr, places) => parseFloat(round(nbr, places)).toFixed(places),
-      maybeRedParens = (nbr, places) =>
+      format = (nbr, places = 0) => parseFloat(round(nbr, places)).toFixed(places),
+      maybeRedParens = (nbr, places = 0) =>
         nbr < 0
           ? "::tx-darkred::_(" + format(nbr * -1, places) + ")_"
           : "::tx-darkblue::_" + format(nbr, places) + "_";
 
   markupFinancialData = () => {
     let summaryMarkup =
-      "| Account | Gain | Fees | Cash | Portfolio | Value |\n" +
-      "| :--: | :--: | :--: | :---: | :---: | :---: |\n" +
-      "| {{cashsums.Amount}} | {{possums.fmt.Gain}} | {{calc.fees}} | {{calc.cash}} |" +
-      " {{calc.portfolio}} | {{calc.value}} |\n";
+      "Summary\n\n" +
+      "| Account | Gain | Positions | Cash | Liquid | Liquidate | Fees |\n" +
+      "| :-----: | :--: | :-------: | :--: | :----: | :-------: | :--: |\n" +
+      "| {{calc.account}} | {{calc.gain}} | {{calc.positions}} |" +
+      " {{calc.cash}} | {{calc.liquidity}} | {{calc.liquidate}} | {{calc.fees}} |\n";
+
+    // Reference closed data and sums from localStorage
+    const cashsums = webdocdown.data.store.tastyFinancialSums;
+    const possums = webdocdown.data.store.tastyPositionSums;
+    const portsums = webdocdown.data.store.tastyPortfolioSums;
+
+    const cash = cashsums.Amount + possums.Gain - possums.Fees + possums.PosCost;
+    const calc = {
+      account: maybeRedParens(cashsums.Amount, 2),
+      gain: maybeRedParens(possums.Gain, 2),
+      positions: maybeRedParens(possums.PosCost, 2),
+      cash: maybeRedParens(cash, 2),
+      liquidity: maybeRedParens(portsums.Gain, 2),
+      liquidate: maybeRedParens(cash - possums.PosCost + portsums.Gain, 2),
+      fees: maybeRedParens(-possums.Fees, 2),
+    };
 
     let detailMarkup =
       "Account Activity\n\n" +
       "| Date | Code | Subcode | Amount |\n" +
-      "| :--- | :--: | :-----: | :----: |\n" +
+      "| :--: | :--: | :-----: | :----: |\n" +
       "{{#data}}" +
       "| {{{fmt.Date_Time}}} | {{fmt.Code}} | {{fmt.Subcode}} | {{fmt.Amount}} |" +
       "  \n" +
       "{{/data}}" +
       "| Totals | - | - | {{cashsums.Amount}} |\n";
 
-    // Reference closed data and sums from localStorage
     const data = webdocdown.data.store.tastyFinancialData.data;
-    const cashsums = webdocdown.data.store.tastyFinancialSums;
-    const possums = webdocdown.data.store.tastyPositionSums;
-    const portsums = webdocdown.data.store.tastyPortfolioSums;
-    const calc = {
-      cash: maybeRedParens(cashsums.Amount + possums.Gain - possums.Fees, 2),
-      fees: maybeRedParens(-possums.Fees, 2),
-      portfolio: portsums.fmt.Gain,
-      value: maybeRedParens(cashsums.Amount + possums.Gain - possums.Fees + portsums.Gain, 2),
-    };
-
-    console.log('portsums', portsums);
-    console.log('possums', possums);
 
     // Sort by Date/Time
     data.sort((a, b) => (a.Time < b.Time ? 1 : -1));
 
-    // Produce and display table of financial data
+    // Produce and display tables of financial data
     let tablesOutput = '';
     webdocdown
       .produceWBDD(summaryMarkup, { data, cashsums, possums, calc })

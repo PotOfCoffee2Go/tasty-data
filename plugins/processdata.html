@@ -114,6 +114,10 @@
         : tcd.data.push({ Symbol: x.Symbol })
     );
 
+    // Only records with a symbol
+    tcd.data = tcd.data.filter((x) => x.Symbol);
+    console.log('tcd', tcd.data);
+
     // Sorted by symbol
     tcd.data.sort((a, b) => (a.Symbol > b.Symbol ? 1 : -1));
 
@@ -176,7 +180,7 @@
         InvestAmt: maybeRedParens(tcd.data[idx].InvestAmt, 2),
         RealizedAmt: maybeRedParens(tcd.data[idx].RealizedAmt, 2),
         Gain: maybeItalicRedParens(tcd.data[idx].Gain, 2),
-        Fees: maybeRedParens(-tcd.data[idx].Fees, 4),
+        Fees: maybeRedParens(-tcd.data[idx].Fees, 3),
         PosQty: maybeRedParens(tcd.data[idx].PosQty, 0),
         PosCost: maybeRedParens(tcd.data[idx].PosCost, 2),
       };
@@ -202,7 +206,7 @@
         InvestAmt: maybeRedParens(sums.InvestAmt, 2),
         RealizedAmt: maybeRedParens(sums.RealizedAmt, 2),
         Gain: maybeItalicRedParens(sums.Gain, 2),
-        Fees: maybeRedParens(sums.Fees, 2),
+        Fees: maybeRedParens(-sums.Fees, 2),
         PosQty: maybeRedParens(sums.PosQty, 0),
         PosCost: maybeRedParens(sums.PosCost, 2),
       };
@@ -245,5 +249,11 @@
     positionArea.value = Papa.unparse(tcd.data, {
       columns: ["Symbol"].concat(Object.keys(initPositionsDataRec)),
     });
+
+    // Display tables
+    markupPortfolio();
+    markupTransactions();
+    markupPositions();
+    markupFinancialData();
   };
 </script>

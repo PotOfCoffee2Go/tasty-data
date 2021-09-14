@@ -4,8 +4,8 @@
   markupPositions = () => {
     let detailMarkup =
       "" +
-      "| Symbol | Qty | Entry | Exit | Invested | Realized | Gain | PosQty | PosCost | Fees |\n" +
-      "| :----- | :-: | :---: | :--: | :------: | :------: | :--: | :----: | :-----: | :--: |\n" +
+      "| Symbol | Qty | Entry | Exit | Invested | Realized | Gain | Open | Cost | Fees |\n" +
+      "| :----- | :-: | :---: | :--: | :------: | :------: | :--: | :--: | :--: | :--: |\n" +
       "{{#data}}" +
       "| {{{fmt.Symbol}}} | {{fmt.CloseQty}} | {{fmt.EntryPrice}} |" +
       "  {{fmt.ExitPrice}} | {{fmt.InvestAmt}} | {{fmt.RealizedAmt}} |" +
