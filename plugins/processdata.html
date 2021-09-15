@@ -250,6 +250,24 @@
       columns: ["Symbol"].concat(Object.keys(initPositionsDataRec)),
     });
 
+    // Reference sums from localStorage
+    const cashsums = webdocdown.data.store.tastyFinancialSums;
+    const possums = webdocdown.data.store.tastyPositionSums;
+    const portsums = webdocdown.data.store.tastyPortfolioSums;
+
+    const cash = cashsums.Amount + possums.Gain - possums.Fees + possums.PosCost;
+    const calc = {
+      account: maybeRedParens(cashsums.Amount, 2),
+      gain: maybeRedParens(possums.Gain, 2),
+      positions: maybeRedParens(possums.PosCost, 2),
+      cash: maybeRedParens(cash, 2),
+      liquidity: maybeRedParens(portsums.Gain, 2),
+      liquidate: maybeRedParens(cash - possums.PosCost + portsums.Gain, 2),
+      fees: maybeRedParens(-possums.Fees, 2),
+    };
+
+    webdocdown.storeData({ tastyFinancialSummary: calc });
+
     // Display tables
     markupPortfolio();
     markupTransactions();

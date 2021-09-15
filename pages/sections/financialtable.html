@@ -1,15 +1,6 @@
 ::div #financial-data tx-darkblue::
 
 <script>
-    // Helpers
-    const  round = (nbr, places = 0) =>
-        Math.round(nbr * Math.pow(10, places)) / Math.pow(10, places),
-      format = (nbr, places = 0) => parseFloat(round(nbr, places)).toFixed(places),
-      maybeRedParens = (nbr, places = 0) =>
-        nbr < 0
-          ? "::tx-darkred::_(" + format(nbr * -1, places) + ")_"
-          : "::tx-darkblue::_" + format(nbr, places) + "_";
-
   markupFinancialData = () => {
     let summaryMarkup =
       "Summary\n\n" +
@@ -17,22 +8,6 @@
       "| :-----: | :--: | :-------: | :--: | :----: | :-------: | :--: |\n" +
       "| {{calc.account}} | {{calc.gain}} | {{calc.positions}} |" +
       " {{calc.cash}} | {{calc.liquidity}} | {{calc.liquidate}} | {{calc.fees}} |\n";
-
-    // Reference closed data and sums from localStorage
-    const cashsums = webdocdown.data.store.tastyFinancialSums;
-    const possums = webdocdown.data.store.tastyPositionSums;
-    const portsums = webdocdown.data.store.tastyPortfolioSums;
-
-    const cash = cashsums.Amount + possums.Gain - possums.Fees + possums.PosCost;
-    const calc = {
-      account: maybeRedParens(cashsums.Amount, 2),
-      gain: maybeRedParens(possums.Gain, 2),
-      positions: maybeRedParens(possums.PosCost, 2),
-      cash: maybeRedParens(cash, 2),
-      liquidity: maybeRedParens(portsums.Gain, 2),
-      liquidate: maybeRedParens(cash - possums.PosCost + portsums.Gain, 2),
-      fees: maybeRedParens(-possums.Fees, 2),
-    };
 
     let detailMarkup =
       "Account Activity\n\n" +
@@ -45,6 +20,9 @@
       "| Totals | - | - | {{cashsums.Amount}} |\n";
 
     const data = webdocdown.data.store.tastyFinancialData.data;
+    const cashsums = webdocdown.data.store.tastyFinancialSums;
+    const possums = webdocdown.data.store.tastyPositionSums;
+    const calc = webdocdown.data.store.tastyFinancialSummary;
 
     // Sort by Date/Time
     data.sort((a, b) => (a.Time < b.Time ? 1 : -1));
