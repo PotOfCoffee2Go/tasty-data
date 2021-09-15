@@ -18,17 +18,23 @@ Now can import those files to display your positions and transactions.
   document.getElementById('sampleData').addEventListener(
     'click',
     (event) => {
+     location.href = '#fileSelect';
+      document.querySelectorAll('table').forEach((table) => {
+        table.remove();
+      });
+      initStorage();
       fetch('samples/portfolio.csv')
         .then((response) => response.text())
         .then((text) => {
           tastyPortfolioArea.value = text;
-          tastyPortfolioArea.dispatchEvent(new Event("change"));
+          processPortfolioInput(text);
         })
       .then(fetch('samples/transactions.csv')
         .then((response) => response.text())
         .then((text) => {
           tastyTransactionArea.value = text;
-          tastyTransactionArea.dispatchEvent(new Event("change"));
+          processTransInput(text);
+          processData();
         })
       )
     },
@@ -45,17 +51,26 @@ Now can import those files to display your positions and transactions.
   );
 
   onFileChange = (event) => {
+    location.href = '#fileSelect';
+    document.querySelectorAll('table').forEach((table) => {
+      table.remove();
+    });
+    initStorage();
     for (let i = 0; i < event.target.files.length; i++) {
       const file = event.target.files[i];
       const reader = new FileReader();
       reader.onload = (e) => {
         if (/^Asset/.test(e.target.result)) {
           tastyPortfolioArea.value = e.target.result;
-          tastyPortfolioArea.dispatchEvent(new Event("change"));
+          processPortfolioInput(e.target.result);
         }
         if (/^Date\/Time/.test(e.target.result)) {
           tastyTransactionArea.value = e.target.result;
-          tastyTransactionArea.dispatchEvent(new Event("change"));
+          processTransInput(e.target.result);
+        }
+        if (webdocdown.data.store.tastyPortfolioData.data.length > 0
+            && webdocdown.data.store.tastyTransactionData.data.length > 0) {
+          processData();
         }
       };
       reader.readAsText(file);
@@ -64,14 +79,17 @@ Now can import those files to display your positions and transactions.
 
   // Process Data downloaded from Tastyworks Portfolio
   tastyPortfolioArea.addEventListener("change", () => {
+  });
+
+  const processPortfolioInput = (input) => {
     // Replace spaces in column names with '_'s unless trailing
-    let input = tastyPortfolioArea.value
+    const inputData = input
       .split("\n")
       .map((line) => line.replace(/ /g, "_").replace(/_,/g, ","))
       .join("\n");
 
     // Parse the Tasty Portfolio Data
-    let tpd = Papa.parse(input, {
+    let tpd = Papa.parse(inputData, {
       header: true,
       dynamicTyping: true,
       skipEmptyLines: true,
@@ -82,15 +100,12 @@ Now can import those files to display your positions and transactions.
       tastyPortfolioInput: input,
       tastyPortfolioData: tpd,
     });
+    console.log('in tpd.data', tpd.data);
+  }
 
-    // Process input data
-    processData();
-  });
-
-  // Process Data downloaded from Tastyworks Transactions
-  tastyTransactionArea.addEventListener("change", () => {
+  const processTransInput = (input) => {
     // Replace spaces in column names with '_'s and '/'s unless trailing
-    let input = tastyTransactionArea.value
+    const inputData = input
       .split("\n")
       .map((line) =>
         line.replace(/ /g, "_").replace(/\//g, "_").replace(/_,/g, ",")
@@ -98,7 +113,7 @@ Now can import those files to display your positions and transactions.
       .join("\n");
 
     // Parse the Tasty Transaction Data
-    let ttd = Papa.parse(input, {
+    let ttd = Papa.parse(inputData, {
       header: true,
       dynamicTyping: true,
       skipEmptyLines: true,
@@ -127,8 +142,9 @@ Now can import those files to display your positions and transactions.
       tastyTransactionInput: input,
       tastyTransactionData: ttd,
     });
+  }
 
-    // Process the JSON representation of the data
-    processData();
+  // Process Data downloaded from Tastyworks Transactions
+  tastyTransactionArea.addEventListener("change", () => {
   });
 </script>

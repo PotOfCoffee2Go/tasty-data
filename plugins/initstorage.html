@@ -1,30 +1,16 @@
 <script>
   // Initialize local storage
   initStorage = () => {
-    if (!webdocdown.data.store.tastyPortfolioInput) {
-      webdocdown.storeData({ tastyPortfolioInput: "none" });
-    }
-    if (!webdocdown.data.store.tastyTransactionInput) {
-      webdocdown.storeData({ tastyTransactionInput: "none" });
-    }
+    webdocdown.data.store.tastyPortfolioData = { data: [] };
+    webdocdown.data.store.tastyTransactionData = { data: [] };
 
-    if (!webdocdown.data.store.tastyPortfolioData) {
-      webdocdown.storeData({ tastyPortfolioData: { data: [] } });
-    }
-    if (!webdocdown.data.store.tastyTransactionData) {
-      webdocdown.storeData({ tastyTransactionData: { data: [] } });
-    }
-    if (!webdocdown.data.store.tastyPortfolioDetails) {
-      webdocdown.storeData({ tastyPortfolioDetails: { data: [] } });
-    }
-    if (!webdocdown.data.store.tastyTransactionDetails) {
-      webdocdown.storeData({ tastyPortfolioDetails: { data: [] } });
-    }
-    if (!webdocdown.data.store.tastyPositionData) {
-      webdocdown.storeData({ tastyPositionData: { data: [] } });
-    }
-    if (!webdocdown.data.store.tastyFinancialData) {
-      webdocdown.storeData({ tastyFinancialData: { data: [] } });
-    }
+    webdocdown.data.store.tastyPortfolioDetails = { data: [] };
+    webdocdown.data.store.tastyTransactionDetails = { data: [] };
+    webdocdown.data.store.tastyPositionData = { data: [] };
+    webdocdown.data.store.tastyFinancialData = { data: [] };
+
+    webdocdown.data.store.tastyPortfolioInput = 'none';
+    webdocdown.data.store.tastyTransactionInput = 'none';
+    webdocdown.store.write();
   };
 </script>

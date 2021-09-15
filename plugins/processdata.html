@@ -48,8 +48,9 @@
     });
 
     // Sum up the columns
+    let sums = {};
     if (tpd.data.length !== 0) {
-      const sums = tpd.data.reduce((p, c) => {
+      sums = tpd.data.reduce((p, c) => {
         return {
           Quantity: p.Quantity + c.Quantity,
           Holding: p.Holding + c.Holding,
@@ -65,12 +66,14 @@
         Cost: maybeRedParens(-sums.Cost, 2),
         Gain: maybeItalicRedParens(sums.Gain, 2),
       };
-
-      webdocdown.storeData({
-        tastyPortfolioDetails: tpd,
-        tastyPortfolioSums: sums,
-      });
     }
+
+    console.log('tpd.data', tpd.data);
+
+    webdocdown.storeData({
+      tastyPortfolioDetails: tpd,
+      tastyPortfolioSums: sums,
+    });
 
     /* Tastyworks transaction data into detail records */
     // Reference localStorage
@@ -116,7 +119,6 @@
 
     // Only records with a symbol
     tcd.data = tcd.data.filter((x) => x.Symbol);
-    console.log('tcd', tcd.data);
 
     // Sorted by symbol
     tcd.data.sort((a, b) => (a.Symbol > b.Symbol ? 1 : -1));
@@ -187,8 +189,9 @@
     });
 
     // Sum up the positions columns
+    sums = {};
     if (tcd.data.length !== 0) {
-      const sums = tcd.data.reduce((p, c) => {
+      sums = tcd.data.reduce((p, c) => {
         return {
           CloseQty: p.CloseQty + c.CloseQty,
           InvestAmt: p.InvestAmt + c.InvestAmt,
@@ -210,9 +213,8 @@
         PosQty: maybeRedParens(sums.PosQty, 0),
         PosCost: maybeRedParens(sums.PosCost, 2),
       };
-
-      webdocdown.storeData({ tastyPositionData: tcd, tastyPositionSums: sums });
     }
+    webdocdown.storeData({ tastyPositionData: tcd, tastyPositionSums: sums });
 
     /* Tastyworks financial data into detail records */
 
@@ -222,6 +224,7 @@
       };
 
     // Sum up the columns
+    sums = {};
     if (tfd.data.length !== 0) {
       sums = tfd.data.reduce((p, c) => {
         return {
@@ -239,7 +242,6 @@
         Amount: maybeItalicRedParens(rec.Amount, 2),
       }
     });
-    console.log('tfd.data', tfd.data);
 
     webdocdown.storeData({ tastyFinancialData: tfd, tastyFinancialSums: sums });
 
