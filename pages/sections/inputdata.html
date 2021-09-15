@@ -23,6 +23,7 @@ Now can import those files to display your positions and transactions.
         table.remove();
       });
       initStorage();
+      document.getElementById('financialSpinner').classList.remove('hidden');
       fetch('samples/portfolio.csv')
         .then((response) => response.text())
         .then((text) => {
@@ -56,6 +57,7 @@ Now can import those files to display your positions and transactions.
       table.remove();
     });
     initStorage();
+    document.getElementById('financialSpinner').classList.remove('hidden');
     for (let i = 0; i < event.target.files.length; i++) {
       const file = event.target.files[i];
       const reader = new FileReader();

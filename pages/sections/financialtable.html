@@ -3,11 +3,12 @@
 <script>
   markupFinancialData = () => {
     let summaryMarkup =
+      "::spinner #financialSpinner hidden::\n\n" +
       "Summary\n\n" +
-      "| Account | Gain | Positions | Cash | Liquid | Liquidate | Fees |\n" +
+      "| Account | Cash | Gain | Positions | Liquid | Liquidate | Fees |\n" +
       "| :-----: | :--: | :-------: | :--: | :----: | :-------: | :--: |\n" +
-      "| {{calc.account}} | {{calc.gain}} | {{calc.positions}} |" +
-      " {{calc.cash}} | {{calc.liquidity}} | {{calc.liquidate}} | {{calc.fees}} |\n";
+      "| {{calc.account}} | {{calc.cash}} | {{calc.gain}} | {{calc.positions}} |" +
+      " {{calc.liquidity}} | {{calc.liquidate}} | {{calc.fees}} |\n";
 
     let detailMarkup =
       "Account Activity\n\n" +
