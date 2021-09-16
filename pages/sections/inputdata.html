@@ -10,7 +10,6 @@ Now can import those files to display your positions and transactions.
 ::#fileSelect cssbutton::<button>Import Tasty Portfolio and/or Activity CSV File(s)</button>
 ::#fileInput hidden::<input type="file" multiple onchange="onFileChange(event)">
 
-
 <!-- Papa CSV to JS object parser -->
 <script src="https://unpkg.com/papaparse@5.3.1/papaparse.min.js"></script>
 
@@ -22,7 +21,7 @@ Now can import those files to display your positions and transactions.
       document.querySelectorAll('table').forEach((table) => {
         table.remove();
       });
-      initStorage();
+      initStorage(true); // clear all
       document.getElementById('financialSpinner').classList.remove('hidden');
       fetch('samples/portfolio.csv')
         .then((response) => response.text())
@@ -102,7 +101,6 @@ Now can import those files to display your positions and transactions.
       tastyPortfolioInput: input,
       tastyPortfolioData: tpd,
     });
-    console.log('in tpd.data', tpd.data);
   }
 
   const processTransInput = (input) => {
@@ -139,10 +137,12 @@ Now can import those files to display your positions and transactions.
       }
     });
 
+    const mtd = mergeTransactions(ttd);
+
     // Save in localStorage for use by other documents
     webdocdown.storeData({
       tastyTransactionInput: input,
-      tastyTransactionData: ttd,
+      tastyTransactionData: mtd,
     });
   }
 

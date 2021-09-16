@@ -1,0 +1,62 @@
+<script>
+  mergeTransactions = (incoming) => {
+    // Existing transaction data
+    const etd = webdocdown.data.store.tastyTransactionData;
+    // Incoming transaction data
+    const itd = incoming;
+
+    if (etd.data.length === 0) return itd;
+
+    // Sort both incoming and existing by time desending
+    etd.data.sort((a, b) => (a.Time < b.Time ? 1 : -1));
+    itd.data.sort((a, b) => (a.Time < b.Time ? 1 : -1));
+
+    let found = {};
+    for (let idx = 0; idx < itd.data.length; idx++) {
+      if (isEqual(itd.data[idx], etd.data[0])) {
+        found = {
+          incomingIdx: idx,
+          incomingTransaction: itd.data[idx],
+          existingIdx: 0,
+          existingTransaction: etd.data[0],
+          elemsToDelete: itd.data.length - idx,
+        };
+        break;
+      }
+    }
+
+    // No matching record so assume replace transactions with incoming
+    if (!found.elemsToDelete) return itd;
+
+   // Remove any remaining incoming records after found
+    itd.data.splice(itd.data.length - found.elemsToDelete, found.elemsToDelete);
+
+    // Sort incoming by time asending
+    itd.data.sort((a, b) => (a.Time > b.Time ? 1 : -1));
+
+    // Add incoming to existing data
+    itd.data.forEach((incoming) => {
+      etd.data.unshift(incoming);
+    });
+
+    return etd;
+  };
+
+  const isEqual = (a, b) => {
+    return a.Date_Time === b.Date_Time
+      && a.Transaction_Code === b.Transaction_Code
+      && a.Transaction_Subcode === b.Transaction_Subcode
+      && a.Symbol === b.Symbol
+      && a.Buy_Sell === b.Buy_Sell
+      && a.Open_Close === b.Open_Close
+      && a.Quantity === b.Quantity
+      && a.Expiration_Date === b.Expiration_Date
+      && a.Strike === b.Strike
+      && a.Call_Put === b.Call_Put
+      && a.Price === b.Price
+      && a.Fees === b.Fees
+      && a.Amount === b.Amount
+      && a.Description === b.Description
+      && a.Account_Reference === b.Account_Reference;
+  };
+</script>

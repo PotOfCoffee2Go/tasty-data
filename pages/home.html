@@ -75,6 +75,7 @@
 ::comment:: --- Plugins ---
 ::plugin-plugins/initstorage.html::
 ::plugin-plugins/common.html::
+::plugin-plugins/mergetrans.html::
 ::plugin-plugins/processdata.html::
 
 <script>
@@ -87,18 +88,14 @@
    'mainCode', 'usagehelp']
       .forEach(id => this[id] = document.getElementById(id));
 
-  // Process and display what is in localStorage
-  if (!webdocdown.data.store.tastyFinancialSummary) {
-    initStorage();
-  }
-  else {
-    // Display tables
-    markupPortfolio();
-    markupTransactions();
-    markupPositions();
-    markupFinancialData();
-  }
+  // Display tables
+  markupPortfolio();
+  markupTransactions();
+  markupPositions();
+  markupFinancialData();
 
-  if (location.hash.length < 2) location.href = '#pagetop';
+  /* hack to remove empty top of page paragraph */
+  document.querySelector('#webdocdown p:first-of-type')
+    .style.display = "none";
 
 </script>

@@ -1,17 +1,23 @@
 <script>
   // Initialize local storage
-  initStorage = () => {
-    webdocdown.data.store.tastyPortfolioData = { data: [] };
-    // Keep last loaded - when portfolio only
-    //  webdocdown.data.store.tastyTransactionData = { data: [] };
+  initStorage = (clearAll = false) => {
+    webdocdown.data.store['tastyPortfolioInput'] = 'none';
+    webdocdown.data.store['tastyTransactionInput'] = 'none';
 
-    webdocdown.data.store.tastyPortfolioDetails = { data: [] };
-    webdocdown.data.store.tastyTransactionDetails = { data: [] };
-    webdocdown.data.store.tastyPositionData = { data: [] };
-    webdocdown.data.store.tastyFinancialData = { data: [] };
+    // Clear portfolio and transaction
+    if (clearAll) {
+      ['tastyPortfolioData', 'tastyTransactionData']
+      .forEach((collection) => webdocdown.data.store[collection] = { data: [] });
+    }
 
-    webdocdown.data.store.tastyPortfolioInput = 'none';
-    webdocdown.data.store.tastyTransactionInput = 'none';
+    ['tastyPositionData', 'tastyFinancialData',
+    'tastyPortfolioDetails', 'tastyTransactionDetails']
+      .forEach((collection) => webdocdown.data.store[collection] = { data: [] });
+
+    ['tastyPortfolioSums', 'tastyPositionSums',
+    'tastyFinancialSums',  'tastyFinancialSummary']
+      .forEach((collection) => webdocdown.data.store[collection] = { fmt: {} });
+
     webdocdown.store.write();
   };
 </script>
