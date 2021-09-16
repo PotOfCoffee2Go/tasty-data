@@ -78,13 +78,18 @@
 ::plugin-plugins/mergetrans.html::
 ::plugin-plugins/processdata.html::
 
+
+::plugin-plugins/logger.html::
+::plugin-pages/logger/transports.html::
+
+
 <script>
   // Assign DOM element variables
   ['tastyPortfolioText', 'tastyPortfolioArea',
   'tastyTransactionText', 'tastyTransactionArea',
   'positionText', 'positionArea',
    'jsonOutput', 'fileInput', 'fileSelect',
-   'transSpinner',
+   'transSpinner','logger',
    'mainCode', 'usagehelp']
       .forEach(id => this[id] = document.getElementById(id));
 
@@ -97,5 +102,6 @@
   /* hack to remove empty top of page paragraph */
   document.querySelector('#webdocdown p:first-of-type')
     .style.display = "none";
+
 
 </script>

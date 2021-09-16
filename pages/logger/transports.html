@@ -1,0 +1,16 @@
+<script>
+  let tdiv = `
+::spinner::
+::bg-black tx-white::<div>
+this is a bunch of text
+</div>
+`;
+
+  plog = () => {
+    webdocdown
+      .produceWBDD(tdiv, { data: 'none' })
+      .then(
+        (html) => logger.innerHTML = html
+      );
+    }
+</script>

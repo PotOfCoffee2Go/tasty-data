@@ -7,10 +7,6 @@
 
     if (etd.data.length === 0) return itd;
 
-    // Sort both incoming and existing by time desending
-    etd.data.sort((a, b) => (a.Time < b.Time ? 1 : -1));
-    itd.data.sort((a, b) => (a.Time < b.Time ? 1 : -1));
-
     let found = {};
     for (let idx = 0; idx < itd.data.length; idx++) {
       if (isEqual(itd.data[idx], etd.data[0])) {
@@ -28,18 +24,12 @@
     // No matching record so assume replace transactions with incoming
     if (!found.elemsToDelete) return itd;
 
-   // Remove any remaining incoming records after found
+    // Remove incoming records already in existing transactions
     itd.data.splice(itd.data.length - found.elemsToDelete, found.elemsToDelete);
 
-    // Sort incoming by time asending
-    itd.data.sort((a, b) => (a.Time > b.Time ? 1 : -1));
-
-    // Add incoming to existing data
-    itd.data.forEach((incoming) => {
-      etd.data.unshift(incoming);
-    });
-
-    return etd;
+    // Add existing to incoming
+    itd.data = itd.data.concat(etd.data);
+    return itd;
   };
 
   const isEqual = (a, b) => {
