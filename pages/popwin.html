@@ -1,0 +1,105 @@
+<style>
+  .float-logger {
+    position: fixed;
+    right: -540px;
+    top: -120px;
+    width: 600px;
+    height: 140px;
+    overflow-y: scroll;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    transition: all 0.2s ease-in 0s;
+    z-index: 9000;
+  }
+  .float-logger:hover {
+    top: 0px;
+    right: 0px;
+  }
+  .float-logger-button {
+    position:fixed;
+    top:0px;
+    right:0px;
+    z-index:9999;
+    background:lightblue;
+    cursor: pointer;
+  }
+
+  #logger {
+    background: var(--wbddbgclr);
+    width: 554px;
+    height: 110px;
+    overflow: auto;
+    white-space: nowrap;
+  }
+
+
+</style>
+
+::#logger-container bg-lightblue float-logger::<div>
+  <div style="padding-left: 20px;padding-right: 20px;">
+    ::div #logger::
+    <div class="float-logger-button">Logger </div>
+  </div>
+</div>
+
+<script>
+  const info = '<div>{{curTime}} {{{text}}}</div>';
+  const warn = '::bg-pink tx-darkred::<div>{{curTime}} {{{text}}}</div>';
+
+  const timeStampInMs = window.performance
+          && window.performance.now
+          && window.performance.timing
+          && window.performance.timing.navigationStart
+            ? window.performance.now() + window.performance.timing.navigationStart
+            : Date.now();
+
+console.log(timeStampInMs, Date.now());
+var d = new Date();
+var n = d.getMilliseconds();
+
+  const addZero = (x, n) => {
+    while (x.toString().length < n) {
+      x = "0" + x;
+    }
+    return x;
+  }
+
+  const myFunction = () => {
+    let d = new Date();
+    let h = addZero(d.getHours(), 2);
+    let m = addZero(d.getMinutes(), 2);
+    let s = addZero(d.getSeconds(), 2);
+    let ms = addZero(d.getMilliseconds(), 3);
+    return h + ":" + m + ":" + s + ":" + ms;
+  }
+
+  popwin = {};
+  popwin.info = async (text) => {
+    let curTime = myFunction();//new Date().toLocaleTimeString();
+    await webdocdown
+      .produceWBDD(info, { text, curTime })
+      .then((html) => logger.innerHTML += html);
+  }
+
+  popwin.warn = async (text) => {
+    let curTime = new Date().toLocaleTimeString();
+    await webdocdown
+      .produceWBDD(warn, { text, curTime })
+      .then((html) => logger.innerHTML += html);
+  }
+
+  popwin.show = () => {
+    let s = document.getElementById('logger-container').style;
+    s.top = '0px';
+    s.right = '0px';
+  }
+
+  popwin.hide = () => {
+    setTimeout(() => {
+      let s = document.getElementById('logger-container').style;
+      s.top = '';
+      s.right = '';
+    }, 3000);
+  }
+
+</script>

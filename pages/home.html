@@ -77,10 +77,7 @@
 ::plugin-plugins/common.html::
 ::plugin-plugins/mergetrans.html::
 ::plugin-plugins/processdata.html::
-
-
-::plugin-plugins/logger.html::
-::plugin-pages/logger/transports.html::
+::plugin-pages/popwin.html::
 
 
 <script>
@@ -93,15 +90,20 @@
    'mainCode', 'usagehelp']
       .forEach(id => this[id] = document.getElementById(id));
 
+  popwin.info('Startup');
+  popwin.info('Load page content...');
+
   // Display tables
   markupPortfolio();
   markupTransactions();
   markupPositions();
   markupFinancialData();
 
+
   /* hack to remove empty top of page paragraph */
   document.querySelector('#webdocdown p:first-of-type')
     .style.display = "none";
 
+  popwin.info('...Load content complete.');
 
 </script>

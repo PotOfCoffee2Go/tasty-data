@@ -26,6 +26,7 @@
 
   // Display transactions for the symbol requested
   markupTransactions = (symbol = "") => {
+    popwin.info('Markup Transactions');
     let data = webdocdown.data.store.tastyTransactionDetails.data;
     let symbols = document.getElementById("symbol-select");
 

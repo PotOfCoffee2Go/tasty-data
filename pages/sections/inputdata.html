@@ -18,14 +18,15 @@ See tastyworks for <a target="_blank" href="https://support.tastyworks.com/suppo
 <script>
   document.getElementById('sampleData').addEventListener(
     'click',
-    (event) => {
+    async (event) => {
      location.href = '#fileSelect';
       document.querySelectorAll('table').forEach((table) => {
         table.remove();
       });
       initStorage(true); // clear all
       document.getElementById('financialSpinner').classList.remove('hidden');
-      fetch('samples/portfolio.csv')
+      popwin.info('Import sample data...');
+      await fetch('samples/portfolio.csv')
         .then((response) => response.text())
         .then((text) => {
           tastyPortfolioArea.value = text;
@@ -37,6 +38,7 @@ See tastyworks for <a target="_blank" href="https://support.tastyworks.com/suppo
           tastyTransactionArea.value = text;
           processTransInput(text);
           processData();
+          popwin.info('Import sample data finished!');
         })
       )
     },
@@ -59,20 +61,24 @@ See tastyworks for <a target="_blank" href="https://support.tastyworks.com/suppo
     });
     initStorage();
     document.getElementById('financialSpinner').classList.remove('hidden');
+    popwin.info('Import tasty data...');
     for (let i = 0; i < event.target.files.length; i++) {
       const file = event.target.files[i];
       const reader = new FileReader();
       reader.onload = (e) => {
         if (/^Asset/.test(e.target.result)) {
+          popwin.info('Import tasty portfolio data.');
           tastyPortfolioArea.value = e.target.result;
           processPortfolioInput(e.target.result);
         }
         if (/^Date\/Time/.test(e.target.result)) {
+          popwin.info('Import tasty transaction data.');
           tastyTransactionArea.value = e.target.result;
           processTransInput(e.target.result);
         }
         if (i === event.target.files.length - 1) {
           processData();
+          popwin.info('Import tasty data finished.');
         }
       };
       reader.readAsText(file);

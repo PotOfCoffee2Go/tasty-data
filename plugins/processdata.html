@@ -26,6 +26,7 @@
     const tpd = webdocdown.data.store.tastyPortfolioData;
 
     // Round to sane decimal places and format for display
+    popwin.info('Process tasty portfolio data.');
     tpd.data.forEach((symbol, idx) => {
       tpd.data[idx].Holding = symbol.Cost + symbol.Gain;
       tpd.data[idx].fmt = {
@@ -74,7 +75,7 @@
     });
 
     /* Tastyworks transaction data into detail records */
-    // Reference localStorage
+    popwin.info('Process tasty transaction data.');
     const ttd = webdocdown.data.store.tastyTransactionData;
 
     // Round to sane decimal places and format for display
@@ -91,6 +92,7 @@
     webdocdown.storeData({ tastyTransactionDetails: ttd });
 
     /* Create positions collection */
+    popwin.info('Process tasty positions data.');
     const tcd = { data: [] },
       initPositionsDataRec = {
         NbrTrades: 0,
@@ -215,7 +217,7 @@
     webdocdown.storeData({ tastyPositionData: tcd, tastyPositionSums: sums });
 
     /* Tastyworks financial data into detail records */
-
+    popwin.info('Process tasty financial data.');
     // Transactions without a symbol are financial
     const tfd = {
       data: ttd.data.filter((trn) => !trn.Symbol),
@@ -251,6 +253,8 @@
     });
 
     // Reference sums from localStorage
+    popwin.info('Process financial summary data.');
+
     const cashsums = webdocdown.data.store.tastyFinancialSums;
     const possums = webdocdown.data.store.tastyPositionSums;
     const portsums = webdocdown.data.store.tastyPortfolioSums;
