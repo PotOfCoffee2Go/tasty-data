@@ -20,7 +20,7 @@ See tastyworks for <a target="_blank" href="https://support.tastyworks.com/suppo
     'click',
     async (event) => {
      location.href = '#fileSelect';
-      document.querySelectorAll('table').forEach((table) => {
+      document.querySelectorAll('#financial-data div table').forEach((table) => {
         table.remove();
       });
       initStorage(true); // clear all
@@ -56,7 +56,7 @@ See tastyworks for <a target="_blank" href="https://support.tastyworks.com/suppo
 
   onFileChange = (event) => {
     location.href = '#fileSelect';
-    document.querySelectorAll('table').forEach((table) => {
+    document.querySelectorAll('#financial-data div table').forEach((table) => {
       table.remove();
     });
     initStorage();
@@ -107,6 +107,8 @@ See tastyworks for <a target="_blank" href="https://support.tastyworks.com/suppo
       skipEmptyLines: true,
     });
 
+    popwin.bold(`Portfolio input records: ${tpd.data.length}`);
+
     // Save in localStorage for use by other documents
     webdocdown.storeData({
       tastyPortfolioInput: input,
@@ -129,6 +131,8 @@ See tastyworks for <a target="_blank" href="https://support.tastyworks.com/suppo
       dynamicTyping: true,
       skipEmptyLines: true,
     });
+
+    popwin.bold(`Transaction input records: ${ttd.data.length}`);
 
     ttd.data.forEach((trn, idx) => {
       // Fix date - replace last two '_' with ' ', all other '_' with '/'

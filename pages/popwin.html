@@ -5,7 +5,6 @@
     top: -120px;
     width: 600px;
     height: 140px;
-    overflow-y: scroll;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     transition: all 0.2s ease-in 0s;
@@ -28,35 +27,52 @@
     background: var(--wbddbgclr);
     width: 554px;
     height: 110px;
-    overflow: auto;
     white-space: nowrap;
   }
+  #logger p {
+    margin: 0px 0px 0px 0px;
+    text-align: left;
+  }
 
+  #poptext {
+    width: 50%;
+    float:left;
+  }
+
+  #tableparent {
+    height: 100px;
+    width: 50%;
+    overflow-y: scroll;
+  }
+
+  #tableparent table {
+    float:right;
+  }
+  #tableparent table,
+  #tableparent th,
+  #tableparent td {
+    padding: 4px;
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  #tableparent th {
+    color: black;
+  }
 
 </style>
 
 ::#logger-container bg-lightblue float-logger::<div>
   <div style="padding-left: 20px;padding-right: 20px;">
-    ::div #logger::
+    <div id="logger">
+      <div id="poptext"></div>
+      <div id="tableparent"><table></table></div>
+    </div>
     <div class="float-logger-button">Logger </div>
   </div>
 </div>
 
 <script>
-  const info = '<div>{{curTime}} {{{text}}}</div>';
-  const warn = '::bg-pink tx-darkred::<div>{{curTime}} {{{text}}}</div>';
-
-  const timeStampInMs = window.performance
-          && window.performance.now
-          && window.performance.timing
-          && window.performance.timing.navigationStart
-            ? window.performance.now() + window.performance.timing.navigationStart
-            : Date.now();
-
-console.log(timeStampInMs, Date.now());
-var d = new Date();
-var n = d.getMilliseconds();
-
   const addZero = (x, n) => {
     while (x.toString().length < n) {
       x = "0" + x;
@@ -64,7 +80,7 @@ var n = d.getMilliseconds();
     return x;
   }
 
-  const myFunction = () => {
+  const formatTime = () => {
     let d = new Date();
     let h = addZero(d.getHours(), 2);
     let m = addZero(d.getMinutes(), 2);
@@ -73,20 +89,25 @@ var n = d.getMilliseconds();
     return h + ":" + m + ":" + s + ":" + ms;
   }
 
-  popwin = {};
-  popwin.info = async (text) => {
-    let curTime = myFunction();//new Date().toLocaleTimeString();
-    await webdocdown
-      .produceWBDD(info, { text, curTime })
-      .then((html) => logger.innerHTML += html);
+  const appendLog = (text, style) => {
+    let curTime = formatTime();
+    let elem = document.createElement('tr');
+    if (style) elem.style = style;
+    elem.innerHTML = `<td>${curTime}</td><td>${text}</td>`;
+    let table = tableparent.querySelector('table');
+    table.appendChild(elem);
   }
 
-  popwin.warn = async (text) => {
-    let curTime = new Date().toLocaleTimeString();
-    await webdocdown
-      .produceWBDD(warn, { text, curTime })
-      .then((html) => logger.innerHTML += html);
+  const popText = document.getElementById('poptext');
+
+  popwin = {};
+  popwin.text = (text) => {
+      poptext.innerHTML = text;
   }
+
+  popwin.info = (text) => appendLog(text);
+  popwin.bold = (text) => appendLog(text, 'font-weight: bold');
+  popwin.warn = (text) => appendLog(text, 'background: pink');
 
   popwin.show = () => {
     let s = document.getElementById('logger-container').style;
@@ -101,5 +122,4 @@ var n = d.getMilliseconds();
       s.right = '';
     }, 3000);
   }
-
 </script>
