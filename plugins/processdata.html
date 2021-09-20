@@ -263,10 +263,10 @@
     const calc = {
       account: maybeRedParens(cashsums.Amount, 2),
       gain: maybeRedParens(possums.Gain, 2),
-      positions: maybeRedParens(possums.PosCost, 2),
+      positions: maybeRedParens(-portsums.Cost, 2),
       cash: maybeRedParens(cash, 2),
       liquidity: maybeRedParens(portsums.Gain, 2),
-      liquidate: maybeRedParens(cash - possums.PosCost + portsums.Gain, 2),
+      liquidate: maybeRedParens(cash + portsums.Cost + portsums.Gain, 2),
       fees: maybeRedParens(-possums.Fees, 2),
     };
 
