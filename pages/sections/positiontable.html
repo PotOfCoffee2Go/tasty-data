@@ -5,14 +5,14 @@
     popwin.info('Markup Positions');
     let detailMarkup =
       "" +
-      "| Symbol | Qty | Entry | Exit | Invested | Realized | Gain |   | Open | Cost | Fees |\n" +
-      "| :----- | :-: | :---: | :--: | :------: | :------: | :--: | - | :--: | :--: | :--: |\n" +
+      "| Symbol | Nbr | Qty | Entry | Exit | Invested | Realized | Gain |   | Open | Cost | Fees |\n" +
+      "| :----- | :-: | :-: | :---: | :--: | :------: | :------: | :--: | - | :--: | :--: | :--: |\n" +
       "{{#data}}" +
-      "| {{{fmt.Symbol}}} | {{fmt.CloseQty}} | {{fmt.EntryPrice}} |" +
+      "| {{{fmt.Symbol}}} | {{{fmt.NbrTrades}}} | {{fmt.CloseQty}} | {{fmt.EntryPrice}} |" +
       "  {{fmt.ExitPrice}} | {{fmt.InvestAmt}} | {{fmt.RealizedAmt}} |" +
       "  {{fmt.Gain}} |  | {{fmt.PosQty}} | {{fmt.PosCost}} | {{fmt.Fees}} |\n" +
       "{{/data}}" +
-      "| Totals | {{sums.fmt.CloseQty}} | - | - | {{sums.fmt.InvestAmt}} |" +
+      "| Totals | {{sums.fmt.NbrTrades}} | {{sums.fmt.CloseQty}} | - | - | {{sums.fmt.InvestAmt}} |" +
       "  {{sums.fmt.RealizedAmt}} | {{sums.fmt.Gain}} |   | {{sums.fmt.PosQty}} | {{sums.fmt.PosCost}} | {{sums.fmt.Fees}} |\n";
 
     // Reference closed data and sums from localStorage

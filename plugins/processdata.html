@@ -176,6 +176,7 @@
       Object.assign(tcd.data[idx], total, { fmt: {} });
       tcd.data[idx].fmt = {
         Symbol: linkToTrans(tcd.data[idx].Symbol),
+        NbrTrades: maybeRedParens(tcd.data[idx].NbrTrades, 0),
         CloseQty: maybeRedParens(tcd.data[idx].CloseQty, 0),
         EntryPrice: maybeRedParens(tcd.data[idx].EntryPrice, 4),
         ExitPrice: maybeRedParens(tcd.data[idx].ExitPrice, 4),
@@ -193,6 +194,7 @@
     if (tcd.data.length !== 0) {
       sums = tcd.data.reduce((p, c) => {
         return {
+          NbrTrades: p.NbrTrades + c.NbrTrades,
           CloseQty: p.CloseQty + c.CloseQty,
           InvestAmt: p.InvestAmt + c.InvestAmt,
           RealizedAmt: p.RealizedAmt + c.RealizedAmt,
@@ -205,6 +207,7 @@
 
       // Format sums for display
       sums.fmt = {
+        NbrTrades: maybeRedParens(sums.NbrTrades, 0),
         CloseQty: maybeRedParens(sums.CloseQty, 0),
         InvestAmt: maybeRedParens(sums.InvestAmt, 2),
         RealizedAmt: maybeRedParens(sums.RealizedAmt, 2),
