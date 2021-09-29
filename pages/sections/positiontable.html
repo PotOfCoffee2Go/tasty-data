@@ -13,7 +13,9 @@
       "  {{fmt.Gain}} |  | {{fmt.PosQty}} | {{fmt.PosCost}} | {{fmt.Fees}} |\n" +
       "{{/data}}" +
       "| Totals | {{sums.fmt.NbrTrades}} | {{sums.fmt.CloseQty}} | - | - | {{sums.fmt.InvestAmt}} |" +
-      "  {{sums.fmt.RealizedAmt}} | {{sums.fmt.Gain}} |   | {{sums.fmt.PosQty}} | {{sums.fmt.PosCost}} | {{sums.fmt.Fees}} |\n";
+      "  {{sums.fmt.RealizedAmt}} | {{sums.fmt.Gain}} |   | {{sums.fmt.PosQty}} | {{sums.fmt.PosCost}}" +
+      " | {{sums.fmt.Fees}} |\n\n" +
+      "::::_**COST** column is approx. due to rounding_\n";
 
     // Reference closed data and sums from localStorage
     let data = webdocdown.data.store.tastyPositionData.data;
