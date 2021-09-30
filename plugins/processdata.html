@@ -1,7 +1,8 @@
 <script>
   processData = () => {
     // Helpers
-    const round = (nbr, places) =>
+    const
+      round = (nbr, places) =>
         Math.round(nbr * Math.pow(10, places)) / Math.pow(10, places),
       format = (nbr, places) => parseFloat(round(nbr, places)).toFixed(places),
       lowerCaseButFirst = (text) =>

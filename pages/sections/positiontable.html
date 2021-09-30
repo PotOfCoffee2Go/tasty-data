@@ -3,30 +3,85 @@
 <script>
   markupPositions = () => {
     popwin.info('Markup Positions');
+    // Helpers
+    const
+      round = (nbr, places) =>
+        Math.round(nbr * Math.pow(10, places)) / Math.pow(10, places),
+      format = (nbr, places) => parseFloat(round(nbr, places)).toFixed(places),
+      maybeRedParens = (nbr, places) =>
+        nbr < 0
+          ? "::tx-darkred::_(" + format(nbr * -1, places) + ")_"
+          : "::tx-darkblue::_" + format(nbr, places) + "_",
+      maybeItalicRedParens = (nbr, places) =>
+        nbr < 0
+          ? "::tx-italic-darkred::_(" + format(nbr * -1, places) + ")_"
+          : "::tx-italic-darkblue::_" + format(nbr, places) + "_";
+
     let detailMarkup =
       "" +
-      "| Symbol | Nbr | Qty | Entry | Exit | Invested | Realized | Gain |   | Open | Cost | Fees |\n" +
-      "| :----- | :-: | :-: | :---: | :--: | :------: | :------: | :--: | - | :--: | :--: | :--: |\n" +
+      "| Symbol | Nbr | Qty | Entry | Exit | Invested | Realized | Gain |   | Net |   | Liquid | Open | Cost | Holding | Fees |\n" +
+      "| :----- | :-: | :-: | :---: | :--: | :------: | :------: | :--: | - | :-: | - | :----: | :--: | :--: | :-----: | :--: |\n" +
       "{{#data}}" +
-      "| {{{fmt.Symbol}}} | {{{fmt.NbrTrades}}} | {{fmt.CloseQty}} | {{fmt.EntryPrice}} |" +
-      "  {{fmt.ExitPrice}} | {{fmt.InvestAmt}} | {{fmt.RealizedAmt}} |" +
-      "  {{fmt.Gain}} |  | {{fmt.PosQty}} | {{fmt.PosCost}} | {{fmt.Fees}} |\n" +
+      "| {{{pos.fmt.Symbol}}} | {{{pos.fmt.NbrTrades}}} | {{pos.fmt.CloseQty}} | {{pos.fmt.EntryPrice}} |" +
+      "  {{pos.fmt.ExitPrice}} | {{pos.fmt.InvestAmt}} | {{pos.fmt.RealizedAmt}} |" +
+      "  {{pos.fmt.Gain}} |   | {{fmt.Net}} |   | " +
+      "  {{prt.fmt.Gain}} | {{prt.fmt.Quantity}} | {{prt.fmt.Cost}} | {{prt.fmt.Holding}} |" +
+      "  {{pos.fmt.Fees}} |\n" +
       "{{/data}}" +
-      "| Totals | {{sums.fmt.NbrTrades}} | {{sums.fmt.CloseQty}} | - | - | {{sums.fmt.InvestAmt}} |" +
-      "  {{sums.fmt.RealizedAmt}} | {{sums.fmt.Gain}} |   | {{sums.fmt.PosQty}} | {{sums.fmt.PosCost}}" +
-      " | {{sums.fmt.Fees}} |\n\n" +
+      "| Totals | {{possums.fmt.NbrTrades}} | {{possums.fmt.CloseQty}} | - | - | {{possums.fmt.InvestAmt}} |" +
+      "  {{possums.fmt.RealizedAmt}} | {{possums.fmt.Gain}} |   | {{sumNet.fmt.Total}}  |   | {{prtsums.fmt.Gain}}  | {{prtsums.fmt.Quantity}} | {{prtsums.fmt.Cost}}" +
+      " |   | {{possums.fmt.Fees}} |\n\n" +
       "::::_**COST** column is approx. due to rounding_\n";
 
     // Reference closed data and sums from localStorage
-    let data = webdocdown.data.store.tastyPositionData.data;
-    let sums = webdocdown.data.store.tastyPositionSums;
+    let pos = webdocdown.data.store.tastyPositionData.data;
+    let prt = webdocdown.data.store.tastyPortfolioDetails.data;
+    let possums = webdocdown.data.store.tastyPositionSums;
+    let prtsums = webdocdown.data.store.tastyPortfolioSums;
+
+    // Merge Portfolio and Position data
+    //  returns zero when no open orders
+    console.log('makedata');
+    let data = pos.map((x) => {
+      let found = prt.find((a) => a.Underlying_Symbol === x.Symbol);
+      if (found) return { pos: x, prt: found };
+      return {
+        pos: x,
+        prt: {
+          Symbol: x.Symbol,
+          Quantity: 0,
+          Cost: 0,
+          Holding: 0,
+          Gain: 0,
+          fmt: {
+            Quantity: '-',
+            Cost: '-',
+            Holding: '-',
+            Gain: '-',
+          }
+        }
+      }
+    });
+
+    // Calc the net gain - position realized gain + portfolio liquuid gain
+    let sumNet = {
+      Total: 0,
+      fmt: {},
+    }
+    data.forEach((d) => {
+      d.Net = d.pos.Gain + d.prt.Gain;
+      d.fmt = {};
+      d.fmt.Net = maybeRedParens(d.Net, 2);
+      sumNet.Total += (d.pos.Gain + d.prt.Gain);
+    });
+    sumNet.fmt.Total = maybeRedParens(sumNet.Total, 2);
 
     // Sort by symbol
-    data.sort((a, b) => (a.Symbol > b.Symbol ? 1 : -1));
+    data.sort((a, b) => (a.pos.Symbol > b.pos.Symbol ? 1 : -1));
 
     // Produce and display table of closed data
     webdocdown
-      .produceWBDD(detailMarkup, { data, sums })
+      .produceWBDD(detailMarkup, { data, possums, prtsums, sumNet })
       .then(
         (html) => (document.getElementById("closed-data").innerHTML = html)
       );
