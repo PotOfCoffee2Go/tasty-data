@@ -41,7 +41,6 @@
 
     // Merge Portfolio and Position data
     //  returns zero when no open orders
-    console.log('makedata');
     let data = pos.map((x) => {
       let found = prt.find((a) => a.Underlying_Symbol === x.Symbol);
       if (found) return { pos: x, prt: found };

@@ -1,4 +1,7 @@
+::#documents cssbutton left mgn-0-0-0-4::<button>Documentation</button>
+
 ::#sampleData cssbutton right mgn-0-4-0-0::<button>Load Sample Data</button>
+
 Log onto your <a target="_blank" href="https://trade.tastyworks.com/login/index.html">TastyWorks</a> account.
 
 Select 'Portfolio' on the left-hand side - then select the download ::2x::![download csv](images/downloadcsv.png) CSV icon located in the upper right.
@@ -16,6 +19,15 @@ See tastyworks for <a target="_blank" href="https://support.tastyworks.com/suppo
 <script src="https://unpkg.com/papaparse@5.3.1/papaparse.min.js"></script>
 
 <script>
+  document.getElementById('documents').addEventListener(
+    'click',
+    (event) => {
+      alert('Not implented yet :(');
+    },
+    false
+  );
+
+
   document.getElementById('sampleData').addEventListener(
     'click',
     async (event) => {
