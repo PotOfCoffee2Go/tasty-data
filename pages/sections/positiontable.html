@@ -19,7 +19,7 @@
 
     let detailMarkup =
       "" +
-      "| Symbol | Nbr | Qty | Entry | Exit | Invested | Realized | Gain |   | Net |   | Liquid | Open | Cost | Holding | Fees |\n" +
+      "| Symbol | Trns | Qty | Entry | Exit | Invested | Realized | Gain |   | Net |   | Liquid | Open | Cost | Holding | Fees |\n" +
       "| :----- | :-: | :-: | :---: | :--: | :------: | :------: | :--: | - | :-: | - | :----: | :--: | :--: | :-----: | :--: |\n" +
       "{{#data}}" +
       "| {{{pos.fmt.Symbol}}} | {{{pos.fmt.NbrTrades}}} | {{pos.fmt.CloseQty}} | {{pos.fmt.EntryPrice}} |" +
@@ -30,8 +30,7 @@
       "{{/data}}" +
       "| Totals | {{possums.fmt.NbrTrades}} | {{possums.fmt.CloseQty}} | - | - | {{possums.fmt.InvestAmt}} |" +
       "  {{possums.fmt.RealizedAmt}} | {{possums.fmt.Gain}} |   | {{sumNet.fmt.Total}}  |   | {{prtsums.fmt.Gain}}  | {{prtsums.fmt.Quantity}} | {{prtsums.fmt.Cost}}" +
-      " |   | {{possums.fmt.Fees}} |\n\n" +
-      "::::_**COST** column is approx. due to rounding_\n";
+      " |   | {{possums.fmt.Fees}} |\n";
 
     // Reference closed data and sums from localStorage
     let pos = webdocdown.data.store.tastyPositionData.data;

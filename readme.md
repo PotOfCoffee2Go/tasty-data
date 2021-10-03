@@ -21,7 +21,7 @@ Select _'Activity'_ on the left, then select _'History'_ in the upper-left. You 
 
 ### Importing
 
-Go to [https://potofcoffee2go.github.io/tasty-data/][] and press the _'Tasty Portfolio and/or Activity CSV File(s)'_ button. Select both the files downloaded from TastyWorks, The data will be displayed.
+Go to [https://potofcoffee2go.github.io/tasty-data/][] and press the _'Tasty Portfolio and Activity CSV Files'_ button. Select both the files downloaded from TastyWorks, The data will be displayed.
 
 You can select to display the transactions for a single symbol by clicking a symbol in the symbol column.
 
