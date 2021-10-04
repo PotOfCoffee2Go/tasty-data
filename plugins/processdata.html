@@ -83,6 +83,9 @@
     ttd.data.forEach((trn, idx) => {
       ttd.data[idx].fmt = {
         Symbol: linkToTrans(trn.Symbol),
+        Subcode: trn.Transaction_Subcode.indexOf('Open') > -1
+          ? '::tx-darkred::_' + trn.Transaction_Subcode + '_'
+          : '::tx-darkblue::_' + trn.Transaction_Subcode + '_',
         Price: maybeRedParens(trn.Price, 4),
         Amount: maybeRedParens(trn.Amount, 2),
         Fees: maybeRedParens(trn.Fees, 3),
@@ -178,12 +181,12 @@
       tcd.data[idx].fmt = {
         Symbol: linkToTrans(tcd.data[idx].Symbol),
         NbrTrades: maybeRedParens(tcd.data[idx].NbrTrades, 0),
-        CloseQty: maybeRedParens(tcd.data[idx].CloseQty, 0),
-        EntryPrice: maybeRedParens(tcd.data[idx].EntryPrice, 4),
-        ExitPrice: maybeRedParens(tcd.data[idx].ExitPrice, 4),
-        InvestAmt: maybeRedParens(tcd.data[idx].InvestAmt, 2),
-        RealizedAmt: maybeRedParens(tcd.data[idx].RealizedAmt, 2),
-        Gain: maybeItalicRedParens(tcd.data[idx].Gain, 2),
+        CloseQty:  tcd.data[idx].CloseQty === 0 ? '-' : maybeRedParens(tcd.data[idx].CloseQty, 0),
+        EntryPrice: tcd.data[idx].EntryPrice === 0 ? '-' : maybeRedParens(tcd.data[idx].EntryPrice, 4),
+        ExitPrice: tcd.data[idx].ExitPrice === 0 ? '-' : maybeRedParens(tcd.data[idx].ExitPrice, 4),
+        InvestAmt: tcd.data[idx].InvestAmt === 0 ? '-' : maybeRedParens(tcd.data[idx].InvestAmt, 2),
+        RealizedAmt: tcd.data[idx].RealizedAmt === 0 ? '-' : maybeRedParens(tcd.data[idx].RealizedAmt, 2),
+        Gain: tcd.data[idx].Gain === 0 ? '-' : maybeItalicRedParens(tcd.data[idx].Gain, 2),
         Fees: maybeRedParens(-tcd.data[idx].Fees, 3),
         PosQty: maybeRedParens(tcd.data[idx].PosQty, 0),
         PosCost: maybeRedParens(tcd.data[idx].PosCost, 2),
