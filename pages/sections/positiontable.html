@@ -19,16 +19,16 @@
 
     let detailMarkup =
       "" +
-      "| Symbol | Trns | Qty | Entry | Exit | Invested | Realized | Gain |   | Net |   | Liquid | Open | Cost | Holding | Fees |\n" +
-      "| :----- | :-: | :-: | :---: | :--: | :------: | :------: | :--: | - | :-: | - | :----: | :--: | :--: | :-----: | :--: |\n" +
+      "| Symbol |Trns |   |  Qty | Entry | Exit | Invested | Realized | Gain |   | Net |   | Liquid | Open | Cost | Holding | Fees |\n" +
+      "| :----- |:--: | - |  :-: | :---: | :--: | :------: | :------: | :--: | - | :-: | - | :----: | :--: | :--: | :-----: | :--: |\n" +
       "{{#data}}" +
-      "| {{{pos.fmt.Symbol}}} | {{{pos.fmt.NbrTrades}}} | {{pos.fmt.CloseQty}} | {{pos.fmt.EntryPrice}} |" +
+      "| {{{pos.fmt.Symbol}}} | {{{pos.fmt.NbrTrades}}} |   | {{pos.fmt.CloseQty}} | {{pos.fmt.EntryPrice}} |" +
       "  {{pos.fmt.ExitPrice}} | {{pos.fmt.InvestAmt}} | {{pos.fmt.RealizedAmt}} |" +
       "  {{pos.fmt.Gain}} |   | {{fmt.Net}} |   | " +
       "  {{prt.fmt.Gain}} | {{prt.fmt.Quantity}} | {{prt.fmt.Cost}} | {{prt.fmt.Holding}} |" +
       "  {{pos.fmt.Fees}} |\n" +
       "{{/data}}" +
-      "| Totals | {{possums.fmt.NbrTrades}} | {{possums.fmt.CloseQty}} | - | - | {{possums.fmt.InvestAmt}} |" +
+      "| Totals | {{possums.fmt.NbrTrades}} |   | {{possums.fmt.CloseQty}} | - | - | {{possums.fmt.InvestAmt}} |" +
       "  {{possums.fmt.RealizedAmt}} | {{possums.fmt.Gain}} |   | {{sumNet.fmt.Total}}  |   | {{prtsums.fmt.Gain}}  | {{prtsums.fmt.Quantity}} | {{prtsums.fmt.Cost}}" +
       " |   | {{possums.fmt.Fees}} |\n";
 
