@@ -83,7 +83,8 @@
     ttd.data.forEach((trn, idx) => {
       ttd.data[idx].fmt = {
         Symbol: linkToTrans(trn.Symbol),
-        Subcode: trn.Transaction_Subcode.indexOf('Open') > -1
+//        Subcode: trn.Transaction_Subcode.indexOf('Open') > -1
+        Subcode: trn.Amount < 0
           ? '::tx-darkred::_' + trn.Transaction_Subcode + '_'
           : '::tx-darkblue::_' + trn.Transaction_Subcode + '_',
         Price: maybeRedParens(trn.Price, 4),
