@@ -1,28 +1,5 @@
 <script>
   processData = () => {
-    // Helpers
-    const
-      round = (nbr, places) =>
-        Math.round(nbr * Math.pow(10, places)) / Math.pow(10, places),
-      format = (nbr, places) => parseFloat(round(nbr, places)).toFixed(places),
-      lowerCaseButFirst = (text) =>
-        text.replace(
-          /^[A-Z].*/,
-          (word) => word.charAt(0) + word.slice(1).toLowerCase()
-        ),
-      maybeRedParens = (nbr, places) =>
-        nbr < 0
-          ? "::tx-darkred::_(" + format(nbr * -1, places) + ")_"
-          : "::tx-darkblue::_" + format(nbr, places) + "_",
-      maybeItalicRedParens = (nbr, places) =>
-        nbr < 0
-          ? "::tx-italic-darkred::_(" + format(nbr * -1, places) + ")_"
-          : "::tx-italic-darkblue::_" + format(nbr, places) + "_",
-      linkToTrans = (symbol) =>
-        symbol
-          ? `<a onclick="markupTransactions('${symbol}'); location.href='#displaytransactions';">${symbol}</a>`
-          : "";
-
     /* Tastyworks portfolio data into records */
     const tpd = webdocdown.data.store.tastyPortfolioData;
 

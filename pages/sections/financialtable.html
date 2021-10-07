@@ -38,7 +38,7 @@
         };
       });
     }
-    sums.fmt = { Amount: '::bg-pink::_' + sums.Amount + '_' };
+    sums.fmt = { Amount: maybeRedParens(sums.Amount, 2) };
 
 
     // Produce and display tables of financial data

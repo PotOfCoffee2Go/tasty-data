@@ -3,20 +3,6 @@
 <script>
   markupPositions = () => {
     popwin.info('Markup Positions');
-    // Helpers
-    const
-      round = (nbr, places) =>
-        Math.round(nbr * Math.pow(10, places)) / Math.pow(10, places),
-      format = (nbr, places) => parseFloat(round(nbr, places)).toFixed(places),
-      maybeRedParens = (nbr, places) =>
-        nbr < 0
-          ? "::tx-darkred::_(" + format(nbr * -1, places) + ")_"
-          : "::tx-darkblue::_" + format(nbr, places) + "_",
-      maybeItalicRedParens = (nbr, places) =>
-        nbr < 0
-          ? "::tx-italic-darkred::_(" + format(nbr * -1, places) + ")_"
-          : "::tx-italic-darkblue::_" + format(nbr, places) + "_";
-
     let detailMarkup =
       "" +
       "| Symbol |Trns |   |  Qty | Entry | Exit | Invested | Realized |   | Earnings | Net | Liquid |   | Qty | Cost | Holding |   | Fees |\n" +
