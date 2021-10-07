@@ -19,7 +19,7 @@
       "| {{{fmt.Date_Time}}} | {{fmt.Code}} | {{fmt.Subcode}} | {{fmt.Amount}} |" +
       "  \n" +
       "{{/data}}" +
-      "| Totals | - | - | {{cashsums.Amount}} |\n";
+      "| Totals | - | - | {{sums.fmt.Amount}} |\n";
 
     const data = webdocdown.data.store.tastyFinancialData.data;
     const cashsums = webdocdown.data.store.tastyFinancialSums;
@@ -29,13 +29,25 @@
     // Sort by Date/Time
     data.sort((a, b) => (a.Time < b.Time ? 1 : -1));
 
+    // Sum up the columns
+    sums = {};
+    if (data.length !== 0) {
+      sums = data.reduce((p, c) => {
+        return {
+          Amount: p.Amount + c.Amount,
+        };
+      });
+    }
+    sums.fmt = { Amount: '::bg-pink::_' + sums.Amount + '_' };
+
+
     // Produce and display tables of financial data
     popwin.text('Building finance table!');
     let tablesOutput = '';
     webdocdown
       .produceWBDD(summaryMarkup, { data, cashsums, possums, calc })
       .then((html) => tablesOutput = ('<div>' + html + '</div>'))
-      .then(() => webdocdown.produceWBDD(detailMarkup, { data, cashsums, possums, calc }))
+      .then(() => webdocdown.produceWBDD(detailMarkup, { data, cashsums, possums, calc, sums }))
       .then((html) => tablesOutput += ('<div>' + html + '</div>'))
       .then(
         () => (document.getElementById("financial-data").innerHTML = tablesOutput)
