@@ -77,6 +77,7 @@
     popwin.info('Process tasty positions data.');
     const tcd = { data: [] },
       initPositionsDataRec = {
+        NbrTrans: 0,
         NbrTrades: 0,
         OpenQty: 0,
         OpenAmt: 0,
@@ -132,12 +133,16 @@
               : p.CloseAmt;
 
         return {
-          NbrTrades: p.NbrTrades + 1,
+          NbrTrans: p.NbrTrans + 1,
           OpenQty: curOpenQty,
           OpenAmt: curOpenAmt,
           CloseQty: curCloseQty,
           CloseAmt: curCloseAmt,
           RealizedAmt: curCloseAmt,
+          NbrTrades:
+            curOpenQty === curCloseQty
+              ? p.NbrTrades + 1
+              : p.NbrTrades,
           EntryPrice:
             curOpenQty === curCloseQty
               ? -(curOpenAmt / curOpenQty)
@@ -158,6 +163,7 @@
       Object.assign(tcd.data[idx], total, { fmt: {} });
       tcd.data[idx].fmt = {
         Symbol: linkToTrans(tcd.data[idx].Symbol),
+        NbrTrans: maybeRedParens(tcd.data[idx].NbrTrans, 0),
         NbrTrades: maybeRedParens(tcd.data[idx].NbrTrades, 0),
         CloseQty:  tcd.data[idx].CloseQty === 0 ? '-' : maybeRedParens(tcd.data[idx].CloseQty, 0),
         EntryPrice: tcd.data[idx].EntryPrice === 0 ? '-' : maybeRedParens(tcd.data[idx].EntryPrice, 4),
@@ -176,6 +182,7 @@
     if (tcd.data.length !== 0) {
       sums = tcd.data.reduce((p, c) => {
         return {
+          NbrTrans: p.NbrTrans + c.NbrTrans,
           NbrTrades: p.NbrTrades + c.NbrTrades,
           CloseQty: p.CloseQty + c.CloseQty,
           InvestAmt: p.InvestAmt + c.InvestAmt,
@@ -189,6 +196,7 @@
 
       // Format sums for display
       sums.fmt = {
+        NbrTrans: maybeRedParens(sums.NbrTrans, 0),
         NbrTrades: maybeRedParens(sums.NbrTrades, 0),
         CloseQty: maybeRedParens(sums.CloseQty, 0),
         InvestAmt: maybeRedParens(sums.InvestAmt, 2),

@@ -5,18 +5,18 @@
     popwin.info('Markup Positions');
     let detailMarkup =
       "" +
-      "| Symbol |Trns |   |  Qty | Entry | Exit | Invested | Realized |   | Earnings | Net | Liquid |   | Qty | Cost | Holding |   | Fees |\n" +
-      "| :----- |:--: | - |  :-: | :---: | :--: | :------: | :------: | - | :------: | :-: | :----: | - | :--: | :--: | :-----: | - | :--: |\n" +
+      "| Symbol | Trns | Trds |  Qty | Entry | Exit | Invested | Realized |   | Earnings | Net | Liquid | Holding | Cost | Price | Qty |   | Fees |\n" +
+      "| :----- | :--: | :--: |  :-: | :---: | :--: | :------: | :------: | - | :------: | :-: | :----: | :-----: | :--: | :---: | :-: | - | :--: |\n" +
       "{{#data}}" +
-      "| {{{pos.fmt.Symbol}}} | {{{pos.fmt.NbrTrades}}} |   | {{pos.fmt.CloseQty}} | {{pos.fmt.EntryPrice}} |" +
+      "| {{{pos.fmt.Symbol}}} | {{{pos.fmt.NbrTrans}}} | {{{pos.fmt.NbrTrades}}}  | {{pos.fmt.CloseQty}} | {{pos.fmt.EntryPrice}} |" +
       "  {{pos.fmt.ExitPrice}} | {{pos.fmt.InvestAmt}} | {{pos.fmt.RealizedAmt}} |" +
       "    | {{pos.fmt.Gain}} | {{fmt.Net}} | " +
-      "  {{prt.fmt.Gain}} |   | {{prt.fmt.Quantity}} | {{prt.fmt.Cost}} | {{prt.fmt.Holding}} |   |" +
+      "  {{prt.fmt.Gain}} | {{prt.fmt.Holding}} | {{prt.fmt.Cost}} | {{prt.fmt.Entry_Price}} | {{prt.fmt.Quantity}} |  |" +
       "  {{pos.fmt.Fees}} |\n" +
       "{{/data}}" +
-      "| Totals | {{possums.fmt.NbrTrades}} |   | {{possums.fmt.CloseQty}} | - | - | {{possums.fmt.InvestAmt}} |" +
-      "  {{possums.fmt.RealizedAmt}} |   | {{possums.fmt.Gain}} | {{sumNet.fmt.Total}}  | {{prtsums.fmt.Gain}}  |   | {{prtsums.fmt.Quantity}} | {{prtsums.fmt.Cost}}" +
-      " |  {{sumNet.fmt.Holding}}  |   | {{possums.fmt.Fees}} |\n";
+      "| Totals | {{possums.fmt.NbrTrans}} | {{possums.fmt.NbrTrades}} | {{possums.fmt.CloseQty}} | - | - | {{possums.fmt.InvestAmt}} |" +
+      "  {{possums.fmt.RealizedAmt}} |   | {{possums.fmt.Gain}} | {{sumNet.fmt.Total}}  | {{prtsums.fmt.Gain}}  | {{sumNet.fmt.Holding}} | {{prtsums.fmt.Cost}} |   | {{prtsums.fmt.Quantity}} " +
+      " |   | {{possums.fmt.Fees}} |\n";
 
     // Reference closed data and sums from localStorage
     let pos = webdocdown.data.store.tastyPositionData.data;
@@ -39,6 +39,7 @@
           Gain: 0,
           fmt: {
             Quantity: '-',
+            Entry_Price: '-',
             Cost: '-',
             Holding: '-',
             Gain: '-',
