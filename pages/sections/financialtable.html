@@ -8,8 +8,8 @@
       "Summary\n\n" +
       "| Account | Cash | Positions | Liquid | Earnings | Fees | Liquidate |\n" +
       "| :-----: | :--: | :-------: | :----: | :------: | :--: | :-------: |\n" +
-      "| {{calc.account}} | {{calc.cash}} | {{calc.positions}} | {{calc.liquidity}} |" +
-      " {{calc.gain}} | {{calc.fees}} | {{calc.liquidate}} |\n";
+      "| {{summary.account}} | {{summary.cash}} | {{summary.positions}} | {{summary.liquidity}} |" +
+      " {{summary.gain}} | {{summary.fees}} | {{summary.liquidate}} |\n";
 
     let detailMarkup =
       "Account Activity\n\n" +
@@ -22,9 +22,7 @@
       "| Totals | - | - | {{sums.fmt.Amount}} |\n";
 
     const data = webdocdown.data.store.tastyFinancialData.data;
-    const cashsums = webdocdown.data.store.tastyFinancialSums;
-    const possums = webdocdown.data.store.tastyPositionSums;
-    const calc = webdocdown.data.store.tastyFinancialSummary;
+    const summary = webdocdown.data.store.tastyFinancialSummary;
 
     // Sort by Date/Time
     data.sort((a, b) => (a.Time < b.Time ? 1 : -1));
@@ -32,22 +30,17 @@
     // Sum up the columns
     sums = {};
     if (data.length !== 0) {
-      sums = data.reduce((p, c) => {
-        return {
-          Amount: p.Amount + c.Amount,
-        };
-      });
+      sums = data.reduce((p, c) => { return { Amount: p.Amount + c.Amount  } });
     }
     sums.fmt = { Amount: maybeRedParens(sums.Amount, 2) };
-
 
     // Produce and display tables of financial data
     popwin.text('Building finance table!');
     let tablesOutput = '';
     webdocdown
-      .produceWBDD(summaryMarkup, { data, cashsums, possums, calc })
+      .produceWBDD(summaryMarkup, { summary })
       .then((html) => tablesOutput = ('<div>' + html + '</div>'))
-      .then(() => webdocdown.produceWBDD(detailMarkup, { data, cashsums, possums, calc, sums }))
+      .then(() => webdocdown.produceWBDD(detailMarkup, { data, sums }))
       .then((html) => tablesOutput += ('<div>' + html + '</div>'))
       .then(
         () => (document.getElementById("financial-data").innerHTML = tablesOutput)
