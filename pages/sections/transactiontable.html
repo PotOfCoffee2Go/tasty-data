@@ -62,12 +62,12 @@
     // Build transaction table
     let detailMarkup =
       "" +
-      "| Date | Code | Symbol | Qty | Price | Amount | Strike | Expires | Call/Put |\n" +
-      "| :--: | :--: | :----- | :-: | :---: | :----: | :----: | :-----: | :------: |\n" +
+      "| Date | Code | Symbol | Qty | Price | Amount | Fees | Strike | Expires | Call/Put |\n" +
+      "| :--: | :--: | :----- | :-: | :---: | :----: | :--: | :----: | :-----: | :------: |\n" +
       "{{#data}}" +
       "| {{Date_Time}} | {{Transaction_Code}} - {{fmt.Subcode}} |" +
       "  {{{fmt.Symbol}}} | {{Quantity}} |" +
-      "  {{fmt.Price}} | {{fmt.Amount}} | {{fmt.Strike}} | {{Expiration_Date}} |" +
+      "  {{fmt.Price}} | {{fmt.Amount}} | {{fmt.Fees}} | {{fmt.Strike}} | {{Expiration_Date}} |" +
       "  {{Call_Put}} |\n" +
       "{{/data}}";
 

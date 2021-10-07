@@ -89,7 +89,7 @@
           : '::tx-darkblue::_' + trn.Transaction_Subcode + '_',
         Price: maybeRedParens(trn.Price, 4),
         Amount: maybeRedParens(trn.Amount, 2),
-        Fees: maybeRedParens(trn.Fees, 3),
+        Fees: maybeRedParens(-trn.Fees, 3),
         Strike: maybeRedParens(trn.Strike, 2),
       };
     });

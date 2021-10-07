@@ -19,18 +19,18 @@
 
     let detailMarkup =
       "" +
-      "| Symbol |Trns |   |  Qty | Entry | Exit | Invested | Realized | Gain |   | Net |   | Liquid | Open | Cost | Holding | Fees |\n" +
-      "| :----- |:--: | - |  :-: | :---: | :--: | :------: | :------: | :--: | - | :-: | - | :----: | :--: | :--: | :-----: | :--: |\n" +
+      "| Symbol |Trns |   |  Qty | Entry | Exit | Invested | Realized |   | Earnings | Net | Liquid |   | Qty | Cost | Holding |   | Fees |\n" +
+      "| :----- |:--: | - |  :-: | :---: | :--: | :------: | :------: | - | :------: | :-: | :----: | - | :--: | :--: | :-----: | - | :--: |\n" +
       "{{#data}}" +
       "| {{{pos.fmt.Symbol}}} | {{{pos.fmt.NbrTrades}}} |   | {{pos.fmt.CloseQty}} | {{pos.fmt.EntryPrice}} |" +
       "  {{pos.fmt.ExitPrice}} | {{pos.fmt.InvestAmt}} | {{pos.fmt.RealizedAmt}} |" +
-      "  {{pos.fmt.Gain}} |   | {{fmt.Net}} |   | " +
-      "  {{prt.fmt.Gain}} | {{prt.fmt.Quantity}} | {{prt.fmt.Cost}} | {{prt.fmt.Holding}} |" +
+      "    | {{pos.fmt.Gain}} | {{fmt.Net}} | " +
+      "  {{prt.fmt.Gain}} |   | {{prt.fmt.Quantity}} | {{prt.fmt.Cost}} | {{prt.fmt.Holding}} |   |" +
       "  {{pos.fmt.Fees}} |\n" +
       "{{/data}}" +
       "| Totals | {{possums.fmt.NbrTrades}} |   | {{possums.fmt.CloseQty}} | - | - | {{possums.fmt.InvestAmt}} |" +
-      "  {{possums.fmt.RealizedAmt}} | {{possums.fmt.Gain}} |   | {{sumNet.fmt.Total}}  |   | {{prtsums.fmt.Gain}}  | {{prtsums.fmt.Quantity}} | {{prtsums.fmt.Cost}}" +
-      " |   | {{possums.fmt.Fees}} |\n";
+      "  {{possums.fmt.RealizedAmt}} |   | {{possums.fmt.Gain}} | {{sumNet.fmt.Total}}  | {{prtsums.fmt.Gain}}  |   | {{prtsums.fmt.Quantity}} | {{prtsums.fmt.Cost}}" +
+      " |  {{sumNet.fmt.Holding}}  |   | {{possums.fmt.Fees}} |\n";
 
     // Reference closed data and sums from localStorage
     let pos = webdocdown.data.store.tastyPositionData.data;
@@ -61,9 +61,10 @@
       }
     });
 
-    // Calc the net gain - position realized gain + portfolio liquuid gain
+    // Calc the net gain - position realized gain + portfolio liquid gain
     let sumNet = {
       Total: 0,
+      Holding: 0,
       fmt: {},
     }
     data.forEach((d) => {
@@ -71,19 +72,58 @@
       d.fmt = {};
       d.fmt.Net = maybeRedParens(d.Net, 2);
       sumNet.Total += (d.pos.Gain + d.prt.Gain);
+      sumNet.Holding += d.prt.Holding;
     });
     sumNet.fmt.Total = maybeRedParens(sumNet.Total, 2);
+    sumNet.fmt.Holding = maybeRedParens(sumNet.Holding, 2);
 
     // Sort by symbol
     data.sort((a, b) => (a.pos.Symbol > b.pos.Symbol ? 1 : -1));
+
+    // Embellish table background
+    const highlightBg = () => {
+      let heading = document.querySelectorAll('#closed-data thead tr th');
+      for (let c = 2; c <= 9; c++) {
+        heading[c].classList.add('closed-pos');
+      }
+      for (let c = 11; c <= 16; c++) {
+        heading[c].classList.add('open-pos');
+      }
+      console.log(heading);
+
+
+      // Add Closed/Open table header
+      let thead = document.querySelector('#closed-data thead');
+      let group = document.createElement('tr');
+      group.innerHTML = '<th colspan="2"></th>' +
+        '<th colspan="7" class="closed-pos">Closed</th>' +
+        '<th colspan="3">Value</th>' +
+        '<th colspan="5" class="open-pos">Open</th>' +
+        '<th colspan="1"></th>';
+      thead.insertBefore(group, thead.firstChild);
+
+      // Set CSS class for closed/open position data
+      rows = document.querySelectorAll('#closed-data tbody tr');
+      for(let i = 0; i < rows.length-1; i++) {
+        for (let c = 2; c <= 9; c++) {
+          rows[i].cells[c].classList.add('closed-pos');
+        }
+        for (let c = 11; c <= 16; c++) {
+          rows[i].cells[c].classList.add('open-pos');
+        }
+      }
+    }
 
     // Produce and display table of closed data
     webdocdown
       .produceWBDD(detailMarkup, { data, possums, prtsums, sumNet })
       .then(
         (html) => (document.getElementById("closed-data").innerHTML = html)
-      );
-  };
+      )
+      .then(() => highlightBg());
+};
+
+
 </script>
 
 <style>
@@ -104,6 +144,14 @@
   #closed-data tbody tr:last-child {
     background: #e8e8e8;
   }
+
+  .closed-pos {
+    background: #cef9ce;
+  }
+  .open-pos {
+    background: #f7f6d2;
+  }
+
   #closed-data tr td a {
     cursor: pointer;
   }
