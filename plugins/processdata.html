@@ -114,23 +114,30 @@
 
       if (!sumup.length > 0) return;
 
+      // Total up the trades by symbol
       const total = sumup.reduce((p, c, idx, trns) => {
-        const curOpenQty =
-            trns[idx].Open_Close === "Open"
-              ? p.OpenQty + trns[idx].Quantity
+
+        // Sum up the open/closed quantity and amount
+        const
+          curOpenQty =
+            c.Open_Close === "Open"
+              ? p.OpenQty + c.Quantity
               : p.OpenQty,
           curOpenAmt =
-            trns[idx].Open_Close === "Open"
-              ? p.OpenAmt + trns[idx].Amount
+            c.Open_Close === "Open"
+              ? p.OpenAmt + c.Amount
               : p.OpenAmt,
           curCloseQty =
-            trns[idx].Open_Close === "Close"
-              ? p.CloseQty + trns[idx].Quantity
+            c.Open_Close === "Close"
+              ? p.CloseQty + c.Quantity
               : p.CloseQty,
           curCloseAmt =
-            trns[idx].Open_Close === "Close"
-              ? p.CloseAmt + trns[idx].Amount
+            c.Open_Close === "Close"
+              ? p.CloseAmt + c.Amount
               : p.CloseAmt;
+
+        // Realize earnings when position is flat
+        const flat = (curOpenQty === curCloseQty);
 
         return {
           NbrTrans: p.NbrTrans + 1,
@@ -140,23 +147,34 @@
           CloseAmt: curCloseAmt,
           RealizedAmt: curCloseAmt,
           NbrTrades:
-            curOpenQty === curCloseQty
+            flat
               ? p.NbrTrades + 1
               : p.NbrTrades,
           EntryPrice:
-            curOpenQty === curCloseQty
+            flat
               ? -(curOpenAmt / curOpenQty)
               : p.EntryPrice,
           ExitPrice:
-            curOpenQty === curCloseQty
+            flat
               ? curCloseAmt / curCloseQty
               : p.ExitPrice,
-          InvestAmt: curOpenQty === curCloseQty ? curOpenAmt : p.InvestAmt,
-          Gain: curOpenQty === curCloseQty ? curCloseAmt + curOpenAmt : p.Gain,
-          PosQty: curOpenQty !== curCloseQty ? curOpenQty - curCloseQty : 0,
+          InvestAmt:
+            flat
+              ? curOpenAmt
+              : p.InvestAmt,
+          Gain:
+            flat
+              ? curCloseAmt + curOpenAmt
+              : p.Gain,
+          PosQty:
+            flat
+              ? 0
+              : curOpenQty - curCloseQty,
           PosCost:
-            curOpenQty !== curCloseQty ? curOpenAmt + curCloseAmt - p.Gain : 0,
-          Fees: p.Fees + trns[idx].Fees,
+            flat
+              ? 0
+              : curOpenAmt + curCloseAmt - p.Gain,
+          Fees: p.Fees + c.Fees,
         };
       }, initPositionsDataRec);
 
