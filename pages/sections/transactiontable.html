@@ -65,11 +65,27 @@
       "| Date | Code | Symbol | Qty | Price | Amount | Fees | Strike | Expires | Call/Put |\n" +
       "| :--: | :--: | :----- | :-: | :---: | :----: | :--: | :----: | :-----: | :------: |\n" +
       "{{#data}}" +
-      "| {{Date_Time}} | {{Transaction_Code}} - {{fmt.Subcode}} |" +
+      "| {{Date_Time}} | {{fmt.Subcode}} |" +
       "  {{{fmt.Symbol}}} | {{Quantity}} |" +
       "  {{fmt.Price}} | {{fmt.Amount}} | {{fmt.Fees}} | {{fmt.Strike}} | {{Expiration_Date}} |" +
       "  {{Call_Put}} |\n" +
       "{{/data}}";
+
+    // Embellish table background
+    const highlightBg = () => {
+      let heading = document.querySelectorAll('#transaction-detail thead tr th');
+      heading[5].classList.add('closed-pos'); // Cost
+      heading[6].classList.add('closed-pos'); // Fees
+
+
+      // Set CSS class for closed/open transaction data
+      rows = document.querySelectorAll('#transaction-detail tbody tr');
+      for(let i = 0; i < rows.length; i++) {
+        for (let c = 5; c <= 6; c++) {
+          rows[i].cells[c].classList.add('closed-pos');
+        }
+      }
+    }
 
     // Produce and display table of transaction data
     webdocdown
@@ -77,7 +93,8 @@
       .then(
         (html) =>
           (document.getElementById("transaction-detail").innerHTML = html)
-      );
+      )
+      .then(() => highlightBg());
   };
 </script>
 

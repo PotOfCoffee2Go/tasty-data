@@ -109,7 +109,8 @@
     // Sum up the open and closed positions
     tcd.data.forEach((rec, idx) => {
       const sumup = ttd.data
-        .filter((trns) => trns.Symbol === rec.Symbol)
+        .filter((trns) => trns.Symbol === rec.Symbol
+            && trns.Transaction_Subcode !== 'Deposit') // dividend
         .sort((a, b) => (a.Time > b.Time ? 1 : -1));
 
       if (!sumup.length > 0) return;
@@ -229,9 +230,9 @@
 
     /* Tastyworks financial data into detail records */
     popwin.info('Process tasty financial data.');
-    // Transactions without a symbol are financial
+    // Transactions without a symbol are financial or w/symbol Deposit (dividend)
     const tfd = {
-      data: ttd.data.filter((trn) => !trn.Symbol),
+      data: ttd.data.filter((trn) => !trn.Symbol || trn.Transaction_Subcode === 'Deposit'),
       };
 
     // Sum up the columns
@@ -249,7 +250,10 @@
       tfd.data[idx].fmt = {
         Date_Time: rec.Date_Time,
         Code: rec.Transaction_Code,
-        Subcode: rec.Transaction_Subcode,
+        Subcode: rec.Transaction_Subcode +
+          (rec.Symbol // dividend
+            ? ' (' + rec.Symbol + ')'
+            : ''),
         Amount: maybeItalicRedParens(rec.Amount, 2),
       }
     });
