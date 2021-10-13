@@ -7,23 +7,23 @@
     let summaryMarkup =
       "::spinner #financialSpinner hidden::\n\n" +
       "Summary\n\n" +
-      "| Account | Earnings | Cash | Positions | Liquid | Fees | Liquidate |\n" +
-      "| :-----: | :------: | :--: | :-------: | :----: | :--: | :-------: |\n" +
-      "| {{summary.account}} | {{summary.gain}} | {{summary.cash}} | {{summary.positions}} | {{summary.liquidity}} |" +
-      " {{summary.fees}} | {{summary.liquidate}} |\n";
+      "| Activity | Earnings | Fees |   | Cash | Cost |   | Liquid | Liquidate |\n" +
+      "| :-----: | :------: | :--: | - | :--: | :--: | - | :----: | :-------: |\n" +
+      "| {{summary.account}} | {{summary.gain}} | {{summary.fees}} |   | {{summary.cash}} | {{summary.positions}} |   | {{summary.liquidity}} |" +
+      " {{summary.liquidate}} |\n";
 
     let detailMarkup =
       "Account Activity\n\n" +
-      "| Date | Code | Subcode | Amount |\n" +
-      "| :--: | :--: | :-----: | :----: |\n" +
+      "| Date | Code | Subcode | Description | Amount | Fees |\n" +
+      "| :--: | :--: | :-----: | :---------: | :----: | :--: |\n" +
       "{{#data}}" +
-      "| {{{fmt.Date_Time}}} | {{fmt.Code}} | {{fmt.Subcode}} | {{fmt.Amount}} |" +
-      "  \n" +
+      "| {{{fmt.Date_Time}}} | {{fmt.Code}} | {{fmt.Subcode}} | {{Description}} | {{fmt.Amount}} |" +
+      "  {{fmt.Fees}} |\n" +
       "{{/data}}" +
-      "| Totals | - | - | {{sums.fmt.Amount}} |\n";
+      "| Totals | - | - | - | {{sums.fmt.Amount}} | {{sums.fmt.Fees}} |\n";
 
-    const data = webdocdown.data.store.tastyFinancialData.data;
     const summary = webdocdown.data.store.tastyFinancialSummary;
+    const data = webdocdown.data.store.tastyFinancialData.data;
 
     // Sort by Date/Time
     data.sort((a, b) => (a.Time < b.Time ? 1 : -1));
@@ -31,21 +31,59 @@
     // Sum up the columns
     sums = {};
     if (data.length !== 0) {
-      sums = data.reduce((p, c) => { return { Amount: p.Amount + c.Amount  } });
+      sums = data.reduce((p, c) => { return {
+        Amount: p.Amount + c.Amount,
+        Fees: p.Fees + c.Fees
+      } });
     }
-    sums.fmt = { Amount: maybeRedParens(sums.Amount, 2) };
+    sums.fmt = {
+      Amount: maybeRedParens(sums.Amount, 2),
+      Fees: maybeRedParens(sums.Fees, 3)
+    };
+
+    // Embellish table background
+    const highlightBg = () => {
+      let heading = document.querySelectorAll('#summary-table table thead tr th');
+      heading[1].classList.add('closed-pos'); // Earnings
+      heading[2].classList.add('closed-pos'); // Fees
+      heading[5].classList.add('closed-pos'); // Cost
+      heading[7].classList.add('open-pos'); // Liquid
+
+
+      // Set CSS class for closed/open transaction data
+      let rows = document.querySelectorAll('#summary-table table tbody tr');
+      for(let i = 0; i < rows.length; i++) {
+        rows[i].cells[1].classList.add('closed-pos');
+        rows[i].cells[2].classList.add('closed-pos');
+        rows[i].cells[5].classList.add('closed-pos');
+        rows[i].cells[7].classList.add('open-pos');
+      }
+
+      heading = document.querySelectorAll('#account-activity table thead tr th');
+      heading[4].classList.add('closed-pos'); // Amount
+      heading[5].classList.add('closed-pos'); // Fees
+
+
+      // Set CSS class for closed/open transaction data
+      rows = document.querySelectorAll('#account-activity table tbody tr');
+      for(let i = 0; i < rows.length; i++) {
+        rows[i].cells[4].classList.add('closed-pos');
+        rows[i].cells[5].classList.add('closed-pos');
+      }
+    }
 
     // Produce and display tables of financial data
     popwin.text('Building finance table!');
     let tablesOutput = '';
     webdocdown
       .produceWBDD(summaryMarkup, { summary })
-      .then((html) => tablesOutput = ('<div>' + html + '</div>'))
+      .then((html) => tablesOutput = ('<div id="summary-table">' + html + '</div>'))
       .then(() => webdocdown.produceWBDD(detailMarkup, { data, sums }))
-      .then((html) => tablesOutput += ('<div>' + html + '</div>'))
+      .then((html) => tablesOutput += ('<div id="account-activity">' + html + '</div>'))
       .then(
         () => (document.getElementById("financial-data").innerHTML = tablesOutput)
-      );
+      )
+      .then(() => highlightBg());
   };
 </script>
 
@@ -65,7 +103,7 @@
     color: black;
   }
   #financial-data tbody tr:last-child {
-    background: #e8e8e8;
+    background: white;
   }
   #financial-data tr td a {
     cursor: pointer;

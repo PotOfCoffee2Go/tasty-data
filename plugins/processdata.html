@@ -241,6 +241,7 @@
       sums = tfd.data.reduce((p, c) => {
         return {
           Amount: p.Amount + c.Amount,
+          Fees: p.Fees + c.Fees,
         };
       });
     }
@@ -255,6 +256,7 @@
             ? ' (' + rec.Symbol + ')'
             : ''),
         Amount: maybeItalicRedParens(rec.Amount, 2),
+        Fees: maybeRedParens(rec.Fees, 3),
       }
     });
 
