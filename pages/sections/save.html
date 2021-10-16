@@ -1,6 +1,8 @@
 ::#savefile hidden::<a download="twplayground.json" href="" >Save localStorage</a>
 ::savebtn cssbutton left mgn-0-0-3-5::<button>Save</button>
-::#restorebtn cssbutton right mgn-0-5-3-0::<button>Restore</button>
+
+::#restoreInput hidden::<input type="file" onchange="onRestoreFileChange(event)">
+::restorebtn cssbutton right mgn-0-5-3-0::<button>Restore</button>
 
 Save or restore current data being stored by system.
 
@@ -20,4 +22,37 @@ This file can also be used to export data to an external application.
       savefile.click();
     })
   });
+
+  const restoreInput = document.getElementById('restoreInput');
+
+  document.querySelectorAll('.restorebtn').forEach((btn) => {
+    btn.addEventListener(
+      'click',
+      (event) => {
+        restoreInput.click();
+        event.preventDefault();
+      },
+      false
+    );
+  });
+
+  onRestoreFileChange = (event) => {
+    document.querySelectorAll('#financial-data div table').forEach((table) => {
+      table.remove();
+    });
+    document.getElementById('financialSpinner').classList.remove('hidden');
+    popwin.info('Restore data');
+    location.href = '#displayfinancial';
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      localStorage.setItem('wbdd', e.target.result);
+      webdocdown.data.store = webdocdown.store.read();
+      processData();
+      document.getElementById('financialSpinner').classList.add('hidden');
+    };
+    reader.readAsText(file);
+  }
+
+
 </script>
