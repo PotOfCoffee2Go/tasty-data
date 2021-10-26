@@ -25,7 +25,7 @@
   );
 
   // Display transactions for the symbol requested
-  markupTransactions = (symbol = "") => {
+  markupTransactions = (symbol = '', viewto = '') => {
     popwin.info('Markup Transactions');
     let data = webdocdown.data.store.tastyTransactionDetails.data;
     let symbols = document.getElementById("symbol-select");
@@ -58,6 +58,44 @@
     if (selectedOption) {
       selectedOption.selected = true;
     }
+
+    // Highlight selected symbol in portfolio
+    document.querySelectorAll('#detail-data table tbody tr')
+      .forEach((row, idx, rows) => {
+        row.classList.remove('port-active-symbol');
+        const symbolRowName = row.querySelector('td a');
+        if (symbolRowName && symbolRowName.innerText === symbol) {
+          row.classList.add('port-active-symbol');
+          if (viewto === 'portfolio') {
+            if (idx > 3) {
+              rows[idx - 3].scrollIntoView();
+            }
+            else {
+              // row.scrollIntoView();
+              location.href = '#displaypositions'; // needs renaming
+            }
+          }
+        }
+      })
+
+    // Highlight selected symbol in positions table
+    document.querySelectorAll('#closed-data table tbody tr')
+      .forEach((row, idx, rows) => {
+        row.classList.remove('pos-active-symbol');
+        const symbolRowName = row.querySelector('td a');
+        if (symbolRowName && symbolRowName.innerText === symbol) {
+          row.classList.add('pos-active-symbol');
+          if (viewto === 'position') {
+            if (idx > 3) {
+              rows[idx - 3].scrollIntoView();
+            }
+            else {
+              // row.scrollIntoView();
+              location.href = '#displayclosed'; // needs renaming
+            }
+          }
+        }
+      })
 
     // Build transaction table
     let detailMarkup =

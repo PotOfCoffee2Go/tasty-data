@@ -12,7 +12,7 @@
         Quantity: maybeRedParens(symbol.Quantity, 0),
         Entry_Price: format(symbol.Cost / symbol.Quantity, 4),
         Mark_Price: format((symbol.Cost + symbol.Gain) / symbol.Quantity, 4),
-        Symbol: linkToTrans(symbol.Underlying_Symbol),
+        Symbol: linkToTrans(symbol.Underlying_Symbol, 'position'),
         Cost: maybeRedParens(-Math.abs(symbol.Cost), 2),
         Holding: maybeRedParens(Math.abs(symbol.Cost + symbol.Gain), 2),
         Gain: maybeItalicRedParens(symbol.Gain, 2),
@@ -59,7 +59,7 @@
     // Round to sane decimal places and format for display
     ttd.data.forEach((trn, idx) => {
       ttd.data[idx].fmt = {
-        Symbol: linkToTrans(trn.Symbol),
+        Symbol: linkToTrans(trn.Symbol, 'position'),
 //        Subcode: trn.Transaction_Subcode.indexOf('Open') > -1
         Subcode: trn.Amount < 0
           ? '::tx-darkred::_' + trn.Transaction_Subcode + '_'
@@ -181,7 +181,7 @@
 
       Object.assign(tcd.data[idx], total, { fmt: {} });
       tcd.data[idx].fmt = {
-        Symbol: linkToTrans(tcd.data[idx].Symbol),
+        Symbol: linkToTrans(tcd.data[idx].Symbol, 'portfolio'),
         NbrTrans: maybeRedParens(tcd.data[idx].NbrTrans, 0),
         NbrTrades: maybeRedParens(tcd.data[idx].NbrTrades, 0),
         CloseQty:  tcd.data[idx].CloseQty === 0 ? '-' : maybeRedParens(tcd.data[idx].CloseQty, 0),
