@@ -4,7 +4,7 @@
   markupPositions = () => {
     popwin.info('Markup Positions');
     let detailMarkup =
-      "" +
+      "Realized/Unrealized Earnings\n\n" +
       "| Symbol | Fills | Trds |  Qty | Entry | Exit | Invested | Realized | Earnings | Net | Liquid | Holding | Cost | Price | Qty | Fees |\n" +
       "| :----- | :---: | :--: |  :-: | :---: | :--: | :------: | :------: | :------: | :-: | :----: | :-----: | :--: | :---: | :-: | :--: |\n" +
       "{{#data}}" +
@@ -87,8 +87,7 @@
       let group = document.createElement('tr');
       group.innerHTML = '<th colspan="2"></th>' +
         '<th colspan="7" class="closed-pos">Closed</th>' +
-        '<th colspan="1"></th>' +
-        '<th colspan="5" class="open-pos">Open</th>' +
+        '<th colspan="6" class="open-pos">Open</th>' +
         '<th colspan="1"></th>';
       thead.insertBefore(group, thead.firstChild);
 
