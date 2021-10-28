@@ -5,7 +5,7 @@
     const checked = document.getElementById('posHideDetails').checked;
     const rows = document.querySelectorAll('#closed-data tbody tr');
     for(let i = 0; i < rows.length-1; i++) {
-      if (checked) {
+      if (checked && !rows[i].classList.contains("pos-active-symbol")) {
         rows[i].classList.add('hidden');
       }
       else {

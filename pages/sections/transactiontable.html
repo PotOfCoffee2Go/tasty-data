@@ -79,12 +79,14 @@
       })
 
     // Highlight selected symbol in positions table
+    let refreshNeeded = false;
     document.querySelectorAll('#closed-data table tbody tr')
       .forEach((row, idx, rows) => {
         row.classList.remove('pos-active-symbol');
         const symbolRowName = row.querySelector('td a');
         if (symbolRowName && symbolRowName.innerText === symbol) {
           row.classList.add('pos-active-symbol');
+          refreshNeeded = true;
           if (viewto === 'position') {
             if (idx > 3) {
               rows[idx - 3].scrollIntoView();
@@ -96,6 +98,8 @@
           }
         }
       })
+
+    if (refreshNeeded) posHideDetails();
 
     // Build transaction table
     let detailMarkup =

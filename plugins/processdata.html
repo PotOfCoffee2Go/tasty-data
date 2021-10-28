@@ -181,7 +181,7 @@
 
       Object.assign(tcd.data[idx], total, { fmt: {} });
       tcd.data[idx].fmt = {
-        Symbol: linkToTrans(tcd.data[idx].Symbol, 'portfolio'),
+        Symbol: linkToTrans(tcd.data[idx].Symbol, ''),
         NbrTrans: maybeRedParens(tcd.data[idx].NbrTrans, 0),
         NbrTrades: maybeRedParens(tcd.data[idx].NbrTrades, 0),
         CloseQty:  tcd.data[idx].CloseQty === 0 ? '-' : maybeRedParens(tcd.data[idx].CloseQty, 0),
