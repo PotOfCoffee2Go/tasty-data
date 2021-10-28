@@ -21,7 +21,7 @@
       ? "::tx-italic-darkred::_(" + format(nbr * -1, places) + ")_"
       : "::tx-italic-darkblue::_" + format(nbr, places) + "_";
 
-  linkToTrans = (symbol, table) => // table = 'portfolio' or 'position'
+  linkToTrans = (symbol, table) => // table = 'portfolio', 'position' or 'journal'
     symbol
       ? `<a onclick="markupTransactions('${symbol}', '${table}');">${symbol}</a>`
       : "";

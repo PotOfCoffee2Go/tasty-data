@@ -58,6 +58,8 @@
 
     // Round to sane decimal places and format for display
     ttd.data.forEach((trn, idx) => {
+      ttd.data[idx].id = ttd.data.length - idx;
+      ttd.data[idx].Earned = 0;
       ttd.data[idx].fmt = {
         Symbol: linkToTrans(trn.Symbol, 'position'),
 //        Subcode: trn.Transaction_Subcode.indexOf('Open') > -1
@@ -66,12 +68,14 @@
           : '::tx-darkblue::_' + trn.Transaction_Subcode + '_',
         Price: maybeRedParens(trn.Price, 4),
         Amount: maybeRedParens(trn.Amount, 2),
+        Earned: '-',
         Fees: maybeRedParens(-trn.Fees, 3),
         Strike: maybeRedParens(trn.Strike, 2),
       };
     });
 
-    webdocdown.storeData({ tastyTransactionDetails: ttd });
+    // Note: stored later - see below
+    // webdocdown.storeData({ tastyTransactionDetails: ttd });
 
     /* Create positions collection */
     popwin.info('Process tasty positions data.');
@@ -140,6 +144,15 @@
         // Realize earnings when position is flat
         const flat = (curOpenQty === curCloseQty);
 
+        // Update journal Earned when flat
+        if (flat) {
+          let found = ttd.data.find((a) => a.id === c.id);
+          if (found) {
+            found.Earned = curCloseAmt + curOpenAmt - p.Gain;
+            found.fmt.Earned = maybeRedParens(found.Earned, 2);
+          }
+        }
+
         return {
           NbrTrans: p.NbrTrans + 1,
           OpenQty: curOpenQty,
@@ -179,9 +192,10 @@
         };
       }, initPositionsDataRec);
 
+      webdocdown.storeData({ tastyTransactionDetails: ttd });
       Object.assign(tcd.data[idx], total, { fmt: {} });
       tcd.data[idx].fmt = {
-        Symbol: linkToTrans(tcd.data[idx].Symbol, ''),
+        Symbol: linkToTrans(tcd.data[idx].Symbol, 'journal'),
         NbrTrans: maybeRedParens(tcd.data[idx].NbrTrans, 0),
         NbrTrades: maybeRedParens(tcd.data[idx].NbrTrades, 0),
         CloseQty:  tcd.data[idx].CloseQty === 0 ? '-' : maybeRedParens(tcd.data[idx].CloseQty, 0),
