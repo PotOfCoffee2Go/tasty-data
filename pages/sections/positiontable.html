@@ -1,10 +1,26 @@
 ::div #closed-data tx-darkblue::
 
 <script>
+  posHideDetails = () => {
+    const checked = document.getElementById('posHideDetails').checked;
+    const rows = document.querySelectorAll('#closed-data tbody tr');
+    for(let i = 0; i < rows.length-1; i++) {
+      if (checked) {
+        rows[i].classList.add('hidden');
+      }
+      else {
+        rows[i].classList.remove('hidden');
+      }
+    }
+  }
+
   markupPositions = () => {
     popwin.info('Markup Positions');
     let detailMarkup =
       "Realized/Unrealized Earnings\n\n" +
+      '<input type="checkbox" id="posHideDetails" name="posHideDetails" value="hide" ' +
+      'onclick="posHideDetails();" checked>' +
+      '<label for="posHideDetails">Hide details</label>\n\n' +
       "| Symbol | Fills | Trds |  Qty | Entry | Exit | Invested | Realized | Earnings | Net | Liquid | Holding | Cost | Price | Qty | Fees |\n" +
       "| :----- | :---: | :--: |  :-: | :---: | :--: | :------: | :------: | :------: | :-: | :----: | :-----: | :--: | :---: | :-: | :--: |\n" +
       "{{#data}}" +
@@ -92,7 +108,7 @@
       thead.insertBefore(group, thead.firstChild);
 
       // Set CSS class for closed/open position data
-      rows = document.querySelectorAll('#closed-data tbody tr');
+      const rows = document.querySelectorAll('#closed-data tbody tr');
       for(let i = 0; i < rows.length-1; i++) {
         for (let c = 6; c <= 8; c++) {
           rows[i].cells[c].classList.add('closed-pos');
@@ -106,6 +122,7 @@
           rows[i].cells[c].classList.add('open-pos');
         }
       }
+      posHideDetails();
     }
 
     // Produce and display table of closed data
