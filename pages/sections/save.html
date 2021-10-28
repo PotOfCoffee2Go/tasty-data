@@ -40,7 +40,8 @@ This file can also be used to export data to an external application.
     document.querySelectorAll('#financial-data div table').forEach((table) => {
       table.remove();
     });
-    document.getElementById('financialSpinner').classList.remove('hidden');
+    const fp = document.getElementById('financialSpinner')
+    if (fp) fp.classList.remove('hidden');
     popwin.info('Restore data');
     location.href = '#displayfinancial';
     const file = event.target.files[0];
@@ -49,7 +50,7 @@ This file can also be used to export data to an external application.
       localStorage.setItem('wbdd', e.target.result);
       webdocdown.data.store = webdocdown.store.read();
       processData();
-      document.getElementById('financialSpinner').classList.add('hidden');
+      if (fp) fp.classList.add('hidden');
     };
     reader.readAsText(file);
   }

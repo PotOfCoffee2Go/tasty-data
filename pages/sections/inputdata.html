@@ -36,7 +36,8 @@ See tastyworks for <a target="_blank" href="https://support.tastyworks.com/suppo
         table.remove();
       });
       initStorage(true); // clear all
-      document.getElementById('financialSpinner').classList.remove('hidden');
+      const fp = document.getElementById('financialSpinner')
+      if (fp) fp.classList.remove('hidden');
       popwin.info('Import sample data...');
       await fetch('samples/portfolio.csv')
         .then((response) => response.text())
@@ -72,7 +73,8 @@ See tastyworks for <a target="_blank" href="https://support.tastyworks.com/suppo
       table.remove();
     });
     initStorage();
-    document.getElementById('financialSpinner').classList.remove('hidden');
+    const fp = document.getElementById('financialSpinner')
+    if (fp) fp.classList.remove('hidden');
     popwin.info('Import tasty data...');
     for (let i = 0; i < event.target.files.length; i++) {
       const file = event.target.files[i];

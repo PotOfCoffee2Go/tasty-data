@@ -15,8 +15,17 @@
       "  {{sums.fmt.Cost}} | {{sums.fmt.Holding}} | {{sums.fmt.Gain}} |\n";
 
     // Reference portfolio details and sums from localStorage
-    let data = webdocdown.data.store.tastyPortfolioDetails.data;
+    // This is currently first time localStorage hit
+    //  so init if need too
+    let data;
+    try {
+      data = webdocdown.data.store.tastyPortfolioDetails.data;
+    } catch(e) {
+      initStorage(true);
+      data = webdocdown.data.store.tastyPortfolioDetails.data;
+    }
     let sums = webdocdown.data.store.tastyPortfolioSums;
+    popwin.text(`<a href="samples/poc2go.zip" onclick="location.href='#displaysave'">Poc2go current account</a>`);
 
     // Sort by symbol
     data.sort((a, b) => (a.Underlying_Symbol > b.Underlying_Symbol ? 1 : -1));
