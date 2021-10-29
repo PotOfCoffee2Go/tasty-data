@@ -2,6 +2,19 @@
 ::div #financial-data tx-darkblue::
 
 <script>
+  finHideDetails = () => {
+    const checked = document.getElementById('finHideDetails').checked;
+    const rows = document.querySelectorAll('#account-activity table tbody tr');
+    for(let i = 0; i < rows.length-1; i++) {
+      if (checked) {
+        rows[i].classList.add('hidden');
+      }
+      else {
+        rows[i].classList.remove('hidden');
+      }
+    }
+  }
+
   markupFinancialData = () => {
     popwin.info('Markup Financial');
     let summaryMarkup =
@@ -14,6 +27,9 @@
 
     let detailMarkup =
       "Account Activity\n\n" +
+      '<input type="checkbox" id="finHideDetails" name="finHideDetails" value="hide" ' +
+      'onclick="finHideDetails();" checked>' +
+      '<label for="finHideDetails">Hide details</label>\n\n' +
       "| Date | Code | Subcode | Description | Amount | Fees |\n" +
       "| :--: | :--: | :-----: | :---------: | :----: | :--: |\n" +
       "{{#data}}" +
@@ -76,10 +92,12 @@
 
       // Set CSS class for closed/open transaction data
       rows = document.querySelectorAll('#account-activity table tbody tr');
-      for(let i = 0; i < rows.length; i++) {
+      for(let i = 0; i < rows.length - 1; i++) {
         rows[i].cells[4].classList.add('closed-pos');
         rows[i].cells[5].classList.add('closed-pos');
       }
+
+      finHideDetails();
     }
 
     // Produce and display tables of financial data
