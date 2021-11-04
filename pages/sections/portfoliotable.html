@@ -21,7 +21,7 @@
     try {
       data = webdocdown.data.store.tastyPortfolioDetails.data;
     } catch(e) {
-      initStorage(true);
+      initStorageAndRestore();
       data = webdocdown.data.store.tastyPortfolioDetails.data;
     }
     let sums = webdocdown.data.store.tastyPortfolioSums;

@@ -20,4 +20,17 @@
 
     webdocdown.store.write();
   };
+
+  initStorageAndRestore = async (calcTables = false) => {
+    initStorage(true);
+    await fetch('samples/poc2go.zip')
+      .then((response) => response.text())
+      .then((text) => {
+        localStorage.setItem('wbdd', text);
+        webdocdown.data.store = webdocdown.store.read();
+        if (calcTables) processData();
+      })
+  }
+
+
 </script>
