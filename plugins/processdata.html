@@ -261,8 +261,10 @@
     }
 
     // Format for display
+    console.log(tfd.data);
     tfd.data.forEach((rec, idx) => {
       tfd.data[idx].fmt = {
+        Id: rec.id,
         Date_Time: rec.Date_Time,
         Code: rec.Transaction_Code,
         Subcode: rec.Transaction_Subcode +

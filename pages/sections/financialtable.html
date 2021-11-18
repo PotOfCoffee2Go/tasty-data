@@ -30,13 +30,13 @@
       '<input type="checkbox" id="finHideDetails" name="finHideDetails" value="hide" ' +
       'onclick="finHideDetails();" checked>' +
       '<label for="finHideDetails">Hide details</label>\n\n' +
-      "| Date | Code | Subcode | Description | Amount | Fees |\n" +
-      "| :--: | :--: | :-----: | :---------: | :----: | :--: |\n" +
+      "| Id  | Date | Code | Subcode | Description | Amount | Fees |\n" +
+      "| :-: | :--: | :--: | :-----: | :---------: | :----: | :--: |\n" +
       "{{#data}}" +
-      "| {{{fmt.Date_Time}}} | {{fmt.Code}} | {{fmt.Subcode}} | {{Description}} | {{fmt.Amount}} |" +
+      "| {{{fmt.Id}}} | {{{fmt.Date_Time}}} | {{fmt.Code}} | {{fmt.Subcode}} | {{Description}} | {{fmt.Amount}} |" +
       "  {{fmt.Fees}} |\n" +
       "{{/data}}" +
-      "| Totals | - | - | - | {{sums.fmt.Amount}} | {{sums.fmt.Fees}} |\n";
+      "| Totals | - | - | - | - | {{sums.fmt.Amount}} | {{sums.fmt.Fees}} |\n";
 
     const summary = webdocdown.data.store.tastyFinancialSummary;
     const data = webdocdown.data.store.tastyFinancialData.data;
@@ -86,15 +86,15 @@
       }
 
       heading = document.querySelectorAll('#account-activity table thead tr th');
-      heading[4].classList.add('closed-pos'); // Amount
-      heading[5].classList.add('closed-pos'); // Fees
+      heading[5].classList.add('closed-pos'); // Amount
+      heading[6].classList.add('closed-pos'); // Fees
 
 
       // Set CSS class for closed/open transaction data
       rows = document.querySelectorAll('#account-activity table tbody tr');
       for(let i = 0; i < rows.length - 1; i++) {
-        rows[i].cells[4].classList.add('closed-pos');
         rows[i].cells[5].classList.add('closed-pos');
+        rows[i].cells[6].classList.add('closed-pos');
       }
 
       finHideDetails();
