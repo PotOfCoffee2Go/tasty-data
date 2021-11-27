@@ -1,5 +1,5 @@
 {
-  "tastyPortfolioInput": "Asset Type,Underlying Symbol,Description,Expiration,Days to Expiration,Strike Price,Call/Put,Quantity,Delta,Theta,Cost,Net Liq,Gain,Today\nSTOCK,ADXS,,,,,,500,500,0,219.78,200.85,-18.930000000000007,19.80000000000001\nSTOCK,TLGTQ,,,,,,100,100,0,19.99,4,-15.989999999999998,-16.14\nSTOCK,BBI,,,,,,200,200,0,75.49,65.46,-10.030000000000001,2.3799999999999883\nSTOCK,BXRX,,,,,,600,600,0,289.65000000000003,250.56,-39.09000000000003,10.560000000000002\nSTOCK,DFFN,,,,,,100,100,0,48.02,38.21,-9.810000000000002,0.4100000000000037\nSTOCK,BRQS,,,,,,100,100,0,54.98,53,-1.9799999999999969,4.019999999999996\nSTOCK,FAMI,,,,,,200,200,0,62.57,54.86,-7.710000000000001,1.4599999999999937\nSTOCK,RIBT,,,,,,200,200,0,104.06,91.97999999999999,-12.080000000000013,2.4599999999999937\nSTOCK,CTRM,,,,,,20,20,0,44.495,40,-4.494999999999997,1.3999999999999986\nSTOCK,RGLS,,,,,,500,500,0,211.99,196,-15.990000000000009,15.649999999999977\nSTOCK,REED,,,,,,100,100,0,52,45.300000000000004,-6.699999999999996,2.2900000000000063\nSTOCK,MKD,,,,,,200,200,0,72.67,56.599999999999994,-16.070000000000007,-1.3400000000000105\nSTOCK,TBLT,,,,,,200,200,0,94.47,83.8,-10.670000000000002,1.9599999999999937\nSTOCK,TNXP,,,,,,100,100,0,56.52,47.56,-8.96,-1.259999999999998",
+  "tastyPortfolioInput": "Asset Type,Underlying Symbol,Description,Expiration,Days to Expiration,Strike Price,Call/Put,Quantity,Delta,Theta,Cost,Net Liq,Gain,Today\nSTOCK,ADXS,,,,,,500,500,0,219.78,192.35,-27.430000000000007,-8.5\nSTOCK,TLGTQ,,,,,,100,100,0,19.99,3.925,-16.064999999999998,-16.215\nSTOCK,BBI,,,,,,200,200,0,75.49,63.580000000000005,-11.90999999999999,-1.8799999999999883\nSTOCK,BXRX,,,,,,600,600,0,289.65000000000003,237.60000000000002,-52.05000000000001,-12.95999999999998\nSTOCK,DFFN,,,,,,100,100,0,48.02,39.04,-8.980000000000004,0.8299999999999983\nSTOCK,BRQS,,,,,,100,100,0,54.98,50.870000000000005,-4.109999999999992,-2.1299999999999955\nSTOCK,FAMI,,,,,,200,200,0,62.57,53.800000000000004,-8.769999999999996,-1.0599999999999952\nSTOCK,RIBT,,,,,,200,200,0,104.06,89.2,-14.86,-2.779999999999987\nSTOCK,CTRM,,,,,,20,20,0,44.495,39.2,-5.294999999999995,-0.7999999999999972\nSTOCK,RGLS,,,,,,500,500,0,211.99,205.5,-6.490000000000009,9.5\nSTOCK,REED,,,,,,100,100,0,52,44.99,-7.009999999999998,-0.3100000000000023\nSTOCK,MKD,,,,,,200,200,0,72.67,50,-22.67,-6.599999999999994\nSTOCK,TBLT,,,,,,200,200,0,94.47,80.64,-13.829999999999998,-3.1599999999999966\nSTOCK,TNXP,,,,,,100,100,0,56.52,50.5,-6.020000000000003,2.9399999999999977",
   "tastyTransactionInput": "none",
   "tastyPortfolioData": {
     "data": [
@@ -15,9 +15,9 @@
         "Delta": 500,
         "Theta": 0,
         "Cost": 219.78,
-        "Net_Liq": 200.85,
-        "Gain": -18.930000000000007,
-        "Today": 19.80000000000001
+        "Net_Liq": 192.35,
+        "Gain": -27.430000000000007,
+        "Today": -8.5
       },
       {
         "Asset_Type": "STOCK",
@@ -31,9 +31,9 @@
         "Delta": 100,
         "Theta": 0,
         "Cost": 19.99,
-        "Net_Liq": 4,
-        "Gain": -15.989999999999998,
-        "Today": -16.14
+        "Net_Liq": 3.925,
+        "Gain": -16.064999999999998,
+        "Today": -16.215
       },
       {
         "Asset_Type": "STOCK",
@@ -47,9 +47,9 @@
         "Delta": 200,
         "Theta": 0,
         "Cost": 75.49,
-        "Net_Liq": 65.46,
-        "Gain": -10.030000000000001,
-        "Today": 2.3799999999999883
+        "Net_Liq": 63.580000000000005,
+        "Gain": -11.90999999999999,
+        "Today": -1.8799999999999883
       },
       {
         "Asset_Type": "STOCK",
@@ -63,9 +63,9 @@
         "Delta": 600,
         "Theta": 0,
         "Cost": 289.65000000000003,
-        "Net_Liq": 250.56,
-        "Gain": -39.09000000000003,
-        "Today": 10.560000000000002
+        "Net_Liq": 237.60000000000002,
+        "Gain": -52.05000000000001,
+        "Today": -12.95999999999998
       },
       {
         "Asset_Type": "STOCK",
@@ -79,9 +79,9 @@
         "Delta": 100,
         "Theta": 0,
         "Cost": 48.02,
-        "Net_Liq": 38.21,
-        "Gain": -9.810000000000002,
-        "Today": 0.4100000000000037
+        "Net_Liq": 39.04,
+        "Gain": -8.980000000000004,
+        "Today": 0.8299999999999983
       },
       {
         "Asset_Type": "STOCK",
@@ -95,9 +95,9 @@
         "Delta": 100,
         "Theta": 0,
         "Cost": 54.98,
-        "Net_Liq": 53,
-        "Gain": -1.9799999999999969,
-        "Today": 4.019999999999996
+        "Net_Liq": 50.870000000000005,
+        "Gain": -4.109999999999992,
+        "Today": -2.1299999999999955
       },
       {
         "Asset_Type": "STOCK",
@@ -111,9 +111,9 @@
         "Delta": 200,
         "Theta": 0,
         "Cost": 62.57,
-        "Net_Liq": 54.86,
-        "Gain": -7.710000000000001,
-        "Today": 1.4599999999999937
+        "Net_Liq": 53.800000000000004,
+        "Gain": -8.769999999999996,
+        "Today": -1.0599999999999952
       },
       {
         "Asset_Type": "STOCK",
@@ -127,9 +127,9 @@
         "Delta": 200,
         "Theta": 0,
         "Cost": 104.06,
-        "Net_Liq": 91.97999999999999,
-        "Gain": -12.080000000000013,
-        "Today": 2.4599999999999937
+        "Net_Liq": 89.2,
+        "Gain": -14.86,
+        "Today": -2.779999999999987
       },
       {
         "Asset_Type": "STOCK",
@@ -143,9 +143,9 @@
         "Delta": 20,
         "Theta": 0,
         "Cost": 44.495,
-        "Net_Liq": 40,
-        "Gain": -4.494999999999997,
-        "Today": 1.3999999999999986
+        "Net_Liq": 39.2,
+        "Gain": -5.294999999999995,
+        "Today": -0.7999999999999972
       },
       {
         "Asset_Type": "STOCK",
@@ -159,9 +159,9 @@
         "Delta": 500,
         "Theta": 0,
         "Cost": 211.99,
-        "Net_Liq": 196,
-        "Gain": -15.990000000000009,
-        "Today": 15.649999999999977
+        "Net_Liq": 205.5,
+        "Gain": -6.490000000000009,
+        "Today": 9.5
       },
       {
         "Asset_Type": "STOCK",
@@ -175,9 +175,9 @@
         "Delta": 100,
         "Theta": 0,
         "Cost": 52,
-        "Net_Liq": 45.300000000000004,
-        "Gain": -6.699999999999996,
-        "Today": 2.2900000000000063
+        "Net_Liq": 44.99,
+        "Gain": -7.009999999999998,
+        "Today": -0.3100000000000023
       },
       {
         "Asset_Type": "STOCK",
@@ -191,9 +191,9 @@
         "Delta": 200,
         "Theta": 0,
         "Cost": 72.67,
-        "Net_Liq": 56.599999999999994,
-        "Gain": -16.070000000000007,
-        "Today": -1.3400000000000105
+        "Net_Liq": 50,
+        "Gain": -22.67,
+        "Today": -6.599999999999994
       },
       {
         "Asset_Type": "STOCK",
@@ -207,9 +207,9 @@
         "Delta": 200,
         "Theta": 0,
         "Cost": 94.47,
-        "Net_Liq": 83.8,
-        "Gain": -10.670000000000002,
-        "Today": 1.9599999999999937
+        "Net_Liq": 80.64,
+        "Gain": -13.829999999999998,
+        "Today": -3.1599999999999966
       },
       {
         "Asset_Type": "STOCK",
@@ -223,9 +223,9 @@
         "Delta": 100,
         "Theta": 0,
         "Cost": 56.52,
-        "Net_Liq": 47.56,
-        "Gain": -8.96,
-        "Today": -1.259999999999998
+        "Net_Liq": 50.5,
+        "Gain": -6.020000000000003,
+        "Today": 2.9399999999999977
       }
     ],
     "errors": [],
@@ -234,7 +234,7 @@
       "linebreak": "\n",
       "aborted": false,
       "truncated": false,
-      "cursor": 1221,
+      "cursor": 1204,
       "fields": [
         "Asset_Type",
         "Underlying_Symbol",
@@ -7222,20 +7222,20 @@
         "Delta": 500,
         "Theta": 0,
         "Cost": 219.78,
-        "Net_Liq": 200.85,
-        "Gain": -18.930000000000007,
-        "Today": 19.80000000000001,
-        "Holding": 200.85,
+        "Net_Liq": 192.35,
+        "Gain": -27.430000000000007,
+        "Today": -8.5,
+        "Holding": 192.35,
         "fmt": {
           "Asset_Type": "Stock",
           "Quantity": "::tx-darkblue::_500_",
           "Entry_Price": "0.4396",
-          "Mark_Price": "0.4017",
+          "Mark_Price": "0.3847",
           "Symbol": "<a onclick=\"markupTransactions('ADXS', 'position');\">ADXS</a>",
           "Cost": "::tx-darkred::_(219.78)_",
-          "Holding": "::tx-darkblue::_200.85_",
-          "Gain": "::tx-italic-darkred::_(18.93)_",
-          "Market": "::tx-darkred::_(0.04)_"
+          "Holding": "::tx-darkblue::_192.35_",
+          "Gain": "::tx-italic-darkred::_(27.43)_",
+          "Market": "::tx-darkred::_(0.05)_"
         }
       },
       {
@@ -7250,19 +7250,19 @@
         "Delta": 100,
         "Theta": 0,
         "Cost": 19.99,
-        "Net_Liq": 4,
-        "Gain": -15.989999999999998,
-        "Today": -16.14,
-        "Holding": 4,
+        "Net_Liq": 3.925,
+        "Gain": -16.064999999999998,
+        "Today": -16.215,
+        "Holding": 3.9250000000000007,
         "fmt": {
           "Asset_Type": "Stock",
           "Quantity": "::tx-darkblue::_100_",
           "Entry_Price": "0.1999",
-          "Mark_Price": "0.0400",
+          "Mark_Price": "0.0393",
           "Symbol": "<a onclick=\"markupTransactions('TLGTQ', 'position');\">TLGTQ</a>",
           "Cost": "::tx-darkred::_(19.99)_",
-          "Holding": "::tx-darkblue::_4.00_",
-          "Gain": "::tx-italic-darkred::_(15.99)_",
+          "Holding": "::tx-darkblue::_3.93_",
+          "Gain": "::tx-italic-darkred::_(16.06)_",
           "Market": "::tx-darkred::_(0.16)_"
         }
       },
@@ -7278,20 +7278,20 @@
         "Delta": 200,
         "Theta": 0,
         "Cost": 75.49,
-        "Net_Liq": 65.46,
-        "Gain": -10.030000000000001,
-        "Today": 2.3799999999999883,
-        "Holding": 65.46,
+        "Net_Liq": 63.580000000000005,
+        "Gain": -11.90999999999999,
+        "Today": -1.8799999999999883,
+        "Holding": 63.580000000000005,
         "fmt": {
           "Asset_Type": "Stock",
           "Quantity": "::tx-darkblue::_200_",
           "Entry_Price": "0.3774",
-          "Mark_Price": "0.3273",
+          "Mark_Price": "0.3179",
           "Symbol": "<a onclick=\"markupTransactions('BBI', 'position');\">BBI</a>",
           "Cost": "::tx-darkred::_(75.49)_",
-          "Holding": "::tx-darkblue::_65.46_",
-          "Gain": "::tx-italic-darkred::_(10.03)_",
-          "Market": "::tx-darkred::_(0.05)_"
+          "Holding": "::tx-darkblue::_63.58_",
+          "Gain": "::tx-italic-darkred::_(11.91)_",
+          "Market": "::tx-darkred::_(0.06)_"
         }
       },
       {
@@ -7306,20 +7306,20 @@
         "Delta": 600,
         "Theta": 0,
         "Cost": 289.65000000000003,
-        "Net_Liq": 250.56,
-        "Gain": -39.09000000000003,
-        "Today": 10.560000000000002,
-        "Holding": 250.56,
+        "Net_Liq": 237.60000000000002,
+        "Gain": -52.05000000000001,
+        "Today": -12.95999999999998,
+        "Holding": 237.60000000000002,
         "fmt": {
           "Asset_Type": "Stock",
           "Quantity": "::tx-darkblue::_600_",
           "Entry_Price": "0.4828",
-          "Mark_Price": "0.4176",
+          "Mark_Price": "0.3960",
           "Symbol": "<a onclick=\"markupTransactions('BXRX', 'position');\">BXRX</a>",
           "Cost": "::tx-darkred::_(289.65)_",
-          "Holding": "::tx-darkblue::_250.56_",
-          "Gain": "::tx-italic-darkred::_(39.09)_",
-          "Market": "::tx-darkred::_(0.07)_"
+          "Holding": "::tx-darkblue::_237.60_",
+          "Gain": "::tx-italic-darkred::_(52.05)_",
+          "Market": "::tx-darkred::_(0.09)_"
         }
       },
       {
@@ -7334,20 +7334,20 @@
         "Delta": 100,
         "Theta": 0,
         "Cost": 48.02,
-        "Net_Liq": 38.21,
-        "Gain": -9.810000000000002,
-        "Today": 0.4100000000000037,
-        "Holding": 38.21,
+        "Net_Liq": 39.04,
+        "Gain": -8.980000000000004,
+        "Today": 0.8299999999999983,
+        "Holding": 39.04,
         "fmt": {
           "Asset_Type": "Stock",
           "Quantity": "::tx-darkblue::_100_",
           "Entry_Price": "0.4802",
-          "Mark_Price": "0.3821",
+          "Mark_Price": "0.3904",
           "Symbol": "<a onclick=\"markupTransactions('DFFN', 'position');\">DFFN</a>",
           "Cost": "::tx-darkred::_(48.02)_",
-          "Holding": "::tx-darkblue::_38.21_",
-          "Gain": "::tx-italic-darkred::_(9.81)_",
-          "Market": "::tx-darkred::_(0.10)_"
+          "Holding": "::tx-darkblue::_39.04_",
+          "Gain": "::tx-italic-darkred::_(8.98)_",
+          "Market": "::tx-darkred::_(0.09)_"
         }
       },
       {
@@ -7362,20 +7362,20 @@
         "Delta": 100,
         "Theta": 0,
         "Cost": 54.98,
-        "Net_Liq": 53,
-        "Gain": -1.9799999999999969,
-        "Today": 4.019999999999996,
-        "Holding": 53,
+        "Net_Liq": 50.870000000000005,
+        "Gain": -4.109999999999992,
+        "Today": -2.1299999999999955,
+        "Holding": 50.870000000000005,
         "fmt": {
           "Asset_Type": "Stock",
           "Quantity": "::tx-darkblue::_100_",
           "Entry_Price": "0.5498",
-          "Mark_Price": "0.5300",
+          "Mark_Price": "0.5087",
           "Symbol": "<a onclick=\"markupTransactions('BRQS', 'position');\">BRQS</a>",
           "Cost": "::tx-darkred::_(54.98)_",
-          "Holding": "::tx-darkblue::_53.00_",
-          "Gain": "::tx-italic-darkred::_(1.98)_",
-          "Market": "::tx-darkred::_(0.02)_"
+          "Holding": "::tx-darkblue::_50.87_",
+          "Gain": "::tx-italic-darkred::_(4.11)_",
+          "Market": "::tx-darkred::_(0.04)_"
         }
       },
       {
@@ -7390,19 +7390,19 @@
         "Delta": 200,
         "Theta": 0,
         "Cost": 62.57,
-        "Net_Liq": 54.86,
-        "Gain": -7.710000000000001,
-        "Today": 1.4599999999999937,
-        "Holding": 54.86,
+        "Net_Liq": 53.800000000000004,
+        "Gain": -8.769999999999996,
+        "Today": -1.0599999999999952,
+        "Holding": 53.800000000000004,
         "fmt": {
           "Asset_Type": "Stock",
           "Quantity": "::tx-darkblue::_200_",
           "Entry_Price": "0.3129",
-          "Mark_Price": "0.2743",
+          "Mark_Price": "0.2690",
           "Symbol": "<a onclick=\"markupTransactions('FAMI', 'position');\">FAMI</a>",
           "Cost": "::tx-darkred::_(62.57)_",
-          "Holding": "::tx-darkblue::_54.86_",
-          "Gain": "::tx-italic-darkred::_(7.71)_",
+          "Holding": "::tx-darkblue::_53.80_",
+          "Gain": "::tx-italic-darkred::_(8.77)_",
           "Market": "::tx-darkred::_(0.04)_"
         }
       },
@@ -7418,20 +7418,20 @@
         "Delta": 200,
         "Theta": 0,
         "Cost": 104.06,
-        "Net_Liq": 91.97999999999999,
-        "Gain": -12.080000000000013,
-        "Today": 2.4599999999999937,
-        "Holding": 91.97999999999999,
+        "Net_Liq": 89.2,
+        "Gain": -14.86,
+        "Today": -2.779999999999987,
+        "Holding": 89.2,
         "fmt": {
           "Asset_Type": "Stock",
           "Quantity": "::tx-darkblue::_200_",
           "Entry_Price": "0.5203",
-          "Mark_Price": "0.4599",
+          "Mark_Price": "0.4460",
           "Symbol": "<a onclick=\"markupTransactions('RIBT', 'position');\">RIBT</a>",
           "Cost": "::tx-darkred::_(104.06)_",
-          "Holding": "::tx-darkblue::_91.98_",
-          "Gain": "::tx-italic-darkred::_(12.08)_",
-          "Market": "::tx-darkred::_(0.06)_"
+          "Holding": "::tx-darkblue::_89.20_",
+          "Gain": "::tx-italic-darkred::_(14.86)_",
+          "Market": "::tx-darkred::_(0.07)_"
         }
       },
       {
@@ -7446,20 +7446,20 @@
         "Delta": 20,
         "Theta": 0,
         "Cost": 44.495,
-        "Net_Liq": 40,
-        "Gain": -4.494999999999997,
-        "Today": 1.3999999999999986,
-        "Holding": 40,
+        "Net_Liq": 39.2,
+        "Gain": -5.294999999999995,
+        "Today": -0.7999999999999972,
+        "Holding": 39.2,
         "fmt": {
           "Asset_Type": "Stock",
           "Quantity": "::tx-darkblue::_20_",
           "Entry_Price": "2.2247",
-          "Mark_Price": "2.0000",
+          "Mark_Price": "1.9600",
           "Symbol": "<a onclick=\"markupTransactions('CTRM', 'position');\">CTRM</a>",
           "Cost": "::tx-darkred::_(44.50)_",
-          "Holding": "::tx-darkblue::_40.00_",
-          "Gain": "::tx-italic-darkred::_(4.49)_",
-          "Market": "::tx-darkred::_(0.22)_"
+          "Holding": "::tx-darkblue::_39.20_",
+          "Gain": "::tx-italic-darkred::_(5.29)_",
+          "Market": "::tx-darkred::_(0.26)_"
         }
       },
       {
@@ -7474,20 +7474,20 @@
         "Delta": 500,
         "Theta": 0,
         "Cost": 211.99,
-        "Net_Liq": 196,
-        "Gain": -15.990000000000009,
-        "Today": 15.649999999999977,
-        "Holding": 196,
+        "Net_Liq": 205.5,
+        "Gain": -6.490000000000009,
+        "Today": 9.5,
+        "Holding": 205.5,
         "fmt": {
           "Asset_Type": "Stock",
           "Quantity": "::tx-darkblue::_500_",
           "Entry_Price": "0.4240",
-          "Mark_Price": "0.3920",
+          "Mark_Price": "0.4110",
           "Symbol": "<a onclick=\"markupTransactions('RGLS', 'position');\">RGLS</a>",
           "Cost": "::tx-darkred::_(211.99)_",
-          "Holding": "::tx-darkblue::_196.00_",
-          "Gain": "::tx-italic-darkred::_(15.99)_",
-          "Market": "::tx-darkred::_(0.03)_"
+          "Holding": "::tx-darkblue::_205.50_",
+          "Gain": "::tx-italic-darkred::_(6.49)_",
+          "Market": "::tx-darkred::_(0.01)_"
         }
       },
       {
@@ -7502,19 +7502,19 @@
         "Delta": 100,
         "Theta": 0,
         "Cost": 52,
-        "Net_Liq": 45.300000000000004,
-        "Gain": -6.699999999999996,
-        "Today": 2.2900000000000063,
-        "Holding": 45.300000000000004,
+        "Net_Liq": 44.99,
+        "Gain": -7.009999999999998,
+        "Today": -0.3100000000000023,
+        "Holding": 44.99,
         "fmt": {
           "Asset_Type": "Stock",
           "Quantity": "::tx-darkblue::_100_",
           "Entry_Price": "0.5200",
-          "Mark_Price": "0.4530",
+          "Mark_Price": "0.4499",
           "Symbol": "<a onclick=\"markupTransactions('REED', 'position');\">REED</a>",
           "Cost": "::tx-darkred::_(52.00)_",
-          "Holding": "::tx-darkblue::_45.30_",
-          "Gain": "::tx-italic-darkred::_(6.70)_",
+          "Holding": "::tx-darkblue::_44.99_",
+          "Gain": "::tx-italic-darkred::_(7.01)_",
           "Market": "::tx-darkred::_(0.07)_"
         }
       },
@@ -7530,20 +7530,20 @@
         "Delta": 200,
         "Theta": 0,
         "Cost": 72.67,
-        "Net_Liq": 56.599999999999994,
-        "Gain": -16.070000000000007,
-        "Today": -1.3400000000000105,
-        "Holding": 56.599999999999994,
+        "Net_Liq": 50,
+        "Gain": -22.67,
+        "Today": -6.599999999999994,
+        "Holding": 50,
         "fmt": {
           "Asset_Type": "Stock",
           "Quantity": "::tx-darkblue::_200_",
           "Entry_Price": "0.3634",
-          "Mark_Price": "0.2830",
+          "Mark_Price": "0.2500",
           "Symbol": "<a onclick=\"markupTransactions('MKD', 'position');\">MKD</a>",
           "Cost": "::tx-darkred::_(72.67)_",
-          "Holding": "::tx-darkblue::_56.60_",
-          "Gain": "::tx-italic-darkred::_(16.07)_",
-          "Market": "::tx-darkred::_(0.08)_"
+          "Holding": "::tx-darkblue::_50.00_",
+          "Gain": "::tx-italic-darkred::_(22.67)_",
+          "Market": "::tx-darkred::_(0.11)_"
         }
       },
       {
@@ -7558,20 +7558,20 @@
         "Delta": 200,
         "Theta": 0,
         "Cost": 94.47,
-        "Net_Liq": 83.8,
-        "Gain": -10.670000000000002,
-        "Today": 1.9599999999999937,
-        "Holding": 83.8,
+        "Net_Liq": 80.64,
+        "Gain": -13.829999999999998,
+        "Today": -3.1599999999999966,
+        "Holding": 80.64,
         "fmt": {
           "Asset_Type": "Stock",
           "Quantity": "::tx-darkblue::_200_",
           "Entry_Price": "0.4724",
-          "Mark_Price": "0.4190",
+          "Mark_Price": "0.4032",
           "Symbol": "<a onclick=\"markupTransactions('TBLT', 'position');\">TBLT</a>",
           "Cost": "::tx-darkred::_(94.47)_",
-          "Holding": "::tx-darkblue::_83.80_",
-          "Gain": "::tx-italic-darkred::_(10.67)_",
-          "Market": "::tx-darkred::_(0.05)_"
+          "Holding": "::tx-darkblue::_80.64_",
+          "Gain": "::tx-italic-darkred::_(13.83)_",
+          "Market": "::tx-darkred::_(0.07)_"
         }
       },
       {
@@ -7586,20 +7586,20 @@
         "Delta": 100,
         "Theta": 0,
         "Cost": 56.52,
-        "Net_Liq": 47.56,
-        "Gain": -8.96,
-        "Today": -1.259999999999998,
-        "Holding": 47.56,
+        "Net_Liq": 50.5,
+        "Gain": -6.020000000000003,
+        "Today": 2.9399999999999977,
+        "Holding": 50.5,
         "fmt": {
           "Asset_Type": "Stock",
           "Quantity": "::tx-darkblue::_100_",
           "Entry_Price": "0.5652",
-          "Mark_Price": "0.4756",
+          "Mark_Price": "0.5050",
           "Symbol": "<a onclick=\"markupTransactions('TNXP', 'position');\">TNXP</a>",
           "Cost": "::tx-darkred::_(56.52)_",
-          "Holding": "::tx-darkblue::_47.56_",
-          "Gain": "::tx-italic-darkred::_(8.96)_",
-          "Market": "::tx-darkred::_(0.09)_"
+          "Holding": "::tx-darkblue::_50.50_",
+          "Gain": "::tx-italic-darkred::_(6.02)_",
+          "Market": "::tx-darkred::_(0.06)_"
         }
       }
     ],
@@ -7609,7 +7609,7 @@
       "linebreak": "\n",
       "aborted": false,
       "truncated": false,
-      "cursor": 1221,
+      "cursor": 1204,
       "fields": [
         "Asset_Type",
         "Underlying_Symbol",
@@ -15779,14 +15779,14 @@
   },
   "tastyPortfolioSums": {
     "Quantity": 3120,
-    "Holding": 1228.1799999999998,
+    "Holding": 1201.1950000000002,
     "Cost": 1406.6850000000002,
-    "Gain": -178.50500000000008,
+    "Gain": -205.48999999999998,
     "fmt": {
       "Quantity": 3120,
-      "Holding": "1228.18",
+      "Holding": "1201.20",
       "Cost": "::tx-darkred::_(1406.69)_",
-      "Gain": "::tx-italic-darkred::_(178.51)_"
+      "Gain": "::tx-italic-darkred::_(205.49)_"
     }
   },
   "tastyPositionSums": {
@@ -15820,8 +15820,8 @@
     "gain": "::tx-darkblue::_676.14_",
     "positions": "::tx-darkred::_(1406.69)_",
     "cash": "::tx-darkblue::_1741.76_",
-    "liquidity": "::tx-darkred::_(178.51)_",
-    "liquidate": "::tx-darkblue::_2969.95_",
+    "liquidity": "::tx-darkred::_(205.49)_",
+    "liquidate": "::tx-darkblue::_2942.96_",
     "fees": "::tx-darkred::_(29.12)_"
   }
 }
