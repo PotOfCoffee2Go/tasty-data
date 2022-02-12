@@ -1,6 +1,6 @@
 {
-  "tastyPortfolioInput": "Asset Type,Underlying Symbol,Description,Expiration,Days to Expiration,Strike Price,Call/Put,Quantity,Delta,Theta,Cost,Net Liq,Gain,Today\nSTOCK,TLGTQ,,,,,,100,100,0,19.99,1.2,-18.79,-18.94",
-  "tastyTransactionInput": "Date/Time,Transaction Code,Transaction Subcode,Symbol,Buy/Sell,Open/Close,Quantity,Expiration Date,Strike,Call/Put,Price,Fees,Amount,Description,Account Reference\n01/21/2022 12:57 PM,Trade,Sell to Close,DUO,Sell,Close,100,,,,0.35,0.102,35,Sold 100 DUO @ 0.35,AcctPoppo...04\n01/21/2022 12:56 PM,Trade,Sell to Close,AIHS,Sell,Close,100,,,,0.295,0.102,29.5,Sold 100 AIHS @ 0.30,AcctPoppo...04\n01/20/2022 5:00 PM,Money Movement,Withdrawal,,,,0,,,,,0.00,-500,ACH DISBURSEMENT,AcctPoppo...04\n01/18/2022 5:00 PM,Money Movement,Credit Interest,,,,0,,,,,0.00,0.01,INTEREST ON CREDIT BALANCE,AcctPoppo...04\n01/18/2022 9:54 AM,Trade,Sell to Close,ABEO,Sell,Close,100,,,,0.2615,0.102,26.15,Sold 100 ABEO @ 0.26,AcctPoppo...04\n01/05/2022 9:52 AM,Trade,Buy to Open,AIHS,Buy,Open,100,,,,0.3984,0.08,-39.84,Bought 100 AIHS @ 0.40,AcctPoppo...04\n01/03/2022 11:13 AM,Trade,Buy to Open,DUO,Buy,Open,100,,,,0.46,0.08,-46,Bought 100 DUO @ 0.46,AcctPoppo...04\n01/03/2022 11:12 AM,Trade,Buy to Open,ABEO,Buy,Open,100,,,,0.3744,0.08,-37.44,Bought 100 ABEO @ 0.37,AcctPoppo...04\n12/31/2021 5:00 PM,Money Movement,Credit Interest,,,,0,,,,,0.00,0.01,INTEREST ON CREDIT BALANCE,AcctPoppo...04\n12/23/2021 10:04 AM,Trade,Sell to Close,ABEO,Sell,Close,100,,,,0.3403,0.102,34.03,Sold 100 ABEO @ 0.34,AcctPoppo...04",
+  "tastyPortfolioInput": "Asset Type,Underlying Symbol,Description,Expiration,Days to Expiration,Strike Price,Call/Put,Quantity,Delta,Theta,Cost,Net Liq,Gain,Today\nSTOCK,TLGTQ,,,,,,100,100,0,19.99,0.16,-19.83,-19.98\nSTOCK,SNDL,,,,,,100,100,0,47.339999999999996,66.29,18.95000000000001,10.370000000000005",
+  "tastyTransactionInput": "Date/Time,Transaction Code,Transaction Subcode,Symbol,Buy/Sell,Open/Close,Quantity,Expiration Date,Strike,Call/Put,Price,Fees,Amount,Description,Account Reference\n01/31/2022 11:01 AM,Trade,Buy to Open,SNDL,Buy,Open,100,,,,0.4734,0.08,-47.34,Bought 100 SNDL @ 0.47,AcctPoppo...04\n01/22/2022 11:11 AM,Money Movement,Balance Adjustment,,,,0,,,,,0.00,0.01,Regulatory fee adjustment,AcctPoppo...04\n01/21/2022 12:57 PM,Trade,Sell to Close,DUO,Sell,Close,100,,,,0.35,0.102,35,Sold 100 DUO @ 0.35,AcctPoppo...04\n01/21/2022 12:56 PM,Trade,Sell to Close,AIHS,Sell,Close,100,,,,0.295,0.102,29.5,Sold 100 AIHS @ 0.30,AcctPoppo...04\n01/20/2022 5:00 PM,Money Movement,Withdrawal,,,,0,,,,,0.00,-500,ACH DISBURSEMENT,AcctPoppo...04\n01/18/2022 5:00 PM,Money Movement,Credit Interest,,,,0,,,,,0.00,0.01,INTEREST ON CREDIT BALANCE,AcctPoppo...04\n01/18/2022 9:54 AM,Trade,Sell to Close,ABEO,Sell,Close,100,,,,0.2615,0.102,26.15,Sold 100 ABEO @ 0.26,AcctPoppo...04\n01/05/2022 9:52 AM,Trade,Buy to Open,AIHS,Buy,Open,100,,,,0.3984,0.08,-39.84,Bought 100 AIHS @ 0.40,AcctPoppo...04\n01/03/2022 11:13 AM,Trade,Buy to Open,DUO,Buy,Open,100,,,,0.46,0.08,-46,Bought 100 DUO @ 0.46,AcctPoppo...04\n01/03/2022 11:12 AM,Trade,Buy to Open,ABEO,Buy,Open,100,,,,0.3744,0.08,-37.44,Bought 100 ABEO @ 0.37,AcctPoppo...04\n12/31/2021 5:00 PM,Money Movement,Credit Interest,,,,0,,,,,0.00,0.01,INTEREST ON CREDIT BALANCE,AcctPoppo...04\n12/23/2021 10:04 AM,Trade,Sell to Close,ABEO,Sell,Close,100,,,,0.3403,0.102,34.03,Sold 100 ABEO @ 0.34,AcctPoppo...04\n12/18/2021 11:09 AM,Money Movement,Balance Adjustment,,,,0,,,,,0.00,0.03,Regulatory fee adjustment,AcctPoppo...04\n12/17/2021 1:42 PM,Trade,Buy to Open,ABEO,Buy,Open,100,,,,0.29,0.08,-29,Bought 100 ABEO @ 0.29,AcctPoppo...04\n12/16/2021 5:00 PM,Money Movement,Credit Interest,,,,0,,,,,0.00,0.02,INTEREST ON CREDIT BALANCE,AcctPoppo...04\n12/16/2021 12:36 PM,Trade,Sell to Close,CTRM,Sell,Close,20,,,,1.5617,0.028,31.234,Sold 20 CTRM @ 1.56,AcctPoppo...04\n12/16/2021 12:35 PM,Trade,Sell to Close,TNXP,Sell,Close,100,,,,0.4345,0.102,43.45,Sold 100 TNXP @ 0.43,AcctPoppo...04\n12/16/2021 12:34 PM,Trade,Sell to Close,BRQS,Sell,Close,100,,,,0.4152,0.102,41.52,Sold 100 BRQS @ 0.42,AcctPoppo...04\n12/16/2021 12:34 PM,Trade,Sell to Close,REED,Sell,Close,100,,,,0.3763,0.102,37.63,Sold 100 REED @ 0.38,AcctPoppo...04\n12/16/2021 12:32 PM,Trade,Sell to Close,MKD,Sell,Close,400,,,,0.2304,0.378,92.16,Sold 400 MKD @ 0.23,AcctPoppo...04\n12/16/2021 12:32 PM,Trade,Buy to Open,MKD,Buy,Open,200,,,,0.2399,0.16,-47.98,Bought 200 MKD @ 0.24,AcctPoppo...04\n12/16/2021 12:32 PM,Trade,Sell to Close,FAMI,Sell,Close,200,,,,0.2311,0.194,46.22,Sold 200 FAMI @ 0.23,AcctPoppo...04\n12/16/2021 12:31 PM,Trade,Sell to Close,BBI,Sell,Close,100,,,,0.2896,0.102,28.96,Sold 100 BBI @ 0.29,AcctPoppo...04\n12/16/2021 12:31 PM,Trade,Sell to Close,BBI,Sell,Close,100,,,,0.2896,0.102,28.96,Sold 100 BBI @ 0.29,AcctPoppo...04\n12/16/2021 12:30 PM,Trade,Sell to Close,ADXS,Sell,Close,500,,,,0.3157,0.47,157.85,Sold 500 ADXS @ 0.32,AcctPoppo...04\n12/16/2021 12:30 PM,Trade,Sell to Close,DFFN,Sell,Close,100,,,,0.3436,0.102,34.36,Sold 100 DFFN @ 0.34,AcctPoppo...04\n12/16/2021 12:29 PM,Trade,Sell to Close,TBLT,Sell,Close,200,,,,0.3788,0.194,75.76,Sold 200 TBLT @ 0.38,AcctPoppo...04\n12/16/2021 12:28 PM,Trade,Sell to Close,RIBT,Sell,Close,200,,,,0.38,0.194,76,Sold 200 RIBT @ 0.38,AcctPoppo...04\n12/16/2021 12:28 PM,Trade,Sell to Close,RGLS,Sell,Close,500,,,,0.3502,0.47,175.1,Sold 500 RGLS @ 0.35,AcctPoppo...04\n12/16/2021 12:27 PM,Trade,Sell to Close,BXRX,Sell,Close,600,,,,0.3451,0.561,207.06,Sold 600 BXRX @ 0.35,AcctPoppo...04",
   "tastyPortfolioData": {
     "data": [
       {
@@ -15,9 +15,25 @@
         "Delta": 100,
         "Theta": 0,
         "Cost": 19.99,
-        "Net_Liq": 1.2,
-        "Gain": -18.79,
-        "Today": -18.94
+        "Net_Liq": 0.16,
+        "Gain": -19.83,
+        "Today": -19.98
+      },
+      {
+        "Asset_Type": "STOCK",
+        "Underlying_Symbol": "SNDL",
+        "Description": null,
+        "Expiration": null,
+        "Days_to_Expiration": null,
+        "Strike_Price": null,
+        "Call/Put": null,
+        "Quantity": 100,
+        "Delta": 100,
+        "Theta": 0,
+        "Cost": 47.339999999999996,
+        "Net_Liq": 66.29,
+        "Gain": 18.95000000000001,
+        "Today": 10.370000000000005
       }
     ],
     "errors": [],
@@ -26,7 +42,7 @@
       "linebreak": "\n",
       "aborted": false,
       "truncated": false,
-      "cursor": 188,
+      "cursor": 277,
       "fields": [
         "Asset_Type",
         "Underlying_Symbol",
@@ -47,6 +63,42 @@
   },
   "tastyTransactionData": {
     "data": [
+      {
+        "Date_Time": "01/31/2022 11:01 AM",
+        "Transaction_Code": "Trade",
+        "Transaction_Subcode": "Buy to Open",
+        "Symbol": "SNDL",
+        "Buy_Sell": "Buy",
+        "Open_Close": "Open",
+        "Quantity": 100,
+        "Expiration_Date": null,
+        "Strike": null,
+        "Call_Put": null,
+        "Price": 0.4734,
+        "Fees": 0.08,
+        "Amount": -47.34,
+        "Description": "Bought 100 SNDL @ 0.47",
+        "Account_Reference": "AcctPoppo...04",
+        "Time": "2022-01-31T16:01:00.000Z"
+      },
+      {
+        "Date_Time": "01/22/2022 11:11 AM",
+        "Transaction_Code": "Money Movement",
+        "Transaction_Subcode": "Balance Adjustment",
+        "Symbol": null,
+        "Buy_Sell": null,
+        "Open_Close": null,
+        "Quantity": 0,
+        "Expiration_Date": null,
+        "Strike": null,
+        "Call_Put": null,
+        "Price": null,
+        "Fees": 0,
+        "Amount": 0.01,
+        "Description": "Regulatory fee adjustment",
+        "Account_Reference": "AcctPoppo...04",
+        "Time": "2022-01-22T16:11:00.000Z"
+      },
       {
         "Date_Time": "01/21/2022 12:57 PM",
         "Transaction_Code": "Trade",
@@ -5598,7 +5650,7 @@
       "linebreak": "\n",
       "aborted": false,
       "truncated": false,
-      "cursor": 1282,
+      "cursor": 3601,
       "fields": [
         "Date_Time",
         "Transaction_Code",
@@ -6675,6 +6727,37 @@
         }
       },
       {
+        "Symbol": "SNDL",
+        "NbrTrans": 1,
+        "OpenQty": 100,
+        "OpenAmt": -47.34,
+        "CloseQty": 0,
+        "CloseAmt": 0,
+        "RealizedAmt": 0,
+        "NbrTrades": 0,
+        "EntryPrice": 0,
+        "ExitPrice": 0,
+        "InvestAmt": 0,
+        "Gain": 0,
+        "PosQty": 100,
+        "PosCost": -47.34,
+        "Fees": 0.08,
+        "fmt": {
+          "Symbol": "<a onclick=\"markupTransactions('SNDL', 'journal');\">SNDL</a>",
+          "NbrTrans": "::tx-darkblue::_1_",
+          "NbrTrades": "::tx-darkblue::_0_",
+          "CloseQty": "-",
+          "EntryPrice": "-",
+          "ExitPrice": "-",
+          "InvestAmt": "-",
+          "RealizedAmt": "-",
+          "Gain": "-",
+          "Fees": "::tx-darkred::_(0.080)_",
+          "PosQty": "::tx-darkblue::_100_",
+          "PosCost": "::tx-darkred::_(47.34)_"
+        }
+      },
+      {
         "Symbol": "SONM",
         "NbrTrans": 10,
         "OpenQty": 1000,
@@ -6864,6 +6947,34 @@
   },
   "tastyFinancialData": {
     "data": [
+      {
+        "Date_Time": "01/22/2022 11:11 AM",
+        "Transaction_Code": "Money Movement",
+        "Transaction_Subcode": "Balance Adjustment",
+        "Symbol": null,
+        "Buy_Sell": null,
+        "Open_Close": null,
+        "Quantity": 0,
+        "Expiration_Date": null,
+        "Strike": null,
+        "Call_Put": null,
+        "Price": null,
+        "Fees": 0,
+        "Amount": 0.01,
+        "Description": "Regulatory fee adjustment",
+        "Account_Reference": "AcctPoppo...04",
+        "Time": "2022-01-22T16:11:00.000Z",
+        "id": 309,
+        "Earned": 0,
+        "fmt": {
+          "Id": 309,
+          "Date_Time": "01/22/2022 11:11 AM",
+          "Code": "Money Movement",
+          "Subcode": "Balance Adjustment",
+          "Amount": "::tx-italic-darkblue::_0.01_",
+          "Fees": "::tx-darkblue::_0.000_"
+        }
+      },
       {
         "Date_Time": "01/20/2022 05:00 PM",
         "Transaction_Code": "Money Movement",
@@ -7720,15 +7831,48 @@
         "Delta": 100,
         "Theta": 0,
         "Cost": 19.99,
-        "Net_Liq": 1.2,
-        "Gain": -18.79,
-        "Today": -18.94,
-        "Holding": 1.1999999999999993,
+        "Net_Liq": 0.16,
+        "Gain": -19.83,
+        "Today": -19.98,
+        "Holding": 0.16000000000000014,
         "fmt": {
-          "Quantity": 100,
-          "Holding": "1.20",
+          "Asset_Type": "Stock",
+          "Quantity": "::tx-darkblue::_100_",
+          "Entry_Price": "0.1999",
+          "Mark_Price": "0.0016",
+          "Symbol": "<a onclick=\"markupTransactions('TLGTQ', 'position');\">TLGTQ</a>",
           "Cost": "::tx-darkred::_(19.99)_",
-          "Gain": "::tx-italic-darkred::_(18.79)_"
+          "Holding": "::tx-darkblue::_0.16_",
+          "Gain": "::tx-italic-darkred::_(19.83)_",
+          "Market": "::tx-darkred::_(0.20)_"
+        }
+      },
+      {
+        "Asset_Type": "STOCK",
+        "Underlying_Symbol": "SNDL",
+        "Description": null,
+        "Expiration": null,
+        "Days_to_Expiration": null,
+        "Strike_Price": null,
+        "Call/Put": null,
+        "Quantity": 100,
+        "Delta": 100,
+        "Theta": 0,
+        "Cost": 47.339999999999996,
+        "Net_Liq": 66.29,
+        "Gain": 18.95000000000001,
+        "Today": 10.370000000000005,
+        "Holding": 66.29,
+        "fmt": {
+          "Asset_Type": "Stock",
+          "Quantity": "::tx-darkblue::_100_",
+          "Entry_Price": "0.4734",
+          "Mark_Price": "0.6629",
+          "Symbol": "<a onclick=\"markupTransactions('SNDL', 'position');\">SNDL</a>",
+          "Cost": "::tx-darkred::_(47.34)_",
+          "Holding": "::tx-darkblue::_66.29_",
+          "Gain": "::tx-italic-darkblue::_18.95_",
+          "Market": "::tx-darkblue::_0.19_"
         }
       }
     ],
@@ -7738,7 +7882,7 @@
       "linebreak": "\n",
       "aborted": false,
       "truncated": false,
-      "cursor": 188,
+      "cursor": 277,
       "fields": [
         "Asset_Type",
         "Underlying_Symbol",
@@ -7759,6 +7903,64 @@
   },
   "tastyTransactionDetails": {
     "data": [
+      {
+        "Date_Time": "01/31/2022 11:01 AM",
+        "Transaction_Code": "Trade",
+        "Transaction_Subcode": "Buy to Open",
+        "Symbol": "SNDL",
+        "Buy_Sell": "Buy",
+        "Open_Close": "Open",
+        "Quantity": 100,
+        "Expiration_Date": null,
+        "Strike": null,
+        "Call_Put": null,
+        "Price": 0.4734,
+        "Fees": 0.08,
+        "Amount": -47.34,
+        "Description": "Bought 100 SNDL @ 0.47",
+        "Account_Reference": "AcctPoppo...04",
+        "Time": "2022-01-31T16:01:00.000Z",
+        "id": 310,
+        "Earned": 0,
+        "fmt": {
+          "Symbol": "<a onclick=\"markupTransactions('SNDL', 'position');\">SNDL</a>",
+          "Subcode": "::tx-darkred::_Buy to Open_",
+          "Price": "::tx-darkblue::_0.4734_",
+          "Amount": "::tx-darkred::_(47.34)_",
+          "Earned": "-",
+          "Fees": "::tx-darkred::_(0.080)_",
+          "Strike": "::tx-darkblue::_0.00_"
+        }
+      },
+      {
+        "Date_Time": "01/22/2022 11:11 AM",
+        "Transaction_Code": "Money Movement",
+        "Transaction_Subcode": "Balance Adjustment",
+        "Symbol": null,
+        "Buy_Sell": null,
+        "Open_Close": null,
+        "Quantity": 0,
+        "Expiration_Date": null,
+        "Strike": null,
+        "Call_Put": null,
+        "Price": null,
+        "Fees": 0,
+        "Amount": 0.01,
+        "Description": "Regulatory fee adjustment",
+        "Account_Reference": "AcctPoppo...04",
+        "Time": "2022-01-22T16:11:00.000Z",
+        "id": 309,
+        "Earned": 0,
+        "fmt": {
+          "Symbol": "",
+          "Subcode": "::tx-darkblue::_Balance Adjustment_",
+          "Price": "::tx-darkblue::_0.0000_",
+          "Amount": "::tx-darkblue::_0.01_",
+          "Earned": "-",
+          "Fees": "::tx-darkblue::_0.000_",
+          "Strike": "::tx-darkblue::_0.00_"
+        }
+      },
       {
         "Date_Time": "01/21/2022 12:57 PM",
         "Transaction_Code": "Trade",
@@ -16698,7 +16900,7 @@
       "linebreak": "\n",
       "aborted": false,
       "truncated": false,
-      "cursor": 1282,
+      "cursor": 3601,
       "fields": [
         "Date_Time",
         "Transaction_Code",
@@ -16719,61 +16921,50 @@
     }
   },
   "tastyPortfolioSums": {
-    "Asset_Type": "STOCK",
-    "Underlying_Symbol": "TLGTQ",
-    "Description": null,
-    "Expiration": null,
-    "Days_to_Expiration": null,
-    "Strike_Price": null,
-    "Call/Put": null,
-    "Quantity": 100,
-    "Delta": 100,
-    "Theta": 0,
-    "Cost": 19.99,
-    "Net_Liq": 1.2,
-    "Gain": -18.79,
-    "Today": -18.94,
-    "Holding": 1.1999999999999993,
+    "Quantity": 200,
+    "Holding": 66.45,
+    "Cost": 67.33,
+    "Gain": -0.8799999999999883,
     "fmt": {
-      "Quantity": 100,
-      "Holding": "1.20",
-      "Cost": "::tx-darkred::_(19.99)_",
-      "Gain": "::tx-italic-darkred::_(18.79)_"
+      "Quantity": 200,
+      "Holding": "66.45",
+      "Cost": "::tx-darkred::_(67.33)_",
+      "Gain": "::tx-italic-darkred::_(0.88)_"
     }
   },
   "tastyPositionSums": {
-    "NbrTrans": 278,
+    "NbrTrans": 279,
     "NbrTrades": 86,
     "CloseQty": 19022,
     "InvestAmt": -10498.062,
     "RealizedAmt": 10788.193999999998,
     "Gain": 290.13199999999995,
-    "Fees": 33.112,
-    "PosQty": 100,
-    "PosCost": -19.99,
+    "Fees": 33.192,
+    "PosQty": 200,
+    "PosCost": -67.33,
     "fmt": {
-      "NbrTrans": "::tx-darkblue::_278_",
+      "NbrTrans": "::tx-darkblue::_279_",
       "NbrTrades": "::tx-darkblue::_86_",
       "CloseQty": "::tx-darkblue::_19022_",
       "InvestAmt": "::tx-darkred::_(10498.06)_",
       "RealizedAmt": "::tx-darkblue::_10788.19_",
       "Gain": "::tx-italic-darkblue::_290.13_",
-      "Fees": "::tx-darkred::_(33.11)_",
-      "PosQty": "::tx-darkblue::_100_",
-      "PosCost": "::tx-darkred::_(19.99)_"
+      "Fees": "::tx-darkred::_(33.19)_",
+      "PosQty": "::tx-darkblue::_200_",
+      "PosCost": "::tx-darkred::_(67.33)_"
     }
   },
   "tastyFinancialSums": {
-    "Amount": 2001.4999999999998,
+    "Amount": 2001.5099999999998,
     "Fees": 0
   },
   "tastyFinancialSummary": {
-    "account": "::tx-darkblue::_2001.50_",
+    "account": "::tx-darkblue::_2001.51_",
     "gain": "::tx-darkblue::_290.13_",
-    "positions": "::tx-darkred::_(19.99)_",
-    "cash": "::tx-darkblue::_2238.53_",
-    "liquidity": "::tx-darkred::_(18.79)_",
-    "liquidate": "::tx-darkblue::_2239.73_",
-    "fees": "::tx-darkred::_(33.11)_"
+    "positions": "::tx-darkred::_(67.33)_",
+    "cash": "::tx-darkblue::_2191.12_",
+    "liquidity": "::tx-darkred::_(0.88)_",
+    "liquidate": "::tx-darkblue::_2257.57_",
+    "fees": "::tx-darkred::_(33.19)_"
   }
 }
